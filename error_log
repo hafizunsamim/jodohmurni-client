@@ -1,0 +1,7 @@
+[31-Dec-2025 17:14:02 UTC] PHP Warning:  copy(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in Command line code on line 1
+[31-Dec-2025 17:14:02 UTC] PHP Warning:  copy(https://getcomposer.org/composer-stable.phar): Failed to open stream: no suitable wrapper could be found in Command line code on line 1
+[31-Dec-2025 17:14:26 UTC] PHP Warning:  copy(): https:// wrapper is disabled in the server configuration by allow_url_fopen=0 in Command line code on line 1
+[31-Dec-2025 17:14:26 UTC] PHP Warning:  copy(https://getcomposer.org/installer): Failed to open stream: no suitable wrapper could be found in Command line code on line 1
+[17-Jan-2026 06:01:49 UTC] PHP Fatal error:  Cannot declare class App\Console\Kernel, because the name is already in use in /home/jodohmurni/public_html/testing.jodohmurni.com/app/Console/Commands/Kernel.php on line 9
+[17-Jan-2026 06:01:54 UTC] PHP Fatal error:  Cannot declare class App\Console\Kernel, because the name is already in use in /home/jodohmurni/public_html/testing.jodohmurni.com/app/Console/Commands/Kernel.php on line 9
+[20-Jan-2026 04:41:27 UTC] PHP Fatal error:  Cannot declare class App\Console\Kernel, because the name is already in use in /home/jodohmurni/public_html/testing.jodohmurni.com/app/Console/Commands/Kernel.php on line 9

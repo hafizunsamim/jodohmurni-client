@@ -1,0 +1,8 @@
+.card-soft-green {
+  background-color: #fafaea !important;
+  border-color: #e5e5bf;
+}
+
+.card-soft-green .card-body {
+  background-color: transparent;
+}

@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #f5f5f5;
+}
+
+/* APP WRAPPER */
+.app {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* MAIN SECTION */
+.section-main {
+    height: calc(100vh - 70px);
+    padding: 16px;
+    overflow: visible;
+}
+
+/* CARD CONTAINER */
+.tinder-container {
+    height: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+/* CARD */
+.tinder-card {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border-radius: 26px;
+    background-size: cover;
+    background-position: center;
+    overflow: visible;
+     box-shadow: none !important;
+    touch-action: pan-y;
+}
+
+/* FILTER */
+.filter-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #4CAF50;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* GRADIENT */
+.card-gradient {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+}
+
+/* INFO */
+.card-info {
+    position: absolute;
+    bottom: 140px;
+    left: 20px;
+    color: #fff;
+    z-index: 5;
+}
+
+.card-info h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.tags span {
+    background: rgba(255,255,255,.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+/* ACTIONS */
+.card-actions {
+    position: absolute;
+    bottom: 90px; /* ABOVE FOOTER */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    z-index: 6;
+}
+
+.btn-circle {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    font-size: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.btn-circle.like {
+    background: #30a223;
+    color: #fff;
+}
+
+/* Info wrapper position */
+.card-info-overlay {
+    position: absolute;
+    /* Turunkan info supaya tak tutup gambar */
+    bottom: 8px;
+    left: 16px;
+    right: 16px;
+    z-index: 5;
+}
+
+/* Info box styling */
+.info-box {
+    max-width: 320px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(60, 59, 59, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Name */
+.info-box h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.info-box h3 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Tags layout */
+.info-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.info-tags span {
+    background: rgba(255,255,255,0.25);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+}
+
+
+/* FLOATING ACTION BUTTONS - CLEAN CENTER */
+.floating-actions {
+    position: absolute;
+    /* Letak action buttons di atas info box */
+    bottom: 124px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 28px;
+    z-index: 30;
+    pointer-events: none;
+}
+
+@media (max-width: 575.98px) {
+    .card-info-overlay { bottom: 6px; left: 12px; right: 12px; }
+    .info-box { max-width: 100%; padding: 12px 14px; border-radius: 16px; }
+    .info-box h3 { font-size: 20px; margin-bottom: 8px; }
+    .info-tags span { padding: 6px 12px; font-size: 12px; }
+    .floating-actions { bottom: 132px; gap: 24px; }
+    .fab-btn { width: 60px; height: 60px; }
+}
+
+/* FAB BUTTON */
+.fab-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 35px rgba(0,0,0,.35);
+    pointer-events: auto;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+/* Hover / Tap feedback */
+.fab-btn:active {
+    transform: scale(.92);
+    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+}
+
+.fab-btn.fab-dislike {
+    background: #ffffff;
+}
+
+.fab-btn img {
+    width: 22px;
+}
+
+/* LIKE BUTTON */
+.fab-like {
+    background: #30a223;
+}
+
+
+.fab-like img {
+    filter: brightness(0) invert(1);
+}
+
+.swipe-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.swipe-modal.hidden {
+    display: none;
+}
+
+.swipe-modal-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+}
+
+.swipe-modal-content button {
+    margin-top: 16px;
+    padding: 10px 20px;
+    border: none;
+    background: #ff5a5f;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.fade-out {
+    animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,240 @@
+/* Container & Layout */
+.main-likes-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Filter Pills */
+.filter-pills {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pill-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pill-btn.active {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.pill-btn:hover:not(.active) {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Grid System */
+.swipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* Card Styling */
+.swipe-card {
+    background: #1e293b;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0; /* Handled by animation */
+    animation: slideIn 0.5s ease forwards;
+}
+
+.swipe-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Photo Effects */
+.photo-wrapper {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.swipe-photo {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s ease;
+}
+
+.swipe-card:hover .swipe-photo {
+    transform: scale(1.15);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
+}
+
+/* Badges */
+.badge-swipe {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.badge-like { background: rgba(34, 197, 94, 0.9); color: white; }
+.badge-dislike { background: rgba(244, 63, 94, 0.9); color: white; }
+
+/* Content */
+.swipe-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.swipe-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f5f9;
+}
+
+.swipe-time {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+/* Dynamic Buttons */
+.swipe-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: stretch; /* Aligns them horizontally */
+    min-height: 42px;
+}
+
+.btn-action {
+    flex: 1;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 42px !important; /* Forces the height to stick */
+    padding: 0 16px !important;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn-action.view {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-action.chat {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-action:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.empty-state {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.empty-icon-wrapper {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: heartBeat 2s infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+/* Mobile View: 2 Columns */
+@media (max-width: 576px) {
+    .main-likes-wrapper {
+        padding: 12px 8px; /* Reduce container padding to save space */
+    }
+
+    .swipe-grid {
+        grid-template-columns: repeat(2, 1fr); /* Force 2 equal columns */
+        gap: 8px; /* Thinner gap between cards for mobile */
+    }
+
+    .photo-wrapper {
+        height: 180px; /* Reduce image height so more fits on screen */
+    }
+
+    .swipe-name {
+        font-size: 14px; /* Smaller font for mobile names */
+    }
+
+    .swipe-actions {
+        flex-direction: column; /* Stack buttons vertically to fit narrow cards */
+        gap: 6px;
+    }
+
+    .btn-action {
+        height: 40px; /* Slightly shorter buttons */
+        font-size: 17;
+        padding: 0 8px;
+    }
+}

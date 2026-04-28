@@ -1,0 +1,8 @@
+
+php artisan serve
+php artisan reverb:start
+php artisan chat:send-unread-emails
+
+
+php vendor/bin/web-push generate:vapid
+php generate_vapid.php

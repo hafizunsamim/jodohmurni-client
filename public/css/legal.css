@@ -1,0 +1,15 @@
+body {
+    padding-top: 80px; 
+}
+
+.card {
+    border-radius: 16px;
+}
+
+.card-body {
+    line-height: 1.7;
+}
+
+h5 {
+    margin-top: 1.5rem;
+}

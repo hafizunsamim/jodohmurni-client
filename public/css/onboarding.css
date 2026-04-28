@@ -1,0 +1,371 @@
+/* ========== Background sama (full screen gradient) – onboarding, register, login & keahlian ========== */
+body[data-page="onboarding"],
+body[data-page="register"],
+body[data-page="login"],
+body[data-page="keahlian"],
+body[data-page="affiliate"] {
+  background: linear-gradient(135deg, #94efcc, #f7fffc, #f7fffc, #38dc9d);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  max-width: none;
+  width: 100%;
+}
+
+body[data-page="onboarding"] #top-navbar,
+body[data-page="onboarding"] .homeHeader-main,
+body[data-page="register"] #top-navbar,
+body[data-page="register"] .homeHeader-main,
+body[data-page="login"] #top-navbar,
+body[data-page="login"] .homeHeader-main,
+body[data-page="keahlian"] #top-navbar,
+body[data-page="keahlian"] .homeHeader-main,
+body[data-page="affiliate"] #top-navbar,
+body[data-page="affiliate"] .homeHeader-main {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+body[data-page="onboarding"] .site_content,
+body[data-page="register"] .site_content,
+body[data-page="login"] .site_content,
+body[data-page="keahlian"] .site_content,
+body[data-page="affiliate"] .site_content {
+  background: transparent;
+  max-width: none;
+  width: 100%;
+}
+
+/* Country */
+.country-choice-btn {
+    height: 80px;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    background: #ffffff;
+    color: #2d3748;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.country-choice-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 150, 109, 0.15);
+    border-color: #00c17c;
+    background: #f0f9f4;
+}
+
+.country-choice-btn:active {
+    transform: translateY(0);
+}
+
+.country-choice-btn.selected {
+    border-color: #00966d;
+    background: #e8f5f0;
+    color: #00966d;
+    box-shadow: 0 0 0 3px rgba(0, 150, 109, 0.2);
+}
+
+.country-flag {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #f7fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.country-choice-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(0, 193, 124, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.country-choice-btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* UNTUK STATE & DISTRICT */
+
+/* Wrapper */
+.onboarding-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0 16px;
+}
+
+/* Card */
+.onboarding-card {
+    width: 100%;
+    max-width: 520px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* Select interaction */
+.interactive-select {
+    transition: all .25s ease;
+}
+.interactive-select:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 0.15rem rgba(46,125,50,.25);
+}
+
+/* Button hover */
+.btn-success {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+.btn-success:hover {
+    background-color: #256628;
+    transform: translateY(-1px);
+}
+
+/* Shake animation (error) */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+.shake {
+    animation: shake .3s;
+}
+
+/* Page entrance */
+.animate-in {
+    animation: fadeSlide .4s ease;
+}
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* START GENDER MALE */
+
+
+/* Select interaction */
+.interactive-select {
+    transition: all .25s ease;
+}
+.interactive-select:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 0 0.15rem rgba(46,125,50,.25);
+}
+
+/* Button hover */
+.btn-success {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+.btn-success:hover {
+    background-color: #256628;
+    transform: translateY(-1px);
+}
+
+/* Shake animation (error) */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+}
+.shake {
+    animation: shake .3s;
+}
+
+/* Page entrance */
+.animate-in {
+    animation: fadeSlide .0.1s ease;
+}
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* NI UNTUK GENDER */
+.gender-btn {
+    color: #2e7d32; 
+    background-color: #ffffff;
+    border: 2px solid #2e7d32;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(46, 125, 50, 0.15);
+    width: 100%;
+    padding: 1rem 0;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.gender-btn:hover {
+    background-color: #2e7d32;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.25);
+}
+
+.gender-btn.selected {
+    background-color: #2e7d32;
+    color: white;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+}
+
+/* PHOTOS UPLOAD PUNYA */
+
+.photo-card {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+}
+
+.photo-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6faf7;
+    transition: all 0.2s ease;
+    height: 150px; /* SAME HEIGHT for all cards */
+    border-radius: 16px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.photo-card:hover .photo-box {
+    background: #e8f5e9;
+    transform: scale(1.03);
+}
+
+.photo-placeholder {
+    text-align: center;
+    color: #2e7d32;
+    font-size: 12px;
+    line-height: 1.2;
+    max-width: 90%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;   /* max 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.photo-placeholder .plus {
+    font-size: 28px;
+    display: block;
+    font-weight: bold;
+}
+
+.photo-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+li {
+    display: list-item;
+}
+
+.modal-body .onboarding-list {
+  list-style-type: disc;
+  list-style-position: inside; /* CRITICAL: Moves bullets INTO visible content area */
+  padding-left: 1.25rem;       /* Comfortable indent for inside bullets */
+  margin: 0.5rem 0;
+  color: #212529;              /* Ensures text (and bullets) are dark */
+}
+
+/* Optional: Enhanced marker styling for modern browsers */
+.modal-body .onboarding-list li::marker {
+  color: #0d6efd; /* Bootstrap primary blue for visibility */
+  font-weight: bold;
+}
+
+
+/* Remove default bullets and style custom bullets */
+.onboarding-card ul {
+  list-style: none; /* Remove default bullets */
+  padding-left: 0;
+}
+
+.onboarding-card ul li {
+  position: relative;
+  padding-left: 0.5em; /* Space for the bullet */
+  margin-bottom: 0.5em;
+}
+
+.onboarding-card ul li::before {
+  content: "•";
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  color: #000; /* Match your text color */
+}
+
+
+.photo-card ul {
+    list-style: none; 
+    padding-left: 0;
+}
+
+.photo-card ul li {
+    position: relative;
+    padding-left: 15px; /* Adjust based on bullet size */
+    line-height: 1.2;
+}
+
+.photo-card ul li::before {
+    content: "•"; /* The bullet point */
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    color: #6c757d; /* Matches 'text-muted' color */
+}

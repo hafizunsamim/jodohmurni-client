@@ -1,0 +1,104 @@
+/* Wrapper – gradient dari body (onboarding.css), tiada background sendiri */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Kad form putih standard seperti onboarding-card */
+.login-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 28px 24px;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #2d3748;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    animation: registerFadeInUp 0.4s ease;
+    position: relative;
+}
+
+@keyframes registerFadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-floating > label {
+    color: #5a7b70 !important;
+    transition: all 0.3s ease;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: #2d3748 !important;
+    border: 1px solid #b2d3c2 !important;
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: white !important;
+    border-color: #00c17c !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 193, 124, 0.2) !important;
+    outline: none !important;
+}
+
+.form-floating:focus-within label,
+.form-control:not(:placeholder-shown) + label {
+    color: #00966d !important; /* deeper green */
+    transform: scale(0.85) translateY(-0.5rem);
+}
+
+.toggle-eye {
+    color: #5a7b70;
+    transition: color 0.2s ease;
+}
+
+.toggle-eye:hover {
+    color: #00c17c;
+    scale: 1.15;
+}
+
+/* Sama warna dengan butang Seterusnya (onboarding/state) – #2e7d32 */
+.login-btn {
+    border-radius: 12px;
+    background-color: #2e7d32 !important;
+    border: none !important;
+    border-color: #2e7d32 !important;
+    color: white !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #256628 !important;
+    border-color: #256628 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* Links */
+a.text-decoration-none {
+    color: #00966d;
+    font-weight: 600;
+}
+
+a.text-decoration-none:hover {
+    color: #007f5a;
+    text-decoration: underline;
+}
+
+.form-check-input:checked {
+    background-color: #00c17c;
+    border-color: #00c17c;
+}
+
+.text-danger {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.4s forwards;
+}

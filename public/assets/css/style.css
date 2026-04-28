@@ -1,0 +1,3102 @@
+/*------------------------------------------------------------------
+Project: Romio Dating
+Author: The_Krishna
+Last change: 25/05/2025
+Primary use:
+------------------------------------------------------------------ */
+/*-----------------------[Table of contents]------------------------
+1.Default CSS
+2.Preloader CSS
+3.Splash Screen CSS
+4.Onboarding Screen CSS
+5.Lets Screen CSS
+6.Header CSS
+7.Sign In & Sign Up Screen CSS
+8.OTP Code CSS
+9.Create new Pin CSS
+10.Finger Print Screen CSS
+11.Language Select Screen CSS
+12.Data Collect Screen CSS
+13.Choose Interests Screen CSS
+14.Add Your Photos Screen CSS
+15.Enable Location Screen CSS
+16.Upload Id Screen CSS
+17.Personal Infp Screen CSS 
+18.Home Screen CSS
+19.Home Tinder CSS
+20.Home Footer CSS
+21.Home Screen Setting CSS
+22.Profile Single CSS
+23.Filter Screen CSS 
+24.Discover Screen CSS
+25.Card like Screen CSS
+26.All Match Screen CSS
+27.Match Screen CSS
+28.Message Screen CSS
+29.Chat Screen CSS
+30.Chat Search Popup and Button more Screen CSS
+31.Chat Input Pop Up Screen Css 
+32.Export Chat PopUp CSS
+33.Voice & Video Call Screen Css
+34.Security Screen CSS
+35.Marketing Preferences Screen CSS
+36.FAQ Screen CSS 
+37.Data & Privacy Screen CSS
+38.About Screen CSS
+39.Feedback Screen CSS
+40.Contact Screen CSS
+41.Invite Friend Screen CSS
+42.Delete or Deactivate Screen CSS
+43.Pop Up Add Home Screen CSS
+------------------------------------------------------------------ */
+/*-----------------------[ 1.Default CSS ]------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-style: normal;
+    scroll-behavior: smooth;
+    font-family: "Urbanist";
+}
+html {
+    scroll-behavior: smooth;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+dl,
+ol,
+ul {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+ul {
+    padding-left: 0;
+}
+ul li {
+    list-style: none;
+}
+button {
+    border: none;
+}
+/* Chrome, Safari, Edge, Opera */
+* {
+    scrollbar-width: none
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+body {
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100%;
+}
+body::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+.container {
+    width: 100%;
+    max-width: 100%;
+}
+.site_lr-spacer {
+    padding: 0 12px;
+}
+.section-main-ver {
+    padding: 0 12px;
+    margin-bottom: 120px;
+}
+/*-----------------------[ 2.Preloader CSS ]------------------------*/
+.page-loader {
+    max-width: 600px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 10000;
+    overflow: hidden;
+    gap: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 12px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.loader {
+    color: #046307;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 60px;
+}
+.Particle_heart {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #046307;
+    opacity: 0;
+    animation: floatHeart 5s linear infinite;
+}
+.Particle_heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0.5s;
+}
+.Particle_heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2.5s;
+}
+.Particle_heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 1.5s;
+}
+.Particle_heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+}
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        transform: translateY(-100px) translateX(30px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-150px) translateX(60px);
+        opacity: 0;
+    }
+}
+/*-----------------------[ 3.Splash Screen CSS ]------------------------*/
+.welcomeScreen {
+    background-image:
+        linear-gradient(180deg, rgba(18, 21, 28, 0.00) 0%, rgba(18, 21, 28, 0.85) 100%),
+        url('../images/splash-screen/welcomeImg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+}
+.logo-text {
+    color: var(--1, #FFF);
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 64px;
+    padding-top: 16px;
+}
+.logo-sub-text {
+    color: var(--1, #FFF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+.whol-main-btn {
+    border-radius: 12px;
+    background: var(--12, #046307);
+    padding: 12px 40px;
+    color: var(--1, #FFF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    display: block;
+}
+.main-screen-btn {
+    margin: 40px 12px 40px 12px;
+}
+/*-----------------------[ 4.Onboarding Screen CSS ]------------------------*/
+.onboarding-slider-screen {
+    background: #FAE8F9;
+    clip-path: ellipse(100% 95% at 50% 0%);
+}
+.multiHeart {
+    position: absolute;
+    z-index: -1;
+    animation: heartbeat 1.5s infinite;
+}
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.Onboarding-main {
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+}
+.text-main-onborading {
+    margin-top: 30px;
+}
+.onboarding-slider-screen img {
+    max-height: 440px;
+    width: 100%;
+    object-fit: contain;
+}
+.boarding-title h2 {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    padding-bottom: 16px;
+}
+.boarding-title p {
+    color: var(--3, #616568);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+.onbording-btn-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.onbording-btn-main a {
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    border-radius: 12px;
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+}
+.skip-btn {
+    color: var(--12, #046307);
+    background: var(--10, #FAE8F9);
+}
+.next-btn {
+    color: var(--1, #FFF);
+    background: var(--12, #046307);
+}
+.splash-btns-bottom {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    padding: 16px;
+    z-index: 1000;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border-top: 0;
+    border-bottom: 0;
+    border: 2px solid #616568;
+    background: #FFF;
+}
+.carousel-indicators .active {
+    width: 22px !important;
+    height: 9px !important;
+    border: 2px solid #0F0F0F;
+    border-radius: 20px;
+    background: #FFF;
+}
+.carousel-indicators {
+    position: absolute;
+    bottom: 60px;
+    left: 35%;
+    transform: translate(-50%, 0%);
+    z-index: 2;
+    height: 30px;
+}
+/*-----------------------[ 5.Lets Screen CSS ]------------------------*/
+.section-main {
+    padding: 0 12px;
+}
+.lets-text {
+    color: var(--2, #0F0F0F);
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+}
+.into {
+    color: var(--3, #616568);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    padding-top: 12px;
+}
+.lets-mdia {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    border: 2px solid var(--8, #F5F5F5);
+    margin: 16px 0;
+    position: relative;
+}
+.lets-mdia p {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    width: 100%;
+    padding: 12px 0;
+}
+.media-icons-lets {
+    width: 100%;
+    max-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--8, #F5F5F5);
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: -2px;
+    top: -1px;
+}
+.lets-media-maiom {
+    margin: 32px 0;
+}
+.let-screen-btns-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.sign-in {
+    background: transparent;
+    border: 2px solid #3E36ED;
+    color: #3E36ED;
+}
+.left-footer a {
+    color: var(--2, #12151C);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+.left-footer {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    padding: 12px;
+    background: #FFF;
+    position: fixed;
+    bottom: 0;
+}
+/*-----------------------[ 6.Header CSS ]------------------------*/
+#top-header,
+#top-navbar {
+    background: #FFFFFF;
+    max-width: 600px;
+}
+.site_lr-spacer {
+    padding: 11px 12px;
+}
+.fixed {
+    position: fixed;
+    z-index: 101;
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    top: 0%;
+    -webkit-box-shadow: 0 0 22px -4px rgb(0 0 0 / 17%);
+    box-shadow: 0 0 22px -4px rgb(0 0 0 / 17%);
+    -webkit-animation: fixedheader 600ms ease 0ms 1 forwards;
+    animation: fixedheader 600ms ease 0ms 1 forwards;
+}
+@keyframes fixedheader {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+/*-----------------------[ 7.Sign In & Sign Up Screen CSS ]------------------------*/
+.join-mani,
+.into-sub {
+    text-align: left;
+}
+.sign-text-nam {
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+.sign-input-main {
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: 2px solid var(--8, #F5F5F5);
+}
+.sign-input-main input {
+    outline: none;
+    width: 100%;
+    padding: 12px 50px;
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    border: none;
+    background: #F5F5F5;
+    border-radius: 20px;
+}
+.eye-off {
+    position: absolute;
+    right: 16px;
+}
+.inpt-la-main {
+    margin-top: 16px;
+}
+.sing-in-up {
+    color: var(--2, #0F0F0F);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 24px;
+}
+.sing-in-up a {
+    color: var(--4, #046307);
+    font-weight: 600;
+}
+.or-section p {
+    overflow: hidden;
+    color: #616568;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 20px 0;
+}
+.or-section p:before,
+.or-section p:after {
+    background: #F5F5F5;
+    content: "";
+    display: inline-block;
+    height: 2px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+.or-section p:before {
+    right: 8px;
+    margin-left: -50%;
+}
+.or-section p:after {
+    left: 8px;
+    margin-right: -50%;
+}
+.sign-up-media-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.sign-up-media {
+    width: 48px;
+    height: 48px;
+    border: 2px solid #F5F5F5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-main.Verify-btn {
+    position: fixed;
+    bottom: 0;
+    width: 600px;
+    margin: 0 auto;
+    padding: 16px 12px;
+    background: #FFFFFF;
+    z-index: 100;
+}
+.wave-hand {
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-name: wave-animation;
+    display: inline-block;
+    transform-origin: 70% 70%;
+    font-size: 30px;
+}
+@keyframes wave-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(14deg);
+    }
+    20% {
+        transform: rotate(-8deg);
+    }
+    30% {
+        transform: rotate(14deg);
+    }
+    40% {
+        transform: rotate(-4deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+.remember-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+.footer-chec-txt a {
+    color: var(--4, #046307);
+    font-weight: 600;
+}
+.footer-checkbox-input+.footer-chec-txt {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+}
+.footer-checkbox-input {
+    position: absolute;
+    opacity: 0;
+}
+.footer-checkbox-input:checked+.footer-chec-txt:before {
+    background: #046307;
+    border: none;
+}
+.footer-checkbox-input+.footer-chec-txt:before {
+    content: "";
+    display: inline-block;
+    vertical-align: text-top;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+}
+.footer-checkbox-input:checked+.footer-chec-txt:after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 11px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    transform: rotate(45deg);
+}
+.footer-chec-txt {
+    color: var(--3, #616568);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.forget-btn a {
+    color: var(--4, #046307);
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+/*-----------------------[ 8.OTP Code CSS ]------------------------*/
+.otp-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px 0 24px 0;
+}
+.otp-field input {
+    width: 48px;
+    height: 60px;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    border: transparent;
+    background: #F5F5F5;
+    outline: none;
+    transition: all 0.1s;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    color: #0F0F0F;
+}
+.otp-field input:focus {
+    border: 2px solid #3E36ED;
+    background: transparent;
+    box-shadow: 0px 0px 12px 0px rgba(62, 54, 237, 0.24);
+}
+.otp-field input.filled {
+    border: 2px solid #12151C;
+    background: transparent;
+}
+.esend {
+    color: var(--2, #0F0F0F);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    position: fixed;
+    bottom: 30px;
+}
+.esend a {
+    color: var(--4, #046307);
+    font-weight: 600;
+}
+#countdowntimer {
+    color: var(--7, #046307)
+}
+.reasebnd {
+    color: var(--4, #046307);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    display: block;
+    padding-top: 12px;
+}
+.no-spinners::-webkit-outer-spin-button,
+.no-spinners::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/*-----------------------[ 9.Create new Pin CSS ]------------------------*/
+.create-newPinIn input {
+    width: 75px;
+}
+/*-----------------------[ 10.Finger Print Screen CSS ]------------------------*/
+.scan-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 40vh);
+    flex-direction: column;
+    gap: 24px;
+}
+.scan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(../images/finger-print-screen/FingerPrintBorder.png);
+    width: 220px;
+    height: 220px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.scan .fingerprint {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    background: url(../images/finger-print-screen/fingerPrint.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.scan .fingerprint::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/finger-print-screen/fingerPrint.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: animate 4s ease-in-out infinite;
+    filter: brightness(0) saturate(100%) invert(18%) sepia(99%) saturate(4456%) hue-rotate(244deg) brightness(93%) contrast(100%);
+}
+@keyframes animate {
+    0%,
+    100% {
+        height: 0%;
+    }
+    50% {
+        height: 100%;
+    }
+}
+.scan .fingerprint::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #3E36ED;
+    border-radius: 8px;
+    filter: drop-shadow(0 0 20px #3E36ED) drop-shadow(0 0 60px #3E36ED);
+    animation: animate_line 4s ease-in-out infinite;
+}
+@keyframes animate_line {
+    0%,
+    100% {
+        top: 0%;
+    }
+    50% {
+        top: 100%;
+    }
+}
+.secure {
+    color: var(--2, #0F0F0F);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 24px 0;
+}
+/*-----------------------[ 11.Language Select Screen CSS ]------------------------*/
+.flg-main {
+    max-width: 52px;
+    width: 100%;
+    height: 52px;
+    border-radius: 12px;
+    border: 2px solid var(--9, #F5F5F5);
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flg-main img {
+    border-radius: 50%;
+}
+.flag {
+    color: var(--2, #0F0F0F);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+.falg-text-mainsa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 2px solid var(--9, #F5F5F5);
+    padding: 12px;
+    border-radius: 12px;
+    background: #F5F5F5;
+}
+.language-select {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+}
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+.language-option input[type="radio"] {
+    display: none;
+}
+.custom-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000;
+    border-radius: 7px;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s ease;
+}
+.language-option input[type="radio"]:checked+.custom-radio {
+    background-color: #046307;
+    border-color: #046307;
+}
+.language-option input[type="radio"]:checked+.custom-radio::after {
+    content: url(../images/svg/check.svg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/*-----------------------[ 12.Data Collect Screen CSS ]------------------------*/
+.contihg {
+    color: var(--2, #12151C);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+.contihg::before {
+    content: url('../images/svg/checkBox.svg');
+}
+.contihg-sub {
+    color: var(--3, #616568);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+}
+.toggle-btn-per-info-seccond {
+    border-radius: 0 !important;
+}
+.personal-info-sec-one,
+.personal-info-sec-two,
+.personal-info-sec-three,
+.personal-info-sec-four,
+.personal-info-sec-five {
+    display: none;
+}
+.personal-info-sec-one.active,
+.personal-info-sec-two.active,
+.personal-info-sec-three.active,
+.personal-info-sec-four.active,
+.personal-info-sec-five.active {
+    display: block;
+}
+.toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto 24px;
+    background-color: #F5F5F5;
+    max-width: calc(400px - 24px);
+    border-radius: 20px;
+}
+.toggle-btn-per-info {
+    width: 80px;
+    height: 16px;
+    background-color: #F5F5F5;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: transparent;
+}
+.tab-toggle-btn-one {
+    border-radius: 8px 0 0 8px;
+}
+.tab-toggle-btn-five {
+    border-radius: 0 8px 8px 0;
+}
+.toggle-btn-per-info.active {
+    background-color: #3E36ED;
+    color: #fff;
+    border-radius: 8px !important;
+}
+.data-language-option {
+    border: 2px solid #F5F5F5;
+}
+/* -------------- Types CheckBox -------------- */
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000;
+    border-radius: 7px;
+    display: inline-block;
+    position: relative;
+    transition: 0.3s ease;
+}
+.language-option input[type="checkbox"] {
+    display: none;
+}
+.language-option input[type="checkbox"]:checked+.custom-checkbox {
+    background-color: #046307;
+    border-color: #046307;
+}
+.language-option input[type="checkbox"]:checked+.custom-checkbox::after {
+    content: url(../images/svg/check.svg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/*-----------------------[ 13.Choose Interests Screen CSS ]------------------------*/
+.select-lang-sec {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 32px;
+}
+.intere {
+    padding-top: 24px;
+}
+.lang-sec input[type="checkbox"] {
+    display: none;
+}
+.lang-sec input[type="checkbox"]:checked+label {
+    background-color: #046307;
+    color: #FFF;
+}
+.custom-radio-sel-lang {
+    color: #12151C;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    border-radius: 12px;
+    background: var(--7, #F5F5F5);
+    padding: 11px 12px;
+    cursor: pointer;
+}
+/*-----------------------[ 14.Add Your Photos Screen CSS ]------------------------*/
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #FAE8F9;
+    border: 2px dashed #8000ff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+}
+.card img.preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+.icon-btn {
+    width: 100%;
+    max-width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #FFF;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card input[type="file"] {
+    display: none;
+}
+.add-icon {
+    margin-bottom: 6px;
+}
+.add-label {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+}
+/*-----------------------[ 15.Enable Location Screen CSS ]------------------------*/
+.enablelocation-main {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #3E36ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 24px auto;
+}
+/*-----------------------[ 16.Upload Id Screen CSS ]------------------------*/
+.dropdown-select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    color: #12151C;
+    background-color: #F5F5F5;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../images/svg/dropdown.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+    border: none;
+}
+.dropdown-select:focus {
+    outline: none;
+    border: none;
+}
+.dropdown-select::-ms-expand {
+    display: none;
+}
+.file-upload-container {
+    background: var(--10, #FAE8F9);
+    border: 2px dashed var(--11, #3E36ED);
+    border-radius: 16px;
+    padding: 35px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.upload-icon {
+    margin-bottom: 15px;
+    color: #3E36ED;
+}
+.upload-text span {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+}
+.file-upload-input {
+    display: none;
+}
+.file-preview {
+    margin-top: 20px;
+    display: none;
+}
+.file-preview.active {
+    display: block;
+}
+.file-preview-item {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.file-preview-item svg {
+    margin-right: 10px;
+    color: #3E36ED;
+    width: 100%;
+    max-width: 24px;
+}
+.file-preview-name {
+    flex-grow: 1;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+}
+.file-preview-remove {
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 20px;
+}
+/*-----------------------[ 17.Personal Infp Screen CSS ]------------------------*/
+#ui-datepicker-div {
+    display: none;
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+    margin-top: 0.25rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.ui-datepicker-calendar thead th {
+    padding: 0.25rem 0;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #78909C;
+}
+.ui-datepicker-calendar tbody td {
+    width: 2.5rem;
+    text-align: center;
+    padding: 0;
+}
+div#ui-datepicker-div {
+    z-index: 500 !important;
+}
+.ui-datepicker-calendar tbody td a {
+    display: block;
+    border-radius: 0.25rem;
+    line-height: 2rem;
+    transition: 0.3s all;
+    color: #546E7A;
+    font-size: 0.975rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+.ui-datepicker-calendar tbody td a:hover {
+    color: #046307;
+}
+.ui-datepicker-calendar tbody td a:hover {
+    background: #59f76b2c;
+}
+.ui-datepicker-calendar tbody td a.ui-state-active {
+    background-color: #046307;
+    color: white;
+}
+.ui-datepicker-header a.ui-corner-all {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    width: 2rem;
+    height: 0;
+    margin: 0.5rem;
+    border-radius: 0.25rem;
+    transition: 0.3s all;
+}
+span.ui-icon.ui-icon-circle-triangle-w,
+span.ui-icon.ui-icon-circle-triangle-e {
+    font-size: 15px;
+    color: #046307;
+    font-weight: 500;
+}
+a.ui-datepicker-next.ui-corner-all span.ui-icon.ui-icon-circle-triangle-e {
+    position: absolute;
+    right: -230px;
+}
+.ui-datepicker-title {
+    text-align: center;
+    line-height: 32px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.profile-pic {
+    max-height: 200px;
+    display: inline-block;
+    max-width: 200px;
+    height: auto;
+    width: 100%;
+}
+.camera-main {
+    position: relative;
+    margin: 24px 0;
+}
+.camera-img-main {
+    width: 32px;
+    height: 32px;
+    background: #046307;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 60px;
+    bottom: 5px;
+    cursor: pointer;
+}
+.camera-img-main img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(2%) saturate(7487%) hue-rotate(341deg) brightness(110%) contrast(107%);
+}
+.circle-img-girl {
+    border-radius: 100%;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #3E36ED;
+    box-shadow: 0px 15px 20px rgba(62, 54, 237, 0.25);
+}
+.file-upload {
+    display: none;
+}
+.dropdown-select-gender {
+    padding: 12px 16px 12px 50px;
+}
+/*-----------------------[ 18.Home Screen CSS ]------------------------*/
+.homeHeader-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #F5F5F5;
+}
+.logo-home-main {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.logo-home-main img {
+    width: 36px;
+}
+.logo-home-main p {
+    color: var(--12, #046307);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
+/*-----------------------[ 19. Home Tinder CSS ]------------------------*/
+.tinder-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: calc(100vh - 190px);
+    margin: 16px auto;
+}
+.tinder-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    cursor: grab;
+}
+.card-1 {
+    z-index: 6;
+    background-image: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 50%, #3E36ED 100%), url('../images/home-screen/girl-img6.jpg');
+    transform: translateY(0) scale(1);
+}
+.card-2 {
+    z-index: 5;
+    background-image: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 50%, #3E36ED 100%), url('../images/home-screen/girl-img5.jpg');
+    transform: translateY(10px) scale(0.97);
+}
+.card-3 {
+    z-index: 4;
+    background-image: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 50%, #3E36ED 100%), url('../images/home-screen/girl-img4.jpg');
+    transform: translateY(20px) scale(0.94);
+}
+.card-4 {
+    z-index: 3;
+    background-image: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 50%, #3E36ED 100%), url('../images/home-screen/girl-img3.jpg');
+    transform: translateY(30px) scale(0.91);
+}
+.card-5 {
+    z-index: 2;
+    background-image: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 50%, #3E36ED 100%), url('../images/home-screen/girl-img2.jpg');
+    transform: translateY(40px) scale(0.88);
+}
+.card-6 {
+    z-index: 1;
+    background-image: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 50%, #3E36ED 100%), url('../images/home-screen/girl-img1.jpg');
+    transform: translateY(50px) scale(0.85);
+}
+@keyframes swipeRight {
+    to {
+        transform: translateX(200%) rotate(30deg);
+        opacity: 0;
+    }
+}
+@keyframes swipeLeft {
+    to {
+        transform: translateX(-200%) rotate(-30deg);
+        opacity: 0;
+    }
+}
+.romio-girl-data-main {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+.card-info {
+    padding: 16px 16px 50px 16px;
+}
+.card-info h3 {
+    color: var(--1, #FFF);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+}
+.card-info p {
+    color: var(--1, #FFF);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.card-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 100;
+}
+.action-btn.like-btn {
+    width: 64px;
+    height: 64px;
+}
+.action-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    box-shadow: 0px 16px 20px -10px rgba(62, 54, 237, 0.32);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+.action-btn:hover {
+    transform: scale(1.1);
+}
+.filter-btn-main {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 100;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--12, #046307);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.like,
+.dislike {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    width: 64px;
+    height: 64px;
+    background: #046307;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img-slide-like-dislike img {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(99%) saturate(5%) hue-rotate(227deg) brightness(102%) contrast(102%);
+}
+.end-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #12151C;
+    font-size: 18px;
+    font-weight: 500;
+    z-index: 0;
+    display: none;
+    width: 100%;
+    padding: 20px;
+}
+/*-----------------------[ 20. Home Footer CSS ]------------------------*/
+.footer-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+    background: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+}
+.nav-item {
+    position: relative;
+    text-align: center;
+}
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    opacity: 1;
+    filter: grayscale(100%);
+    transition: 0.3s;
+}
+.nav-item.active img {
+    filter: brightness(0) saturate(100%) invert(37%) sepia(73%) saturate(356%) hue-rotate(100deg) brightness(93%) contrast(91%);
+    margin-bottom: 8px;
+}
+.nav-item .indicator {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #046307;
+    border-radius: 50%;
+    display: none;
+}
+.nav-item.active .indicator {
+    display: block;
+}
+/*-----------------------[ 21.Home Screen Setting CSS ]------------------------*/
+.offcanvas-header {
+    border-bottom: 2px solid #F5F5F5;
+}
+.home-setting-icons-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px 6px 6px;
+    border: 2px solid #F5F5F5;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: #F5F5F5;
+}
+.setting-opestion-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.setting-icons-main {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(to right, rgba(62, 54, 237, 0.08), rgba(62, 54, 237, 0.08));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.setting-icons-main2 {
+    background: rgba(247, 89, 245, 0.08);
+}
+.version {
+    color: var(--3, #616568);
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-left: 50px;
+    padding-right: 5px;
+}
+.new-notification {
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.btn-close {
+    --bs-btn-close-focus-shadow: none;
+    --bs-btn-close-opacity: 1;
+}
+.offcanvas-title {
+    color: var(--2, #000);
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+}
+/*-----------------------[ 22.Profile Single CSS ]------------------------*/
+.header-title h1 {
+    color: var(--2, #0F0F0F);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    padding-left: 10px;
+}
+.back-with-text {
+    display: flex;
+    align-items: center;
+}
+.share-media-mainss {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 25px;
+    padding-bottom: 16px;
+}
+.share-media-mainss a p {
+    color: var(--2, #0F0F0F);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding-top: 8px;
+}
+.offcanvas-headertexttoSpeech {
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+}
+.offcanvas-texttoSpeech {
+    width: 100%;
+    max-width: 600px;
+    height: 100% !important;
+    max-height: 320px !important;
+    margin: 0 auto;
+    border-radius: 24px 24px 0 0;
+}
+.single-d-main-img {
+    border-radius: 32px;
+    width: 100%;
+    margin: 16px 0;
+}
+.single-profile-nam {
+    color: var(--2, #12151C);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+.single-isabell {
+    margin-bottom: 24px;
+}
+.single-isabell p {
+    color: var(--2, #12151C);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 7px 16px;
+    border: 2px solid rgba(97, 101, 104, 0.4);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.single-isabell p img {
+    filter: brightness(0) saturate(100%) invert(5%) sepia(3%) saturate(7223%) hue-rotate(164deg) brightness(95%) contrast(91%);
+}
+.about-box {
+    padding-top: 24px;
+}
+.issAbout-me {
+    color: var(--2, #12151C);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.issAbout {
+    color: var(--3, #616568);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    padding-top: 12px;
+}
+.inte-mian {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+.int-box {
+    color: var(--2, #12151C);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    border-radius: 12px;
+    background: var(--7, #F5F5F5);
+    padding: 11px 12px;
+}
+.masonry-grid {
+    column-count: 2;
+    column-gap: 16px;
+}
+.masonry-grid img {
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 16px;
+}
+/* -----------------------[ 23.Filter Screen CSS ]------------------------*/
+.container-heeh {
+    margin-top: 50px;
+}
+.container-heeh .price-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container-heeh .slider {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: #F5F5F5;
+    border-radius: 5px;
+}
+.container-heeh .slider input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: transparent;
+    pointer-events: none;
+    outline: none;
+}
+.container-heeh .slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #FFF;
+    border-radius: 50%;
+    border: 2px solid #3E36ED;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0px 4px 12px rgba(62, 54, 237, 0.64);
+}
+.container-heeh .slider input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: #3E36ED;
+    border-radius: 50%;
+    background: #FFF;
+    border: 2px solid #3E36ED;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0px 4px 12px rgba(62, 54, 237, 0.64);
+}
+.container-heeh .slider::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    background: #3E36ED;
+    border-radius: 5px;
+    left: var(--left);
+    right: calc(100% - var(--right));
+}
+.container-heeh .price-label {
+    position: absolute;
+    top: -38px;
+    transform: translateX(-100%);
+    color: var(--7, #F5F5F5);
+    text-align: center;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background-image: url(../images/svg/price-bg.svg);
+    background-size: cover;
+    background-position: center;
+    width: 34px;
+    height: 25px;
+    padding-top: 3px;
+}
+.container-heeh #min-price {
+    left: var(--left);
+    margin-left: 30px;
+}
+.container-heeh #max-price {
+    left: var(--right);
+    margin-right: 20px;
+}
+.container-heeh {
+    margin-top: 45px;
+}
+/* -----------------------[ 24.Discover Screen CSS ]------------------------*/
+.dsiva {
+    border-radius: 32px;
+    margin-top: 22px;
+    width: 100%;
+}
+.dlkca {
+    color: var(--3, #616568);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.dlkca::before {
+    content: url('../images/svg/location.svg');
+}
+.newYork {
+    color: var(--2, #12151C);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.map-cobut-main {
+    display: flex;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px 0px rgba(18, 21, 28, 0.16);
+    padding: 12px;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: calc(600px - 45px);
+}
+.map-cobut-main a {
+    padding: 8px 16px;
+}
+/* -----------------------[ 25.Card like Screen CSS ]------------------------*/
+.categories-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px 0 16px 0;
+    padding-right: 12px;
+}
+.categories {
+    color: var(--2, #12151C);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.view-all-text {
+    color: var(--3, #616568);
+    text-align: right;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.profile-card,
+.match-card {
+    margin: 0 8px;
+}
+.profile-card {
+    width: 100%;
+    border-radius: 32px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+}
+.profile-image {
+    width: 100%;
+    border-radius: 32px;
+}
+.gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(62, 54, 237, 0.00) 0%, #3E36ED 100%);
+   border-radius:0 0 32px 32px;
+}
+.inner-deatils-main {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 16px;
+}
+.name {
+    color: var(--1, #FFF);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    margin-bottom: 8px;
+}
+.new-mtch-slider-loc-ge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.new-mtch-slider-loc-ge p {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: var(--1, #FFF);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 8px 10px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+}
+.match-card img {
+    border-radius: 32px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+.match-card p {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+/* -----------------------[ 26.All Match Screen CSS ]------------------------*/
+.filter-svg-all-match {
+    filter: brightness(0) saturate(100%) invert(41%) sepia(3%) saturate(483%) hue-rotate(129deg) brightness(94%) contrast(93%);
+}
+.allmtach-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.allmtach-grid img {
+    width: 100%;
+}
+.allmtach-grid .match-card {
+    margin: 0;
+}
+/* -----------------------[ 27.Match Screen CSS ]------------------------*/
+.match-percentag {
+    color: var(--1, #FFF);
+    text-align: center;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.80);
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.cong {
+    padding-top: 50px;
+}
+.match-person img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.match-person:nth-child(1) img {
+    position: absolute;
+    top: -100px;
+    left: 30px;
+}
+.match-person:nth-child(2) img {
+    position: absolute;
+    top: -100px;
+    right: 30px;
+}
+.heartBallon {
+    position: absolute;
+    top: 30px;
+}
+.heartwings2 {
+    position: absolute;
+    bottom: -70px;
+    right: 30px;
+}
+/* -----------------------[ 28.Message Screen CSS ]------------------------*/
+.message-labal-main {
+    border-radius: 36px;
+    border: 2px solid var(--7, #F5F5F5);
+    padding: 4px 20px 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.message-dp-conte-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.message-dp-main img {
+    border-radius: 50%;
+}
+.message-dp-main {
+    position: relative;
+}
+.online-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #3E36ED;
+    position: absolute;
+    top: 3px;
+    right: 0;
+    border: 3px solid #FFF;
+}
+.message-conte h2 {
+    color: var(--2, #12151C);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    padding-bottom: 8px;
+}
+.message-conte p {
+    color: var(--3, #616568);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+}
+.total-message {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #046307;
+    color: var(--1, #FFF);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+}
+/* -----------------------[ 29.Chat Screen CSS ]------------------------*/
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.header-chat-online {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.online {
+    border-radius: 10px;
+    background: var(--10, #FAE8F9);
+    color: var(--12, #046307);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14px;
+    padding: 3px 12px;
+}
+.truncate-title {
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+}
+.chat {
+    position: relative;
+    width: 100%;
+    height: 93vh;
+    margin-bottom: 20px;
+    z-index: 10;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.messages {
+    flex: 1 1 auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.messages .messages-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.messages .message {
+    clear: both;
+    float: left;
+    padding: 12px 12px 18px 12px;
+    border-radius: 8px;
+    background: var(--7, #F5F5F5);
+    position: relative;
+    border: none;
+    color: var(--2, #12151C);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    margin: 12px 0 5px 0;
+}
+.messages .message .timestamp {
+    position: absolute;
+    bottom: 3px;
+    right: 0;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+    width: 50px;
+    padding-right: 9px;
+}
+.mCSB_inside>.mCSB_container {
+    margin-right: 10px;
+}
+.messages .message.message-personal {
+    float: right;
+    text-align: right;
+    background: #3E36ED;
+    border: none;
+    border-radius: 8px;
+    color: #FFF;
+    text-align: right;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    margin-bottom: 6px;
+}
+.message-box .message-input:focus {
+    outline: none !important;
+    border-radius: 12px;
+    border: 1px solid var(--12, #046307);
+    background: var(--10, #FAE8F9);
+    color: #0F0F0F;
+}
+.messages .message.new {
+    transform: scale(0);
+    transform-origin: 0 0;
+    -webkit-animation: bounce 500ms linear both;
+    animation: bounce 500ms linear both;
+}
+.messages .message.loading span {
+    display: inline-block;
+    font-size: 0;
+    width: 20px;
+    height: 10px;
+    position: relative;
+}
+.messages .message.loading::before {
+    border: none;
+    animation: wave 1.3s linear infinite;
+}
+.messages .message.loading span::before,
+.messages .message.loading span::after,
+.messages .message.loading::before {
+    position: relative;
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #12151C;
+    z-index: 2;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+.messages .message.loading span::before {
+    animation: wave 1.3s linear infinite;
+    animation-delay: -1.1s;
+}
+.messages .message.loading span::after {
+    animation: wave 1.3s linear infinite;
+    animation-delay: -0.9s;
+}
+.message-box {
+    border: none;
+    position: relative;
+    border-radius: 10px;
+    width: 100%;
+}
+.specker {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+}
+.button-Emoji {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    cursor: pointer;
+}
+.buttonAttachment {
+    position: absolute;
+    right: 45px;
+    top: 12px;
+    cursor: pointer;
+}
+.chat-input {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+.send-icons {
+    stroke: white;
+    stroke-width: 2px;
+    stroke-linecap: round;
+}
+.message-box .message-input {
+    background: none;
+    border: 1px solid transparent;
+    outline: none !important;
+    resize: none;
+    font-size: 16px;
+    height: 48px;
+    margin: 0;
+    width: 100%;
+    color: #12151C;
+    background: var(--7, #F5F5F5);
+    border-radius: 12px;
+    padding: 10px 12px 10px 40px;
+}
+.message-box textarea:focus:-webkit-placeholder {
+    color: transparent;
+}
+.message-submit {
+    width: 100%;
+    max-width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    padding: 0;
+    background-color: #046307;
+}
+.mCSB_scrollTools {
+    margin: 1px -3px 1px 0;
+    opacity: 0;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: rgb(255, 255, 255) !important;
+}
+@-webkit-keyframes bounce {
+    0% {
+        transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    4.7% {
+        transform: matrix3d(0.45, 0, 0, 0, 0, 0.45, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    9.41% {
+        transform: matrix3d(0.883, 0, 0, 0, 0, 0.883, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    14.11% {
+        transform: matrix3d(1.141, 0, 0, 0, 0, 1.141, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    18.72% {
+        transform: matrix3d(1.212, 0, 0, 0, 0, 1.212, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    24.32% {
+        transform: matrix3d(1.151, 0, 0, 0, 0, 1.151, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    29.93% {
+        transform: matrix3d(1.048, 0, 0, 0, 0, 1.048, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    35.54% {
+        transform: matrix3d(0.979, 0, 0, 0, 0, 0.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    41.04% {
+        transform: matrix3d(0.961, 0, 0, 0, 0, 0.961, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    52.15% {
+        transform: matrix3d(0.991, 0, 0, 0, 0, 0.991, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    63.26% {
+        transform: matrix3d(1.007, 0, 0, 0, 0, 1.007, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    85.49% {
+        transform: matrix3d(0.999, 0, 0, 0, 0, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    100% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+}
+@keyframes bounce {
+    0% {
+        transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    4.7% {
+        transform: matrix3d(0.45, 0, 0, 0, 0, 0.45, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    9.41% {
+        transform: matrix3d(0.883, 0, 0, 0, 0, 0.883, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    14.11% {
+        transform: matrix3d(1.141, 0, 0, 0, 0, 1.141, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    18.72% {
+        transform: matrix3d(1.212, 0, 0, 0, 0, 1.212, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    24.32% {
+        transform: matrix3d(1.151, 0, 0, 0, 0, 1.151, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    29.93% {
+        transform: matrix3d(1.048, 0, 0, 0, 0, 1.048, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    35.54% {
+        transform: matrix3d(0.979, 0, 0, 0, 0, 0.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    41.04% {
+        transform: matrix3d(0.961, 0, 0, 0, 0, 0.961, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    52.15% {
+        transform: matrix3d(0.991, 0, 0, 0, 0, 0.991, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    63.26% {
+        transform: matrix3d(1.007, 0, 0, 0, 0, 1.007, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    85.49% {
+        transform: matrix3d(0.999, 0, 0, 0, 0, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    100% {
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+}
+@-webkit-keyframes wave {
+    0%,
+    60%,
+    100% {
+        transform: initial;
+    }
+    30% {
+        transform: translateY(-15px);
+    }
+}
+@keyframes wave {
+    0%,
+    60%,
+    100% {
+        transform: initial;
+    }
+    30% {
+        transform: translateY(-15px);
+    }
+}
+.chat-menu {
+    display: flex;
+}
+/*-----------------------[ 30.Chat Search Popup and Button more Screen CSS ]------------------------*/
+.search-container {
+    position: relative;
+}
+.search-bar {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    display: flex;
+    z-index: 100;
+    width: calc(100% - 55px);
+}
+.search-bar .serach-message {
+    position: absolute;
+    left: 8px;
+    top: 9px;
+}
+.search-bar input {
+    flex: 1;
+    padding: 8px 70px 8px 40px;
+    border-radius: 12px;
+    background: var(--7, #F5F5F5);
+    border: none;
+    outline: none;
+}
+.hidden {
+    display: none;
+}
+.popupMore {
+    position: absolute;
+    right: 12px;
+    top: 50px;
+    background-color: #FFF;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    z-index: 100;
+    width: 180px;
+}
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+.popup-item {
+    padding: 10px 0;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #F5F5F5;
+    color: var(--2, #12151C);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+.search-arrow {
+    filter: brightness(0) saturate(100%) invert(7%) sepia(2%) saturate(5102%) hue-rotate(161deg) brightness(98%) contrast(96%);
+    cursor: pointer;
+}
+.serch-drown {
+    position: absolute;
+    right: 40px;
+    top: 8px;
+}
+.serch-up {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+}
+/* -----------------------[ 31.Chat Input Pop Up Screen Css  ]------------------------*/
+.buttonAttachment {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.buttonAttachment.active {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(94%) saturate(1472%) hue-rotate(269deg) brightness(96%) contrast(103%);
+}
+.attachment-popup {
+    position: absolute;
+    bottom: 60px;
+    left: 3px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px 0px rgba(18, 21, 28, 0.16);
+    padding: 12px;
+    width: calc(100% - 12px);
+    z-index: 100;
+    justify-content: space-between;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    display: flex;
+}
+.attachment-popup.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.attachment-option div {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--7, #F5F5F5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.attachment-option {
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+}
+.attachment-option img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+}
+.attachment-option p {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    margin-top: 5px;
+}
+/*-----------------------[ 32.Export Chat PopUp CSS ]------------------------*/
+.sk-fading-circle {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sk-fading-circle .sk-circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.sk-fading-circle .sk-circle:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #000;
+    border-radius: 100%;
+    -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+@keyframes sk-circleFadeDelay {
+    0%,
+    39%,
+    100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.sk-fading-circle .sk-circle2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+.sk-fading-circle .sk-circle3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
+.sk-fading-circle .sk-circle4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.sk-fading-circle .sk-circle5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
+}
+.sk-fading-circle .sk-circle6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
+}
+.sk-fading-circle .sk-circle7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.sk-fading-circle .sk-circle8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
+}
+.sk-fading-circle .sk-circle9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+.sk-fading-circle .sk-circle10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+.sk-fading-circle .sk-circle11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+.sk-fading-circle .sk-circle12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+.sk-fading-circle .sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+.sk-fading-circle .sk-circle3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+.sk-fading-circle .sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+.sk-fading-circle .sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+.sk-fading-circle .sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+.sk-fading-circle .sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+.sk-fading-circle .sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+.sk-fading-circle .sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+.sk-fading-circle .sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+.sk-fading-circle .sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+.sk-fading-circle .sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+.finger-modal-content {
+    padding: 32px;
+}
+.congratulations {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 40px;
+    margin: 32px 0 16px 0;
+}
+#counter {
+    text-align: center;
+}
+.send-to-modal {
+    width: 100%;
+}
+.send-to-modal-main {
+    max-height: 370px !important;
+}
+/* -----------------------[ 33.Voice & Video Call Screen Css  ]------------------------*/
+.bg-voice-header {
+    background: transparent !important;
+    border-bottom: none;
+}
+.bg-voice-call {
+    background-image: url('../images/voice-call-screen/gradient-background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-color: #FAE8F9;
+}
+.caller-person-dp-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    justify-content: center;
+}
+.caller-person-dp {
+    border-radius: 50%;
+    margin-bottom: 24px;
+}
+.voice-call-name {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+.voice-call-time {
+    color: var(--2, #12151C);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.voice-call-list-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: fixed;
+    bottom: 40px;
+}
+.voice-call-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom,
+            rgba(18, 21, 28, 0.4) 0%,
+            rgba(18, 21, 28, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.call-cut {
+    background: #046307;
+}
+.bg-video-call {
+    background-image: url('../images/voice-call-screen/bg-img.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.video-img-main {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 12px;
+}
+.video-person-dp-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 83%;
+    justify-content: flex-end;
+}
+.video-text-iss,
+.video-text-time {
+    color: #FFFF;
+    text-align: left;
+}
+.account-button {
+    bottom: 70px;
+}
+/*-----------------------[ 34.Security Screen CSS ]------------------------*/
+.swiches-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 2px solid #FFFFFF;
+}
+.switch-boxes {
+    border-radius: 12px;
+    background: var(--7, #F5F5F5);
+    padding: 16px;
+    margin-top: 24px;
+}
+.remember-text {
+    color: var(--2, #000);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+.check-box {
+    display: flex;
+}
+.swiches-toggle input:checked[type="checkbox"] {
+    background: #3E36ED;
+    border: 2px solid transparent;
+}
+.swiches-toggle input[type="checkbox"] {
+    position: relative;
+    appearance: none;
+    width: 40px;
+    height: 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 2px solid rgba(97, 101, 104, 0.14);
+    transition: 0.4s;
+}
+.swiches-toggle input:checked[type="checkbox"]::after {
+    left: 50%;
+}
+.swiches-toggle input[type="checkbox"]::after {
+    position: absolute;
+    content: "";
+    width: 18px;
+    height: 18px;
+    top: 1px;
+    left: 0;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.05), 0px 1px 1px 0px rgba(0, 0, 0, 0.08), 0px 3px 8px 0px rgba(0, 0, 0, 0.08);
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+/*-----------------------[ 35.Marketing Preferences Screen CSS ]------------------------*/
+.elevan {
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 16px 0;
+}
+.news-box-main {
+    border-radius: 12px;
+    background: var(--7, #F5F5F5);
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.news-tex {
+    color: var(--2, #0F0F0F);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #FFF;
+}
+.roducts {
+    color: var(--3, #616568);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding-top: 12px;
+}
+/*-----------------------[ 36.FAQ Screen CSS ]------------------------*/
+.nested-accordion {
+    border-radius: 12px;
+    background: #F5F5F5;
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+.nested-accordion .nested-accordion {
+    border-radius: 0;
+    border-bottom: 2px solid #FFF;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+.nested-accordion h3 {
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    position: relative;
+}
+.nested-accordion h3.selected {
+    color: #046307;
+}
+.nested-accordion h3.selected:before {
+    content: url('../images/svg/sub-icon.svg');
+    filter: brightness(0) saturate(100%) invert(65%) sepia(58%) saturate(5174%) hue-rotate(268deg) brightness(98%) contrast(98%);
+}
+.nested-accordion h3:before {
+    content: url('../images/svg/pluse-icon.svg');
+    position: absolute;
+    right: 0;
+}
+.faq-txt1:before {
+    content: url('../images/svg/down-arrow-blck.svg') !important;
+}
+.faq-txt1.selected:before {
+    content: url('../images/svg/up-arrow-pur.svg') !important;
+}
+.nested-accordion .comment {
+    color: var(--3, #616568);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding-top: 8px;
+}
+/*-----------------------[ 37.Data & Privacy Screen CSS ]------------------------*/
+.privacy-mang {
+    color: var(--2, #0F0F0F);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+}
+.mang-datasec {
+    padding-top: 24px;
+}
+.check-radio:checked[type=radio] {
+    outline: 2px solid #3E36ED;
+    outline-offset: 4px;
+    background: #3E36ED;
+    width: 11px;
+    height: 11px;
+    margin-right: 5px;
+    border: 1px solid #3E36ED;
+    appearance: none;
+    border-radius: 50%;
+}
+.check-radio {
+    border: 2px solid #0F0F0F;
+    background-color: transparent;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: none;
+}
+.your-data-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/*-----------------------[ 38.About Screen CSS ]------------------------*/
+.sit {
+    color: var(--3, #616568);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 8px;
+}
+.media-icon-main {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 10px;
+}
+.media-icon-name {
+    color: var(--2, #0F0F0F);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    padding-top: 12px;
+}
+/*-----------------------[ 39.Feedback Screen CSS ]------------------------*/
+.projectTitle-Main textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    height: 100px;
+    padding: 12px 16px;
+    border-radius: 18px;
+    background: #F5F5F5;
+}
+/*-----------------------[ 40.Contact Screen CSS ]------------------------*/
+.contac-iocnss {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--7, #F5F5F5);
+    color: var(--2, #12151C);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+/*-----------------------[ 41.Invite Friend Screen CSS ]------------------------*/
+.friend-name {
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+.friend-no a {
+    color: var(--3, #616568);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    margin-top: 8px;
+}
+.invite-friend-wrapper {
+    display: flex;
+    align-items: center;
+    background: #F5F5F5;
+    padding: 8px 20px 8px 8px;
+    margin-bottom: 12px;
+    border-radius: 40px;
+}
+.invite-img img {
+    border-radius: 50%;
+    margin-right: 16px;
+}
+.friend-invite {
+    margin-left: auto;
+}
+.friend-select input {
+    display: none;
+}
+.friend-select input[type="checkbox"]:checked+label {
+    color: #FFF;
+    border: 2px solid #3E36ED;
+    border-radius: 16px;
+    border: 2px solid var(--4, #3E36ED);
+    background: var(--4, #3E36ED);
+}
+.custom-radio-sel-friend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 61px;
+    height: 34px;
+    border-radius: 16px;
+    border: 2px solid var(--4, #3E36ED);
+    cursor: pointer;
+    color: var(--4, #3E36ED);
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+}
+/*-----------------------[ 42.Delete or Deactivate Screen CSS ]------------------------*/
+.romio {
+    color: var(--2, #0F0F0F);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 24px;
+}
+.abc {
+    font-size: 30px;
+    color: #00D061;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.act {
+    text-transform: none;
+}
+.vate {
+    color: var(--3, #616568);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+.deactivate-list {
+    margin-left: 20px;
+    padding-top: 12px;
+}
+.deactivate-list li {
+    list-style: disc;
+    color: var(--3, #616568);
+    padding-bottom: 8px;
+}
+.lrev-main {
+    padding: 16px 0;
+    border-bottom: 2px solid #FFF;
+}
+.pping {
+    color: var(--3, #616568);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    padding-top: 24px;
+}
+.pping span {
+    color: var(--2, #0F0F0F);
+}
+.logout-body {
+    text-align: center;
+}
+.logout-modal-footer {
+    padding: 16px;
+}
+/*-----------------------[ 43.Pop Up Add Home Screen CSS ]------------------------*/
+.backgroundOverlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    opacity: .50;
+    filter: alpha(opacity=50);
+    -moz-opacity: .50;
+    z-index: 101;
+    display: none;
+}
+.delayedPopupWindow {
+    display: none;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background-color: #FFF;
+    z-index: 102;
+    padding: 16px;
+    margin: 0 auto;
+    border-radius: 24px 24px 0 0;
+}
+#btnClose {
+    width: 100%;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    text-align: right;
+    text-decoration: none;
+    color: #000;
+    font-size: 25px;
+}
+.formDescription {
+    text-align: center;
+}
+.formDescription h3 {
+    display: block;
+    font-size: 35px;
+    font-weight: 700;
+    color: #000;
+    padding: 10px 0;
+    text-transform: uppercase;
+}
+.formDescription p {
+    margin-bottom: 15px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--3, #555);
+    text-align: center;
+}
+.add-home-btn {
+    background: #046307;
+    padding: 12px 15px;
+    max-width: fit-content;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+.add-home-btn a {
+    color: var(--1, #FFF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
