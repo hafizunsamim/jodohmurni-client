@@ -1,59 +1,17 @@
-const CACHE_NAME = "jodohmurni-v1";
+/* service-worker.js */
 
-const urlsToCache = [
-    "/",
-    "/offline",
-];
-
-// INSTALL
+// Basic install / activate
 self.addEventListener('install', (event) => {
     console.log('[SW] Installed');
-
-    event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(urlsToCache);
-        })
-    );
-
     self.skipWaiting();
 });
 
-// ACTIVATE
 self.addEventListener('activate', (event) => {
     console.log('[SW] Activated');
-
-    event.waitUntil(
-        caches.keys().then((keys) => {
-            return Promise.all(
-                keys.map((key) => {
-                    if (key !== CACHE_NAME) {
-                        return caches.delete(key);
-                    }
-                })
-            );
-        })
-    );
-
     return self.clients.claim();
 });
 
-// FETCH (penting untuk elak 404 + offline)
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        fetch(event.request)
-            .then((response) => {
-                return response;
-            })
-            .catch(() => {
-                return caches.match(event.request)
-                    .then((res) => {
-                        return res || caches.match('/offline');
-                    });
-            })
-    );
-});
-
-// PUSH NOTIFICATION (kekalkan code kau)
+// Handle push event
 self.addEventListener('push', function (event) {
     console.log('[SW] Push received:', event);
 
@@ -72,8 +30,8 @@ self.addEventListener('push', function (event) {
         data: {
             url: data.url || '/dashboard',
         },
-        icon: '/icons/icon-192.png', // guna icon PWA
-        badge: '/icons/icon-192.png'
+        // icon: '/icons/icon-192x192.png', // kalau ada
+        badge: '/assets/images/svg/favicon.svg'
     };
 
     event.waitUntil(
@@ -81,7 +39,7 @@ self.addEventListener('push', function (event) {
     );
 });
 
-// CLICK NOTIFICATION
+// Klik noti → buka / fokus tab
 self.addEventListener('notificationclick', function (event) {
     event.notification.close();
     const url = (event.notification.data && event.notification.data.url) || '/dashboard';

@@ -100,5 +100,14 @@
     <script src="{{ asset('assets/js/main.js') }}?v={{ time() }}"></script>
 
     @stack('scripts')
+
+    <script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js")
+        .then(function () {
+            console.log("SW registered");
+        });
+    }
+    </script>
 </body>
 </html>

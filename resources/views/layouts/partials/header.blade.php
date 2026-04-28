@@ -11,6 +11,10 @@
   <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
   <meta name="theme-color" content="#ffffff">
 
+  <link rel="apple-touch-icon" href="{{ asset('icons/icon-192.png') }}">
+  <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('icons/icon-192.png') }}">
+  <link rel="apple-touch-icon" sizes="512x512" href="{{ asset('icons/icon-512.png') }}">
+
   <link rel="icon" type="image/x-icon" href="{{ asset('assets/photos/logo_no-background.png') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/swap.css') }}?v={{ time() }}">
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}?v={{ time() }}">

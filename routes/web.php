@@ -39,6 +39,9 @@ Route::post('/set-country', [LandingController::class, 'setCountry'])->name('set
 // Toyyibpay webhook (callback) – tanpa auth, CSRF excluded
 Route::post('/subscription/toyyibpay/callback', ToyyibpayWebhookController::class)->name('subscription.toyyibpay.callback');
 
+//PWA
+Route::view('/offline', 'offline');
+
 /*
 |--------------------------------------------------------------------------
 | Onboarding
