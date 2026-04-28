@@ -25,7 +25,7 @@
 
                 <!-- Password -->
                 <div class="form-floating mb-3 position-relative">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password"
+                    <input type="password" name="password" class="form-control" id="password" placeholder=" "
                         required>
                     <label for="password">Kata Laluan</label>
 

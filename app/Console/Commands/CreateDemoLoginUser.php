@@ -7,27 +7,30 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Cipta atau reset akaun demo untuk login.
+ * Cipta atau reset akaun demo untuk login (hanya nilai dari .env).
  * Guna: php artisan jodohmurni:demo-login
  *
- * Login dengan:
- *   Email:    hafizunsamim@gmail.com
- *   Password: JodohMurni2025!
+ * Tetapkan DEMO_LOGIN_EMAIL dan DEMO_LOGIN_PASSWORD dalam .env (jangan commit).
  */
 class CreateDemoLoginUser extends Command
 {
     protected $signature = 'jodohmurni:demo-login';
 
-    protected $description = 'Cipta atau reset kata laluan akaun demo (hafizunsamim@gmail.com)';
+    protected $description = 'Cipta atau reset kata laluan akaun demo (mengikut DEMO_LOGIN_* dalam .env)';
 
     public function handle(): int
     {
-        $email = 'hafizunsamim@gmail.com';
-        $password = 'JodohMurni2025!';
+        $email = (string) env('DEMO_LOGIN_EMAIL', '');
+        $password = (string) env('DEMO_LOGIN_PASSWORD', '');
 
-        // updateOrCreate: jika user wujud, password akan di-update; jika tidak, user baru dicipta.
+        if ($email === '' || $password === '') {
+            $this->error('Tetapkan DEMO_LOGIN_EMAIL dan DEMO_LOGIN_PASSWORD dalam .env sebelum menjalankan arahan ini.');
+
+            return self::FAILURE;
+        }
+
         try {
-            $user = User::updateOrCreate(
+            User::updateOrCreate(
                 ['email' => strtolower($email)],
                 [
                     'name' => 'Admin JodohMurni',
@@ -39,9 +42,8 @@ class CreateDemoLoginUser extends Command
                 ]
             );
         } catch (\Throwable $e) {
-            // Jika jadual users hanya ada name, email, password (migration asas)
             $this->warn('Percubaan pertama gagal: ' . $e->getMessage());
-            $user = User::updateOrCreate(
+            User::updateOrCreate(
                 ['email' => strtolower($email)],
                 [
                     'name' => 'Admin JodohMurni',
@@ -52,9 +54,9 @@ class CreateDemoLoginUser extends Command
 
         $this->info('Akaun demo sedia untuk login.');
         $this->line('Email:    ' . $email);
-        $this->line('Password: ' . $password);
+        $this->line('Password: (nilai dari DEMO_LOGIN_PASSWORD dalam .env)');
         $this->newLine();
-        $this->info('Pergi ke ' . route('login') . ' dan log masuk dengan maklumat di atas.');
+        $this->info('Pergi ke ' . route('login') . ' dan log masuk.');
 
         return self::SUCCESS;
     }

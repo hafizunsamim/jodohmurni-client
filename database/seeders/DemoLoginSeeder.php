@@ -7,24 +7,26 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Cipta satu akaun untuk login ke sistem.
+ * Cipta satu akaun untuk login ke sistem (nilai dari .env sahaja).
  *
- * Selepas jalankan: php artisan db:seed --class=DemoLoginSeeder
- *
- * Guna credential ini untuk login:
- *   Email:    hafizunsamim@gmail.com
- *   Password: JodohMurni2025!
- *
- * (Sila tukar kata laluan selepas login pertama.)
+ * Tetapkan DEMO_LOGIN_EMAIL dan DEMO_LOGIN_PASSWORD dalam .env, kemudian:
+ *   php artisan db:seed --class=DemoLoginSeeder
  */
 class DemoLoginSeeder extends Seeder
 {
     public function run(): void
     {
-        $email = 'hafizunsamim@gmail.com';
-        $password = 'JodohMurni2025!';
+        $email = (string) env('DEMO_LOGIN_EMAIL', '');
+        $password = (string) env('DEMO_LOGIN_PASSWORD', '');
 
-        // updateOrCreate supaya kata laluan sentiasa dikemas kini (boleh login)
+        if ($email === '' || $password === '') {
+            if ($this->command) {
+                $this->command->warn('DemoLoginSeeder dilangkau: tetapkan DEMO_LOGIN_EMAIL dan DEMO_LOGIN_PASSWORD dalam .env.');
+            }
+
+            return;
+        }
+
         User::updateOrCreate(
             ['email' => strtolower($email)],
             [
@@ -37,8 +39,9 @@ class DemoLoginSeeder extends Seeder
             ]
         );
 
-        $this->command->info('Akaun demo telah disedia.');
-        $this->command->info('Email: ' . $email);
-        $this->command->info('Password: ' . $password);
+        if ($this->command) {
+            $this->command->info('Akaun demo telah disedia.');
+            $this->command->info('Email: ' . $email);
+        }
     }
 }
