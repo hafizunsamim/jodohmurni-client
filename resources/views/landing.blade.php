@@ -434,4 +434,18 @@ if (showNotice) {
 });
 </script>
 
+@if(config('analytics.google_measurement_id'))
+@push('scripts')
+<script>
+(function () {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'jm_homepage_visit', {
+        link_url: 'https://jodohmurni.com/',
+        page_location: window.location.href
+    });
+})();
+</script>
+@endpush
+@endif
+
 @endsection

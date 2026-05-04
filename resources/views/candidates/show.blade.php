@@ -135,4 +135,16 @@
     </div>
 
 </section>
+
+@if(config('analytics.google_measurement_id'))
+@push('scripts')
+<script>
+(function () {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'view_profile', { profile_type: 'candidate' });
+})();
+</script>
+@endpush
+@endif
+
 @endsection

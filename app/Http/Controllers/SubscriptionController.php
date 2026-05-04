@@ -8,6 +8,7 @@ use App\Models\AffiliateReferral;
 use App\Models\Subscription;
 use App\Models\SubscriptionPackage;
 use App\Models\User;
+use App\Support\Ga4ClientEvents;
 use App\Services\EarlyBirdService;
 use App\Services\AffiliateTierService;
 use App\Services\PaymentGatewayService;
@@ -263,7 +264,26 @@ class SubscriptionController extends Controller
             $context = $toyyibpay->getBillContext($orderId ?? '');
             // Hanya aktifkan jika konteks wujud dan user login sama dengan pemilik order (fallback bila callback tak sampai e.g. localhost)
             if ($orderId && $context && (string) Auth::id() === (string) ($context['user_id'] ?? '')) {
+                $hadActive = Subscription::where('user_id', Auth::id())
+                    ->where('status', 'active')
+                    ->where(function ($q) {
+                        $q->whereNull('ends_at')
+                            ->orWhere('ends_at', '>=', now());
+                    })
+                    ->exists();
+
                 $toyyibpay->activateSubscriptionForOrder($orderId, null);
+
+                if (! $hadActive) {
+                    $sub = Subscription::with('package')
+                        ->where('user_id', Auth::id())
+                        ->where('status', 'active')
+                        ->orderByDesc('id')
+                        ->first();
+                    if ($sub && $sub->package) {
+                        Ga4ClientEvents::queuePurchase($sub, $sub->package);
+                    }
+                }
             }
 
             return redirect()
@@ -348,7 +368,8 @@ class SubscriptionController extends Controller
             ]);
         }
 
-        $this->activateSubscriptionForUser($user, $pkg);
+        $sub = $this->activateSubscriptionForUser($user, $pkg);
+        Ga4ClientEvents::queuePurchase($sub, $pkg);
 
         $ebookContent = $this->resolveEbookContent($pkg->path ?? $user->path);
         $emailSent = false;
@@ -420,13 +441,13 @@ class SubscriptionController extends Controller
     /**
      * Aktifkan subscription untuk user (create record). Tidak hantar email.
      */
-    private function activateSubscriptionForUser($user, SubscriptionPackage $pkg): void
+    private function activateSubscriptionForUser($user, SubscriptionPackage $pkg): Subscription
     {
         $amount = (int) $pkg->price_sen;
         $startedAt = now();
         $endsAt = $pkg->duration_days ? now()->addDays((int) $pkg->duration_days) : null;
 
-        DB::transaction(function () use ($user, $pkg, $amount, $startedAt, $endsAt) {
+        $sub = DB::transaction(function () use ($user, $pkg, $amount, $startedAt, $endsAt) {
             $referral = AffiliateReferral::query()
                 ->where('referred_user_id', $user->id)
                 ->first();
@@ -492,11 +513,15 @@ class SubscriptionController extends Controller
                     ? User::STATUS_KEAHLIAN_HYPE
                     : User::STATUS_KEAHLIAN_ACTIVE);
             $user->update(['status_keahlian' => $newStatus]);
+
+            return $sub;
         });
 
         if (($pkg->code ?? '') === EarlyBirdService::HYPE_CODE) {
             (new EarlyBirdService())->maybeDisableEarlyBirdIfCapReached();
         }
+
+        return $sub;
     }
 
     /**
@@ -532,7 +557,8 @@ class SubscriptionController extends Controller
             ]);
         }
 
-        $this->activateSubscriptionForUser($user, $pkg);
+        $sub = $this->activateSubscriptionForUser($user, $pkg);
+        Ga4ClientEvents::queuePurchase($sub, $pkg);
 
         $emailSent = $this->sendSubscriptionActivatedEmail($user, $pkg);
 
@@ -632,7 +658,7 @@ class SubscriptionController extends Controller
      */
     private function jsonBypassSubscriptionActivate(User $user, SubscriptionPackage $pkg)
     {
-        $this->activateSubscriptionForUser($user, $pkg);
+        $sub = $this->activateSubscriptionForUser($user, $pkg);
         $user->refresh();
 
         $emailSent = $this->sendSubscriptionActivatedEmail($user, $pkg);
@@ -649,10 +675,15 @@ class SubscriptionController extends Controller
             'package_id' => $pkg->id,
         ]);
 
+        $analyticsEvents = config('analytics.google_measurement_id')
+            ? Ga4ClientEvents::purchaseEventPayload($sub, $pkg)
+            : [];
+
         return response()->json([
             'success' => true,
             'redirectUrl' => route('subscription.ebook.links'),
             'bypass' => true,
+            'analytics_events' => $analyticsEvents,
         ]);
     }
 

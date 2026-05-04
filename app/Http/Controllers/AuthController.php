@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AffiliateReferral;
 use App\Models\UserAffiliateCode;
 use App\Models\User;
+use App\Support\Ga4ClientEvents;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -164,6 +165,8 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
+        Ga4ClientEvents::queue('sign_up', ['method' => 'email']);
+
         return redirect()->route('membership.education');
     }
 
@@ -190,6 +193,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
+            Ga4ClientEvents::queue('login', ['method' => 'email']);
+
             return redirect()->route('dashboard');
         }
 

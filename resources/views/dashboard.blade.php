@@ -357,7 +357,7 @@ function lockSwipeAndScheduleReset() {
 /* ================= API ================= */
 async function saveSwipe(targetUserId, action) {
     try {
-        await fetch(SWIPE_URL, {
+        const res = await fetch(SWIPE_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -366,6 +366,15 @@ async function saveSwipe(targetUserId, action) {
             },
             body: JSON.stringify({ target_user_id: targetUserId, action })
         });
+        const data = await res.json().catch(() => ({}));
+        if (typeof gtag === 'function') {
+            if (action === 'like') {
+                gtag('event', 'like_profile', { engagement_type: 'swipe_like' });
+                if (data && data.matched) {
+                    gtag('event', 'match_success', { engagement_type: 'mutual_like' });
+                }
+            }
+        }
     } catch (e) {
         console.error('❌ Swipe API error', e);
     }

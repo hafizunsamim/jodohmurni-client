@@ -96,6 +96,20 @@
     </script>
     @endauth
 
+    @php($gaQueued = session('ga4_client_events'))
+    @if(config('analytics.google_measurement_id') && ! empty($gaQueued) && is_array($gaQueued))
+    <script>
+    (function () {
+        var events = @json($gaQueued);
+        if (typeof gtag !== 'function') return;
+        events.forEach(function (ev) {
+            if (!ev || !ev.name) return;
+            gtag('event', ev.name, ev.params || {});
+        });
+    })();
+    </script>
+    @endif
+
     {{-- ✅ main.js load sekali, letak paling bawah (lepas bootstrap, jquery etc) --}}
     <script src="{{ asset('assets/js/main.js') }}?v={{ time() }}"></script>
 

@@ -112,7 +112,7 @@
               @elseif($useToyyibpay ?? false)
                 @if($toyyibpayConfigured ?? false)
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary w-100 toyyibpay-btn" data-package-id="{{ $pkg->id }}">
+                    <button type="button" class="btn btn-primary w-100 toyyibpay-btn" data-package-id="{{ $pkg->id }}" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
                       {{ $gatewayLabel ?? 'Bayar dengan Toyyibpay (FPX/Kad)' }}
                     </button>
                   </div>
@@ -121,7 +121,7 @@
                   <div class="alert alert-warning small mb-2">
                     Toyyibpay belum dikonfigurasi. Isi TOYYIBPAY_USER_SECRET_KEY dan TOYYIBPAY_CATEGORY_CODE dalam .env.
                   </div>
-                  <form method="POST" action="{{ route('subscription.subscribe') }}">
+                  <form method="POST" action="{{ route('subscription.subscribe') }}" class="jm-subscribe-form" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
                     @csrf
                     <input type="hidden" name="package_id" value="{{ $pkg->id }}">
                     <button class="btn btn-success w-100" type="submit">Aktifkan Subscription (tanpa bayaran)</button>
@@ -129,7 +129,7 @@
                 @endif
               @elseif($paypalConfigured ?? false)
                 <div class="mb-2">
-                  <button type="button" class="btn btn-primary w-100 paypal-btn" data-package-id="{{ $pkg->id }}">
+                  <button type="button" class="btn btn-primary w-100 paypal-btn" data-package-id="{{ $pkg->id }}" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
                     {{ $gatewayLabel ?? 'Bayar dengan PayPal' }}
                   </button>
                 </div>
@@ -138,11 +138,11 @@
                 <div class="alert alert-warning small mb-2">
                   PayPal belum dikonfigurasi. Isi PAYPAL_CLIENT_ID dan PAYPAL_SECRET dalam .env.
                 </div>
-                <form method="POST" action="{{ route('subscription.subscribe') }}">
-                  @csrf
-                  <input type="hidden" name="package_id" value="{{ $pkg->id }}">
-                  <button class="btn btn-success w-100" type="submit">Aktifkan Subscription (tanpa bayaran)</button>
-                </form>
+                <form method="POST" action="{{ route('subscription.subscribe') }}" class="jm-subscribe-form" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
+                    @csrf
+                    <input type="hidden" name="package_id" value="{{ $pkg->id }}">
+                    <button class="btn btn-success w-100" type="submit">Aktifkan Subscription (tanpa bayaran)</button>
+                  </form>
               @endif
 
             </div>
@@ -160,6 +160,12 @@
 @push('scripts')
 <script>
 (function() {
+  function jmFireGa4EventsFromJson(data) {
+    if (!data || !Array.isArray(data.analytics_events) || typeof gtag !== 'function') return;
+    data.analytics_events.forEach(function (ev) {
+      if (ev && ev.name) gtag('event', ev.name, ev.params || {});
+    });
+  }
   var btns = document.querySelectorAll('.paypal-btn');
   var createOrderUrl = @json(route('subscription.paypal.create'));
   var csrf = document.querySelector('meta[name="csrf-token"]');
@@ -172,6 +178,14 @@
     btn.addEventListener('click', function() {
       var packageId = this.getAttribute('data-package-id');
       if (!packageId) return;
+      if (typeof gtag === 'function') {
+        gtag('event', 'subscription_package_click', {
+          package_id: packageId,
+          package_name: (this.getAttribute('data-package-name') || '').slice(0, 100),
+          package_code: (this.getAttribute('data-package-code') || '').slice(0, 32),
+          payment_method: 'paypal'
+        });
+      }
       this.disabled = true;
       this.textContent = 'Memproses...';
 
@@ -190,6 +204,7 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
+        jmFireGa4EventsFromJson(data);
         if (data.success && data.redirectUrl) {
           window.location.href = data.redirectUrl;
           return;
@@ -218,6 +233,12 @@
 @push('scripts')
 <script>
 (function() {
+  function jmFireGa4EventsFromJson(data) {
+    if (!data || !Array.isArray(data.analytics_events) || typeof gtag !== 'function') return;
+    data.analytics_events.forEach(function (ev) {
+      if (ev && ev.name) gtag('event', ev.name, ev.params || {});
+    });
+  }
   var btns = document.querySelectorAll('.toyyibpay-btn');
   var createBillUrl = @json(route('subscription.toyyibpay.create'));
   var csrf = document.querySelector('meta[name="csrf-token"]');
@@ -229,6 +250,14 @@
     btn.addEventListener('click', function() {
       var packageId = this.getAttribute('data-package-id');
       if (!packageId) return;
+      if (typeof gtag === 'function') {
+        gtag('event', 'subscription_package_click', {
+          package_id: packageId,
+          package_name: (this.getAttribute('data-package-name') || '').slice(0, 100),
+          package_code: (this.getAttribute('data-package-code') || '').slice(0, 32),
+          payment_method: 'toyyibpay'
+        });
+      }
       this.disabled = true;
       this.textContent = 'Memproses...';
 
@@ -247,6 +276,7 @@
       })
       .then(function(r) { return r.json(); })
       .then(function(data) {
+        jmFireGa4EventsFromJson(data);
         if (data.success && data.redirectUrl) {
           window.location.href = data.redirectUrl;
           return;
@@ -263,6 +293,28 @@
         alert('Ralat rangkaian. Sila cuba lagi.');
         btn.disabled = false;
         btn.textContent = lbl || defaultLabel;
+      });
+    });
+  });
+})();
+</script>
+@endpush
+@endif
+
+@if(config('analytics.google_measurement_id'))
+@push('scripts')
+<script>
+(function () {
+  document.querySelectorAll('form.jm-subscribe-form').forEach(function (form) {
+    form.addEventListener('submit', function () {
+      if (typeof gtag !== 'function') return;
+      var pidInput = form.querySelector('input[name="package_id"]');
+      var packageId = pidInput ? pidInput.value : '';
+      gtag('event', 'subscription_package_click', {
+        package_id: packageId,
+        package_name: (form.getAttribute('data-package-name') || '').slice(0, 100),
+        package_code: (form.getAttribute('data-package-code') || '').slice(0, 32),
+        payment_method: 'direct_activate'
       });
     });
   });

@@ -79,6 +79,15 @@ class SwipeController extends Controller
             ['action' => $data['action']]
         );
 
-        return response()->json(['ok' => true]);
+        $matched = false;
+        if ($data['action'] === 'like') {
+            $matched = UserSwipe::query()
+                ->where('user_id', $data['target_user_id'])
+                ->where('target_user_id', $me->id)
+                ->where('action', 'like')
+                ->exists();
+        }
+
+        return response()->json(['ok' => true, 'matched' => $matched]);
     }
 }
