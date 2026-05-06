@@ -6,8 +6,8 @@
 @section('content')
 <div class="onboarding-wrapper">
     <div class="onboarding-card animate-in">
-        <h3 class="fw-bold mb-2">Pilih situasi yang paling menggambarkan keadaan anda</h3>
-        <p class="text-muted mb-3">Sila pilih satu pilihan sahaja</p>
+        <h3 class="fw-bold mb-2" data-translate="onb_poly_situation_title">Pilih situasi yang paling menggambarkan keadaan anda</h3>
+        <p class="text-muted mb-3" data-translate="onb_pick_one_only">Sila pilih satu pilihan sahaja</p>
 
         <form method="POST" action="{{ url('/onboarding/male/polygamy-situation') }}" id="polygamySituationForm">
             @csrf
@@ -20,12 +20,12 @@
                 <button type="button" class="jm-poly-btn" data-value="1" aria-selected="false">
                     <span class="jm-poly-btn__icon jm-poly-btn__icon--ok" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     <span class="jm-poly-btn__text">
-                        <span class="jm-poly-btn__title">Isteri sudah dimaklumkan</span>
-                        <span class="jm-poly-btn__sub">Isteri saya sudah mengetahui hasrat saya untuk berpoligami.</span>
+                        <span class="jm-poly-btn__title" data-translate="onb_poly_s1_title">Isteri sudah dimaklumkan</span>
+                        <span class="jm-poly-btn__sub" data-translate="onb_poly_s1_sub">Isteri saya sudah mengetahui hasrat saya untuk berpoligami.</span>
                         <span class="jm-poly-btn__note jm-poly-btn__note--good">
                             <span class="jm-poly-btn__note-icon" aria-hidden="true"><i class="bi bi-check-circle-fill"></i></span>
-                            <span class="jm-poly-btn__note-strong">Disyorkan</span>
-                            <span class="jm-poly-btn__note-text">untuk hubungan lebih telus</span>
+                            <span class="jm-poly-btn__note-strong" data-translate="onb_recommended">Disyorkan</span>
+                            <span class="jm-poly-btn__note-text" data-translate="onb_poly_note_transparent">untuk hubungan lebih telus</span>
                         </span>
                     </span>
                     <span class="jm-poly-btn__trail" aria-hidden="true"><i class="bi bi-check-circle-fill"></i></span>
@@ -34,8 +34,8 @@
                 <button type="button" class="jm-poly-btn" data-value="2" aria-selected="false">
                     <span class="jm-poly-btn__icon jm-poly-btn__icon--wait" aria-hidden="true"><i class="bi bi-clock"></i></span>
                     <span class="jm-poly-btn__text">
-                        <span class="jm-poly-btn__title">Isteri akan dimaklumkan kemudian</span>
-                        <span class="jm-poly-btn__sub">Isteri saya akan dimaklumkan apabila calon bersetuju untuk meneruskan proses poligami.</span>
+                        <span class="jm-poly-btn__title" data-translate="onb_poly_s2_title">Isteri akan dimaklumkan kemudian</span>
+                        <span class="jm-poly-btn__sub" data-translate="onb_poly_s2_sub">Isteri saya akan dimaklumkan apabila calon bersetuju untuk meneruskan proses poligami.</span>
                     </span>
                     <span class="jm-poly-btn__trail" aria-hidden="true"><i class="bi bi-check-circle-fill"></i></span>
                 </button>
@@ -43,12 +43,12 @@
                 <button type="button" class="jm-poly-btn" data-value="3" aria-selected="false">
                     <span class="jm-poly-btn__icon jm-poly-btn__icon--sensitive" aria-hidden="true"><i class="bi bi-eye-slash"></i></span>
                     <span class="jm-poly-btn__text">
-                        <span class="jm-poly-btn__title">Isteri tidak akan dimaklumkan</span>
-                        <span class="jm-poly-btn__sub">Isteri saya tidak akan dimaklumkan walaupun calon bersetuju untuk poligami.</span>
+                        <span class="jm-poly-btn__title" data-translate="onb_poly_s3_title">Isteri tidak akan dimaklumkan</span>
+                        <span class="jm-poly-btn__sub" data-translate="onb_poly_s3_sub">Isteri saya tidak akan dimaklumkan walaupun calon bersetuju untuk poligami.</span>
                         <span class="jm-poly-btn__note jm-poly-btn__note--warn">
                             <span class="jm-poly-btn__note-icon" aria-hidden="true"><i class="bi bi-check-circle-fill"></i></span>
-                            <span class="jm-poly-btn__note-strong">Sensitif</span>
-                            <span class="jm-poly-btn__note-text">boleh jejaskan kepercayaan isteri</span>
+                            <span class="jm-poly-btn__note-strong" data-translate="onb_sensitive">Sensitif</span>
+                            <span class="jm-poly-btn__note-text" data-translate="onb_poly_note_trust">boleh jejaskan kepercayaan isteri</span>
                         </span>
                     </span>
                     <span class="jm-poly-btn__trail" aria-hidden="true"><i class="bi bi-check-circle-fill"></i></span>

@@ -138,10 +138,10 @@
         @method('PUT')
 
         <div class="inpt-la-main mt-4">
-            <h2 class="sign-text-nam" style="font-size: 0.9rem; color: #999; letter-spacing: 1px;">UMUR CALON</h2>
+            <h2 class="sign-text-nam" style="font-size: 0.9rem; color: #999; letter-spacing: 1px;" data-translate="pref_candidate_age">UMUR CALON</h2>
             <div class="age-display">
-                <span><span id="min-age-val">{{ old('age_min', $pref->age_min ?? 25) }}</span> Thn</span>
-                <span><span id="max-age-val">{{ old('age_max', $pref->age_max ?? 35) }}</span> Thn</span>
+                <span><span id="min-age-val">{{ old('age_min', $pref->age_min ?? 25) }}</span> <span data-translate="pref_years_short">Thn</span></span>
+                <span><span id="max-age-val">{{ old('age_max', $pref->age_max ?? 35) }}</span> <span data-translate="pref_years_short">Thn</span></span>
             </div>
             <div class="slider-container">
                 <div class="slider-track" id="track"></div>
@@ -152,12 +152,14 @@
             </div>
         </div>
         
-        <p class="issAbout pb-3 pt-3" style="text-align: start; color: #666;">Tetapkan 200km jika anda terbuka soal jarak - lebih banyak calon akan dipaparkan.</p>
+        <p class="issAbout pb-3 pt-3" style="text-align: start; color: #666;" data-translate="pref_radius_hint">
+            Tetapkan 200km jika anda terbuka soal jarak - lebih banyak calon akan dipaparkan.
+        </p>
 
         <div class="inpt-la-main mt-4">
-            <h2 class="sign-text-nam" style="font-size: 0.9rem; color: #999;">RADIUS LOKASI</h2>
+            <h2 class="sign-text-nam" style="font-size: 0.9rem; color: #999;" data-translate="pref_location_radius">RADIUS LOKASI</h2>
             <div class="age-display" style="justify-content: flex-start; gap: 8px;">
-                <span><span id="radiusLabel"></span> KM</span>
+                <span><span id="radiusLabel"></span> <span data-translate="pref_km">KM</span></span>
             </div>
 
             @php
@@ -184,12 +186,12 @@
 
         @if($user->gender === 'female')
         <div class="inpt-la-main mt-4">
-            <h2 class="sign-text-nam" style="font-size: 0.9rem; color: #999;">BERSEDIA BERPINDAH?</h2>
+            <h2 class="sign-text-nam" style="font-size: 0.9rem; color: #999;" data-translate="pref_willing_relocate">BERSEDIA BERPINDAH?</h2>
             <div class="sign-input-main">
                 <select name="willing_to_relocate" class="dropdown-select ps-3" required>
-                    <option value="ya" {{ (old('willing_to_relocate', $pref->willing_to_relocate ?? '') === 'ya') ? 'selected' : '' }}>Sanggup Pindah</option>
-                    <option value="tidak" {{ (old('willing_to_relocate', $pref->willing_to_relocate ?? '') === 'tidak') ? 'selected' : '' }}>Tidak Sanggup</option>
-                    <option value="boleh_dipertimbangkan" {{ (old('willing_to_relocate', $pref->willing_to_relocate ?? '') === 'boleh_dipertimbangkan') ? 'selected' : '' }}>Boleh Dipertimbangkan</option>
+                    <option value="ya" {{ (old('willing_to_relocate', $pref->willing_to_relocate ?? '') === 'ya') ? 'selected' : '' }} data-translate="pref_relocate_yes">Sanggup Pindah</option>
+                    <option value="tidak" {{ (old('willing_to_relocate', $pref->willing_to_relocate ?? '') === 'tidak') ? 'selected' : '' }} data-translate="pref_relocate_no">Tidak Sanggup</option>
+                    <option value="boleh_dipertimbangkan" {{ (old('willing_to_relocate', $pref->willing_to_relocate ?? '') === 'boleh_dipertimbangkan') ? 'selected' : '' }} data-translate="pref_relocate_maybe">Boleh Dipertimbangkan</option>
                 </select>
             </div>
         </div>
@@ -197,11 +199,11 @@
 
         <div class="onbording-btn-main splash-btns-bottom">
             <button type="button" class="skip-btn" onclick="handleReset()">
-                Reset
+                <span data-translate="pref_reset">Reset</span>
             </button>
             <button type="submit" class="next-btn" id="submitBtn">
                 <div class="loading-spinner" id="btnSpinner"></div>
-                <span id="btnText">Simpan</span>
+                <span id="btnText" data-translate="pref_save">Simpan</span>
             </button>
         </div>
     </form>
@@ -210,6 +212,19 @@
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        function jmT(key, fallback) {
+            try {
+                const translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+                const country = (document.body?.dataset?.country || "MY").trim() || "MY";
+                const locale = (document.body?.dataset?.locale || "").trim() || "ms";
+                const byCountry = translations[country] || translations["MY"] || {};
+                const pack = byCountry[locale] || byCountry["en"] || {};
+                return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+            } catch {
+                return fallback || key;
+            }
+        }
+
         const minSlider = document.getElementById('age-min-slider');
         const maxSlider = document.getElementById('age-max-slider');
         const minLabel = document.getElementById('min-age-val');
@@ -256,12 +271,12 @@
         form.addEventListener('submit', function() {
             submitBtn.disabled = true;
             btnSpinner.style.display = 'block';
-            btnText.textContent = 'Menyimpan...';
+            btnText.textContent = jmT('pref_saving', 'Saving...');
         });
 
         // Handle Reset with visual update
         window.handleReset = function() {
-            if (confirm('Adakah anda pasti mahu reset semua tetapan?')) {
+            if (confirm(jmT('pref_confirm_reset', 'Are you sure you want to reset all settings?'))) {
                 form.reset();
                 // Short timeout to allow browser to clear values before updating UI
                 setTimeout(updateUI, 10);

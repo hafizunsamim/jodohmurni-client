@@ -13,9 +13,9 @@
             <div class="progress-bar bg-success" style="width:50%"></div>
         </div>
 
-        <h4 class="fw-bold mb-1">Pilih Negeri Anda</h4>
+        <h4 class="fw-bold mb-1" data-translate="onb_state_title">Pilih Negeri Anda</h4>
         <p class="text-muted small">
-            Negara dipilih:
+            <span data-translate="onb_country_selected">Negara dipilih:</span>
             <strong class="text-success">
                 {{ ucfirst($onb['country'] ?? '') }}
             </strong>
@@ -26,7 +26,7 @@
 
             <div class="mb-3">
                 <label for="region_id" class="form-label fw-semibold">
-                    Negeri / Region
+                    <span data-translate="onb_state_label">Negeri / Region</span>
                 </label>
 
                 <div class="jm-select2-wrap">
@@ -41,7 +41,7 @@
                         @error('region_id') is-invalid shake @enderror"
                         required
                     >
-                        <option value="">-- Pilih satu --</option>
+                        <option value="" data-translate="onb_select_one">-- Pilih satu --</option>
                         @foreach($regions as $region)
                             <option value="{{ $region->id }}"
                                 {{ old('region_id', $onb['region_id'] ?? null) == $region->id ? 'selected' : '' }}>
@@ -63,14 +63,14 @@
             <div class="d-flex justify-content-between mt-4 gap-2">
                 <a href="{{ route('onboarding.country') }}"
                    class="btn btn-outline-secondary btn-sm">
-                    ← Tukar Negara
+                    <span data-translate="onb_change_country">← Tukar Negara</span>
                 </a>
 
                 <button type="submit"
                         id="nextBtn"
                         class="btn btn-success btn-sm px-4"
                         disabled>
-                    Seterusnya →
+                    <span data-translate="onb_next">Seterusnya →</span>
                 </button>
             </div>
         </form>

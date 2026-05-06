@@ -7,17 +7,19 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <h3 class="mb-2 fw-bold" style="color:#2e7d32;">Muat Naik Gambar Profil</h3>
+                <h3 class="mb-2 fw-bold" style="color:#2e7d32;" data-translate="onb_photos_title">Muat Naik Gambar Profil</h3>
 
                 <ul class="text-muted small mb-2 ps-3 onboarding-photo-guide">
-                    <li><strong>Gambar 1:</strong> wajib selfie (kamera depan).</li>
-                    <li><strong>Gambar 2:</strong> (jika upload) full body.</li>
-                    <li><strong>Gambar 3:</strong> (jika upload) berkaitan hobby.</li>
-                    <li><strong>Gambar 4:</strong> bebas.</li>
+                    <li><strong data-translate="onb_photo_1_label">Gambar 1:</strong> <span data-translate="onb_photo_1_rule">wajib selfie (kamera depan).</span></li>
+                    <li><strong data-translate="onb_photo_2_label">Gambar 2:</strong> <span data-translate="onb_photo_2_rule">(jika upload) full body.</span></li>
+                    <li><strong data-translate="onb_photo_3_label">Gambar 3:</strong> <span data-translate="onb_photo_3_rule">(jika upload) berkaitan hobby.</span></li>
+                    <li><strong data-translate="onb_photo_4_label">Gambar 4:</strong> <span data-translate="onb_photo_4_rule">bebas.</span></li>
                 </ul>
 
                 <div id="desktopBlock" class="alert alert-warning d-none">
-                    Onboarding ini <strong>hanya boleh dibuat melalui telefon</strong>. Sila buka link ini di phone.
+                    <span data-translate="onb_photos_desktop_block_prefix">Onboarding ini</span>
+                    <strong data-translate="onb_photos_desktop_block_strong">hanya boleh dibuat melalui telefon</strong>.
+                    <span data-translate="onb_photos_desktop_block_tail">Sila buka link ini di phone.</span>
                 </div>
 
                 @if ($errors->any())
@@ -52,13 +54,13 @@
                                     @else
                                         <div class="photo-placeholder">
                                             <span class="plus">📷</span>
-                                            <small>Selfie</small>
+                                            <small data-translate="onb_selfie">Selfie</small>
                                         </div>
                                     @endif
                                 </div>
                                 <ul class="small text-muted mt-2">
-                                    <li>Tap untuk selfie (wajib)</span></li>
-                                    <li>Jika ingin ulang selfie tab digambar sahaja.</span></li>
+                                    <li><span data-translate="onb_photo_selfie_tip_1">Tap untuk selfie (wajib)</span></li>
+                                    <li><span data-translate="onb_photo_selfie_tip_2">Jika ingin ulang selfie tab digambar sahaja.</span></li>
                                 </ul>
 
                                 {{-- ❌ buang error bawah card (kita guna modal popup) --}}
@@ -79,14 +81,14 @@
                                     @else
                                         <div class="photo-placeholder">
                                             <span class="plus">＋</span>
-                                            <small>Full body/Bahagian Pinggang ke Atas</small>
+                                            <small data-translate="onb_photo_2_placeholder">Full body/Bahagian Pinggang ke Atas</small>
                                         </div>
                                     @endif
                                 </div>
 
                                 {{-- <div class="small text-muted mt-2">Sangat disyorkan untuk menaikkan rating anda</div> --}}
                                 <ul class="small text-muted mt-2">
-                                    <li>Sangat disyorkan untuk menaikkan rating anda</span></li>
+                                    <li><span data-translate="onb_photo_recommend_rating">Sangat disyorkan untuk menaikkan rating anda</span></li>
                                 </ul>
 
                                 @error('photo_2')
@@ -106,13 +108,13 @@
                                     @else
                                         <div class="photo-placeholder">
                                             <span class="plus">＋</span>
-                                            <small>Hobby</small>
+                                            <small data-translate="onb_photo_3_placeholder">Hobby</small>
                                         </div>
                                     @endif
                                 </div>
 
                                 <ul class="small text-muted mt-2">
-                                    <li>Gambar apa sahaja yang melambangkan hobi/minat anda</span></li>
+                                    <li><span data-translate="onb_photo_3_tip">Gambar apa sahaja yang melambangkan hobi/minat anda</span></li>
                                 </ul>
 
                         
@@ -134,14 +136,14 @@
                                     @else
                                         <div class="photo-placeholder">
                                             <span class="plus">＋</span>
-                                            <small>Bebas</small>
+                                            <small data-translate="onb_free">Bebas</small>
                                         </div>
                                     @endif
                                 </div>
 
                                 <div class="small text-muted mt-2"></div>
                                     <ul class="small text-muted mt-2">
-                                    <li>Upload gambar terbaik anda</span></li>
+                                    <li><span data-translate="onb_photo_4_tip">Upload gambar terbaik anda</span></li>
                                 </ul>
 
 
@@ -154,7 +156,7 @@
                     </div>
 
                     <button id="submitBtn" class="btn mt-4 w-100 text-white" style="background:#2e7d32;">
-                        Seterusnya: Isi Maklumat Pendaftaran
+                        <span data-translate="onb_photos_next_personal">Seterusnya: Isi Maklumat Pendaftaran</span>
                     </button>
                 </form>
 
@@ -236,7 +238,7 @@
     <div id="selfieModal" class="cam-modal d-none" aria-hidden="true">
         <div class="cam-card">
             <div class="cam-header">
-                <strong>Ambil Selfie (kamera depan)</strong>
+                <strong data-translate="onb_take_selfie_title">Ambil Selfie (kamera depan)</strong>
                 <button type="button" class="cam-close" onclick="closeSelfieModal()">✕</button>
             </div>
 
@@ -247,8 +249,8 @@
             </div>
 
             <div class="cam-footer">
-                <button type="button" class="btn btn-secondary btn-sm" onclick="retakeSelfie()">Retake</button>
-                <button type="button" class="btn btn-success btn-sm" onclick="snapAndUseSelfie()">Snap</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="retakeSelfie()"><span data-translate="onb_retake">Retake</span></button>
+                <button type="button" class="btn btn-success btn-sm" onclick="snapAndUseSelfie()"><span data-translate="onb_snap">Snap</span></button>
             </div>
         </div>
     </div>
@@ -260,18 +262,20 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h5 class="modal-title fw-bold">Selfie diperlukan</h5>
+                    <h5 class="modal-title fw-bold" data-translate="onb_selfie_required_title">Selfie diperlukan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <p class="mb-0">
-                        Sila ambil <strong>Selfie (Gambar 1)</strong> dahulu sebelum meneruskan pendaftaran.
+                        <span data-translate="onb_selfie_required_prefix">Sila ambil</span>
+                        <strong data-translate="onb_selfie_required_strong">Selfie (Gambar 1)</strong>
+                        <span data-translate="onb_selfie_required_tail">dahulu sebelum meneruskan pendaftaran.</span>
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Faham</button>
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal"><span data-translate="popup_button">Faham</span></button>
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                        onclick="openSelfieModal()">Ambil Selfie</button>
+                        onclick="openSelfieModal()"><span data-translate="onb_take_selfie_cta">Ambil Selfie</span></button>
                 </div>
             </div>
         </div>
@@ -324,6 +328,7 @@
                 video.srcObject = stream;
                 await video.play();
             } catch (err) {
+                errBox.setAttribute("data-translate", "onb_camera_access_error");
                 errBox.textContent = "Tak dapat akses kamera. Pastikan guna HTTPS atau buka melalui localhost.";
                 errBox.classList.remove('d-none');
             }
@@ -357,7 +362,7 @@
             box.innerHTML = `
     <div class="photo-placeholder">
       <span class="plus">📷</span>
-      <small>Selfie</small>
+      <small data-translate="onb_selfie">Selfie</small>
     </div>
   `;
 
@@ -408,7 +413,7 @@
                         }).show();
                     } else {
                         // fallback kalau bootstrap tak ada
-                        alert("Sila ambil Selfie (Gambar 1) dahulu sebelum meneruskan.");
+                        alert(jmT("onb_selfie_required_alert", "Please take a selfie (Photo 1) before continuing."));
                     }
                     return false;
                 }

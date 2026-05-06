@@ -9,10 +9,10 @@
   <div class="onboarding-card animate-in fp-preference-card">
     {{-- Header --}}
     <div class="fp-header">
-      <h1 class="fp-title">Keutamaan Jodoh</h1>
-      <p class="fp-subtitle">(Wanita)</p>
-      <p class="fp-instruction">Pilih matlamat perkahwinan yang paling sesuai dengan diri anda.</p>
-      <p class="fp-note text-muted small">Pilihan ini membantu kami padankan anda dengan calon yang sesuai.</p>
+      <h1 class="fp-title" data-translate="onb_fp_title">Keutamaan Jodoh</h1>
+      <p class="fp-subtitle" data-translate="onb_fp_subtitle">(Wanita)</p>
+      <p class="fp-instruction" data-translate="onb_fp_instruction">Pilih matlamat perkahwinan yang paling sesuai dengan diri anda.</p>
+      <p class="fp-note text-muted small" data-translate="onb_fp_note">Pilihan ini membantu kami padankan anda dengan calon yang sesuai.</p>
     </div>
 
     <form id="prefForm" method="POST" action="{{ url('/onboarding/female/preference') }}">
@@ -22,12 +22,12 @@
       <div class="fp-options">
         {{-- Fokus Eksklusif - Monogami sahaja --}}
         <div class="fp-option-card fp-option-card--green" data-value="monogami" role="button" tabindex="0">
-          <span class="fp-badge fp-badge--green">Fokus Eksklusif</span>
+          <span class="fp-badge fp-badge--green" data-translate="onb_fp_badge_exclusive">Fokus Eksklusif</span>
           <div class="fp-option-body">
             <span class="fp-option-icon fp-option-icon--check"><i class="bi bi-check-circle"></i></span>
             <div class="fp-option-text">
-              <strong class="fp-option-title">Monogami sahaja</strong>
-              <p class="fp-option-desc mb-0">Saya hanya mempertimbangkan lelaki yang tidak beristeri.</p>
+              <strong class="fp-option-title" data-translate="onb_fp_mono_title">Monogami sahaja</strong>
+              <p class="fp-option-desc mb-0" data-translate="onb_fp_mono_desc">Saya hanya mempertimbangkan lelaki yang tidak beristeri.</p>
             </div>
             <span class="fp-option-check"><i class="bi bi-check-circle-fill"></i></span>
           </div>
@@ -35,12 +35,12 @@
 
         {{-- Fleksibel - Terbuka --}}
         <div class="fp-option-card fp-option-card--blue" data-value="terbuka" role="button" tabindex="0">
-          <span class="fp-badge fp-badge--blue">Fleksibel</span>
+          <span class="fp-badge fp-badge--blue" data-translate="onb_fp_badge_flexible">Fleksibel</span>
           <div class="fp-option-body">
             <span class="fp-option-icon fp-option-icon--circle"><i class="bi bi-circle"></i></span>
             <div class="fp-option-text">
-              <strong class="fp-option-title">Terbuka (Monogami / Poligami)</strong>
-              <p class="fp-option-desc mb-0">Saya terbuka menilai kedua-duanya berdasarkan keserasian.</p>
+              <strong class="fp-option-title" data-translate="onb_fp_open_title">Terbuka (Monogami / Poligami)</strong>
+              <p class="fp-option-desc mb-0" data-translate="onb_fp_open_desc">Saya terbuka menilai kedua-duanya berdasarkan keserasian.</p>
             </div>
             <span class="fp-option-check"><i class="bi bi-check-circle-fill"></i></span>
           </div>
@@ -48,12 +48,12 @@
 
         {{-- Terbimbing - Poligami berprinsip --}}
         <div class="fp-option-card fp-option-card--purple" data-value="poligami" role="button" tabindex="0">
-          <span class="fp-badge fp-badge--purple">Terbimbing</span>
+          <span class="fp-badge fp-badge--purple" data-translate="onb_fp_badge_guided">Terbimbing</span>
           <div class="fp-option-body">
             <span class="fp-option-icon fp-option-icon--people"><i class="bi bi-people"></i></span>
             <div class="fp-option-text">
-              <strong class="fp-option-title">Poligami berprinsip</strong>
-              <p class="fp-option-desc mb-0">Saya faham dan bersedia ke arah perkahwinan poligami.</p>
+              <strong class="fp-option-title" data-translate="onb_fp_poly_title">Poligami berprinsip</strong>
+              <p class="fp-option-desc mb-0" data-translate="onb_fp_poly_desc">Saya faham dan bersedia ke arah perkahwinan poligami.</p>
             </div>
             <span class="fp-option-check"><i class="bi bi-check-circle-fill"></i></span>
           </div>

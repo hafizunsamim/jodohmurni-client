@@ -2,10 +2,8 @@
 
 @section('content')
 <div class="container py-4">
-    <h4>Debug Push Support</h4>
-    <p class="text-muted">
-        Checking Browser support
-    </p>
+    <h4 data-translate="debug_push_title">Debug Push Support</h4>
+    <p class="text-muted" data-translate="debug_push_subtitle">Checking browser support</p>
     <pre id="debug-output" style="background:#f8f9fa;padding:10px;border-radius:6px;white-space:pre-wrap;"></pre>
 </div>
 @endsection

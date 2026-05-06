@@ -4,15 +4,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
 <section class="section-main section-main-ver">
-    <h3 class="mb-2 fw-bold" style="color:#2e7d32;">Maklumat Peribadi</h3>
-    <p class="into into-sub">Sila lengkapkan maklumat anda.</p>
+    <h3 class="mb-2 fw-bold" style="color:#2e7d32;" data-translate="onb_personal_title">Maklumat Peribadi</h3>
+    <p class="into into-sub" data-translate="onb_personal_subtitle">Sila lengkapkan maklumat anda.</p>
 
     <form id="personalInfoForm" method="POST" action="{{ route('onboarding.personal_info') }}">
         @csrf
 
         {{-- ===================== TARIKH LAHIR ===================== --}}
         <div class="inpt-la-main">
-            <label for="datepicker" class="sign-text-nam">TARIKH LAHIR</label>
+            <label for="datepicker" class="sign-text-nam" data-translate="onb_dob_label">TARIKH LAHIR</label>
             <div class="sign-input-main">
                 <div class="media-icons-lets">
                     <img src="{{ asset('assets/images/svg/calender.svg') }}" alt="calendar">
@@ -22,6 +22,7 @@
                     id="datepicker"
                     name="date_of_birth"
                     placeholder="DD/MM/YYYY"
+                    data-translate-placeholder="onb_dob_placeholder"
                     value="{{ old('date_of_birth', $onb['date_of_birth'] ?? '') }}"
                     autocomplete="off"
                     required
@@ -34,19 +35,19 @@
 
         {{-- ===================== PENDIDIKAN ===================== --}}
         <div class="inpt-la-main">
-            <label class="sign-text-nam">PENDIDIKAN</label>
+            <label class="sign-text-nam" data-translate="onb_education_label">PENDIDIKAN</label>
             <div class="sign-input-main">
                 <div class="jm-select2-wrap">
                     <span class="jm-select2-icon" aria-hidden="true">
                         <i class="bi bi-mortarboard"></i>
                     </span>
                     <select name="education_level" id="education_level" class="dropdown-select jm-select2" required>
-                    <option value="" {{ !($onb['education_level'] ?? null) ? 'selected' : '' }}>-- Pilih --</option>
-                    <option value="spm" {{ ($onb['education_level'] ?? null) === 'spm' ? 'selected' : '' }}>SPM & Setara</option>
-                    <option value="diploma" {{ ($onb['education_level'] ?? null) === 'diploma' ? 'selected' : '' }}>Diploma & Setara</option>
-                    <option value="ijazah_sarjana_muda" {{ ($onb['education_level'] ?? null) === 'ijazah_sarjana_muda' ? 'selected' : '' }}>Ijazah Sarjana Muda & Setara</option>
-                    <option value="ijazah_sarjana_master" {{ ($onb['education_level'] ?? null) === 'ijazah_sarjana_master' ? 'selected' : '' }}>Ijazah Sarjana (Master) & Setara</option>
-                    <option value="doktor_falsafah" {{ ($onb['education_level'] ?? null) === 'doktor_falsafah' ? 'selected' : '' }}>Doktor Falsafah (PhD) & setara</option>
+                    <option value="" {{ !($onb['education_level'] ?? null) ? 'selected' : '' }} data-translate="onb_pick">-- Pilih --</option>
+                    <option value="spm" {{ ($onb['education_level'] ?? null) === 'spm' ? 'selected' : '' }} data-translate="onb_edu_spm">SPM & Setara</option>
+                    <option value="diploma" {{ ($onb['education_level'] ?? null) === 'diploma' ? 'selected' : '' }} data-translate="onb_edu_diploma">Diploma & Setara</option>
+                    <option value="ijazah_sarjana_muda" {{ ($onb['education_level'] ?? null) === 'ijazah_sarjana_muda' ? 'selected' : '' }} data-translate="onb_edu_degree">Ijazah Sarjana Muda & Setara</option>
+                    <option value="ijazah_sarjana_master" {{ ($onb['education_level'] ?? null) === 'ijazah_sarjana_master' ? 'selected' : '' }} data-translate="onb_edu_master">Ijazah Sarjana (Master) & Setara</option>
+                    <option value="doktor_falsafah" {{ ($onb['education_level'] ?? null) === 'doktor_falsafah' ? 'selected' : '' }} data-translate="onb_edu_phd">Doktor Falsafah (PhD) & setara</option>
                 </select>
                 </div>
             </div>
@@ -57,25 +58,25 @@
 
         {{-- ===================== JENIS PEKERJAAN (OPTIONAL) ===================== --}}
         <div class="inpt-la-main">
-            <label class="sign-text-nam">JENIS PEKERJAAN</label>
+            <label class="sign-text-nam" data-translate="onb_job_label">JENIS PEKERJAAN</label>
             <div class="sign-input-main">
                 <div class="jm-select2-wrap">
                     <span class="jm-select2-icon" aria-hidden="true">
                         <i class="bi bi-briefcase"></i>
                     </span>
                     <select name="occupation_type" id="occupation_type" class="dropdown-select jm-select2">
-                        <option value="" {{ !($onb['occupation_type'] ?? null) ? 'selected' : '' }}>-- Pilih --</option>
+                        <option value="" {{ !($onb['occupation_type'] ?? null) ? 'selected' : '' }} data-translate="onb_pick">-- Pilih --</option>
 
                         <option value="kerajaan" {{ ($onb['occupation_type'] ?? null) === 'kerajaan' ? 'selected' : '' }}>
-                            Kerajaan
+                            <span data-translate="onb_job_gov">Kerajaan</span>
                         </option>
 
                         <option value="swasta" {{ ($onb['occupation_type'] ?? null) === 'swasta' ? 'selected' : '' }}>
-                            Swasta
+                            <span data-translate="onb_job_private">Swasta</span>
                         </option>
 
                         <option value="berniaga_usahawan_sendiri" {{ ($onb['occupation_type'] ?? null) === 'berniaga_usahawan_sendiri' ? 'selected' : '' }}>
-                            Berniaga / Usahawan / Kerja Sendiri
+                            <span data-translate="onb_job_self">Berniaga / Usahawan / Kerja Sendiri</span>
                         </option>
                     </select>
                 </div>
@@ -87,10 +88,10 @@
 
         {{-- ===================== HOBI ===================== --}}
         <div class="mt-4">
-            <label class="sign-text-nam">Hobi</label>
+            <label class="sign-text-nam" data-translate="onb_hobbies_label">Hobi</label>
             <p class="into into-sub mb-1">
-                Sila senaraikan hobi anda.<br>
-                Contoh: <strong>memasak, bola, bowling</strong>
+                <span data-translate="onb_hobbies_help_1">Sila senaraikan hobi anda.</span><br>
+                <span data-translate="onb_example">Contoh:</span> <strong data-translate="onb_hobbies_example">memasak, bola, bowling</strong>
             </p>
 
             <textarea
@@ -98,6 +99,7 @@
                 class="form-control"
                 rows="3"
                 placeholder="memasak, bola, bowling"
+                data-translate-placeholder="onb_hobbies_placeholder"
             >{{ old('hobbies_text', $onb['hobbies'] ?? '') }}</textarea>
 
             @error('hobbies_text')
@@ -107,10 +109,10 @@
 
         {{-- ===================== AKTIVITI SOSIAL ===================== --}}
         <div class="mt-4">
-            <label class="sign-text-nam">Aktiviti Sosial & Kemasyarakatan</label>
+            <label class="sign-text-nam" data-translate="onb_social_label">Aktiviti Sosial & Kemasyarakatan</label>
             <p class="into into-sub mb-1">
-                Sila senaraikan aktiviti sosial / kemasyarakatan anda.<br>
-                Contoh: <strong>program masjid, sukarelawan NGO, persatuan penduduk</strong>
+                <span data-translate="onb_social_help_1">Sila senaraikan aktiviti sosial / kemasyarakatan anda.</span><br>
+                <span data-translate="onb_example">Contoh:</span> <strong data-translate="onb_social_example">program masjid, sukarelawan NGO, persatuan penduduk</strong>
             </p>
 
             <textarea
@@ -118,6 +120,7 @@
                 class="form-control"
                 rows="3"
                 placeholder="program masjid, sukarelawan NGO, persatuan penduduk"
+                data-translate-placeholder="onb_social_placeholder"
             >{{ old('social_activities_text', $onb['social_activities'] ?? '') }}</textarea>
 
             @error('social_activities_text')
@@ -132,9 +135,9 @@
 
         {{-- ===================== STATUS LOKASI ===================== --}}
         <div class="inpt-la-main">
-            <label class="sign-text-nam">LOKASI SEMASA</label>
+            <label class="sign-text-nam" data-translate="onb_location_label">LOKASI SEMASA</label>
             <div class="sign-input-main" style="flex-direction: column; align-items: flex-start;">
-                <div id="location-status" class="alert alert-info w-100">
+                <div id="location-status" class="alert alert-info w-100" data-translate="onb_location_waiting">
                     Menunggu akses lokasi...
                 </div>
                 <p id="coords-display" class="text-muted small mt-1"></p>
@@ -145,7 +148,7 @@
     {{-- ===================== BUTANG SUBMIT (LUAR FORM) ===================== --}}
     <div class="onbording-btn-main splash-btns-bottom">
         <button type="button" id="submitBtn" class="whol-main-btn next-btn btn-success" disabled>
-            Seterusnya: Ciri Calon Idaman
+            <span data-translate="onb_personal_next_match">Seterusnya: Ciri Calon Idaman</span>
         </button>
     </div>
 </section>
@@ -235,6 +238,19 @@ let watchId = null;
 const GEO_OPTS_FAST = { enableHighAccuracy: false, timeout: 30000, maximumAge: 0 };
 const GEO_OPTS_HI   = { enableHighAccuracy: true,  timeout: 45000, maximumAge: 0 };
 
+function jmT(key, fallback) {
+  try {
+    const translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+    const country = (document.body?.dataset?.country || "MY").trim() || "MY";
+    const locale = (document.body?.dataset?.locale || "").trim() || "ms";
+    const byCountry = translations[country] || translations["MY"] || {};
+    const pack = byCountry[locale] || byCountry["en"] || {};
+    return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+  } catch {
+    return fallback || key;
+  }
+}
+
 function setStatus(html, klass) {
   statusDiv.innerHTML = html;
   statusDiv.className = klass;
@@ -251,8 +267,8 @@ function setLocation(pos) {
   const acc = (typeof pos.coords.accuracy === "number") ? `${Math.round(pos.coords.accuracy)}m` : "-";
   const ts  = pos.timestamp ? new Date(pos.timestamp).toLocaleString() : "-";
 
-  setStatus("✅ Lokasi dikesan!", "alert alert-success w-100");
-  coordsDisplay.innerHTML = `Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)} (±${acc})<br><small>${ts}</small>`;
+  setStatus(jmT("onb_location_detected", "✅ Lokasi dikesan!"), "alert alert-success w-100");
+  coordsDisplay.innerHTML = `${jmT("onb_lat", "Lat")}: ${lat.toFixed(5)}, ${jmT("onb_lng", "Lng")}: ${lng.toFixed(5)} (±${acc})<br><small>${ts}</small>`;
 
   submitBtn.disabled = false;
 
@@ -266,16 +282,16 @@ function explainError(err) {
   let msg = "❌ ";
   switch (err.code) {
     case err.PERMISSION_DENIED:
-      msg += "Sila izinkan akses lokasi dalam tetapan browser/OS.";
+      msg += jmT("onb_location_err_permission", "Sila izinkan akses lokasi dalam tetapan browser/OS.");
       break;
     case err.POSITION_UNAVAILABLE:
-      msg += "Lokasi tidak dapat ditentukan (desktop perlukan Wi-Fi/location services).";
+      msg += jmT("onb_location_err_unavailable", "Lokasi tidak dapat ditentukan (desktop perlukan Wi-Fi/location services).");
       break;
     case err.TIMEOUT:
-      msg += "Masa tamat. Cuba lagi (pastikan Wi-Fi ON / Location ON).";
+      msg += jmT("onb_location_err_timeout", "Masa tamat. Cuba lagi (pastikan Wi-Fi ON / Location ON).");
       break;
     default:
-      msg += "Ralat tidak diketahui.";
+      msg += jmT("onb_location_err_unknown", "Ralat tidak diketahui.");
   }
   return msg;
 }
@@ -287,7 +303,7 @@ function ensureRetryButton() {
   btn.type = 'button';
   btn.id = 'retryLocationBtn';
   btn.className = 'btn btn-outline-secondary btn-sm mt-2';
-  btn.textContent = 'Cuba Lagi';
+  btn.textContent = jmT('onb_retry', 'Cuba Lagi');
   btn.addEventListener('click', () => requestLocation());
   statusDiv.parentElement.appendChild(btn);
 }
@@ -306,23 +322,23 @@ function requestLocation() {
   stopWatch();
 
   if (!navigator.geolocation) {
-    setStatus("⚠️ Pelayar ini tidak menyokong lokasi.", "alert alert-danger w-100");
+    setStatus(jmT("onb_location_not_supported", "⚠️ Pelayar ini tidak menyokong lokasi."), "alert alert-danger w-100");
     ensureRetryButton();
     return;
   }
 
-  setStatus("📍 Minta akses lokasi...", "alert alert-info w-100");
+  setStatus(jmT("onb_location_requesting", "📍 Minta akses lokasi..."), "alert alert-info w-100");
 
   navigator.geolocation.getCurrentPosition(
     (pos) => setLocation(pos),
     (err) => {
       if (err.code === err.TIMEOUT) {
-        setStatus("⏳ Lambat dapat lokasi. Cuba mod lebih tepat...", "alert alert-info w-100");
+        setStatus(jmT("onb_location_slow_try_hi", "⏳ Lambat dapat lokasi. Cuba mod lebih tepat..."), "alert alert-info w-100");
 
         navigator.geolocation.getCurrentPosition(
           (pos2) => setLocation(pos2),
           (err2) => {
-            setStatus("⏳ Masih lambat. Cuba mode pantau lokasi (watch)...", "alert alert-info w-100");
+            setStatus(jmT("onb_location_slow_watch", "⏳ Masih lambat. Cuba mode pantau lokasi (watch)..."), "alert alert-info w-100");
 
             watchId = navigator.geolocation.watchPosition(
               (pos3) => setLocation(pos3),
@@ -337,7 +353,7 @@ function requestLocation() {
             setTimeout(() => {
               if (!hasValidLocation) {
                 stopWatch();
-                setStatus("❌ Masih tak dapat lokasi. Sila ON Wi-Fi & Windows Location, kemudian Cuba Lagi.", "alert alert-warning w-100");
+                setStatus(jmT("onb_location_still_failed", "❌ Masih tak dapat lokasi. Sila ON Wi-Fi & Windows Location, kemudian Cuba Lagi."), "alert alert-warning w-100");
                 ensureRetryButton();
               }
             }, 60000);
@@ -360,7 +376,7 @@ requestLocation();
 /* ===================== SUBMIT HANDLER ===================== */
 document.getElementById('submitBtn')?.addEventListener('click', function () {
   if (!hasValidLocation) {
-    alert("Sila benarkan akses lokasi untuk teruskan.");
+    alert(jmT("onb_allow_location_alert", "Sila benarkan akses lokasi untuk teruskan."));
     return;
   }
   document.getElementById('personalInfoForm').submit();
@@ -375,11 +391,11 @@ $(function () {
   const $oc = $('#occupation_type');
 
   if ($ed.length) {
-    $ed.select2({ width: '100%', placeholder: '-- Pilih --', minimumResultsForSearch: 0 });
+    $ed.select2({ width: '100%', placeholder: @json(\App\Support\JmI18n::t('onb_pick', fallback: '-- Pilih --')), minimumResultsForSearch: 0 });
     $ed.trigger('change');
   }
   if ($oc.length) {
-    $oc.select2({ width: '100%', placeholder: '-- Pilih --', allowClear: true, minimumResultsForSearch: 0 });
+    $oc.select2({ width: '100%', placeholder: @json(\App\Support\JmI18n::t('onb_pick', fallback: '-- Pilih --')), allowClear: true, minimumResultsForSearch: 0 });
     $oc.trigger('change');
   }
 });

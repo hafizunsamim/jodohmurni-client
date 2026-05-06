@@ -4,24 +4,25 @@
 
 @section('content')
 <div class="container py-4" style="max-width: 800px;">
-    <h4 class="mb-3 fw-bold">Chats</h4>
+    <h4 class="mb-3 fw-bold" data-translate="chat_title">Chats</h4>
 
     @if(!$hasActiveSub && isset($trialStats))
         <div class="alert alert-info py-2 small">
-            Free Trial • Tegur: {{ $trialStats['participants_used'] ?? 0 }}/{{ $trialStats['participants_limit'] ?? 10 }}
-            • Reply: {{ $trialStats['responders_used'] ?? 0 }}/{{ $trialStats['responders_limit'] ?? 2 }}
-            • (Bila 2 calon dah balas, calon lain akan dikunci)
+            <span data-translate="chat_free_trial">Free Trial</span>
+            • <span data-translate="chat_trial_tegur">Tegur</span>: {{ $trialStats['participants_used'] ?? 0 }}/{{ $trialStats['participants_limit'] ?? 10 }}
+            • <span data-translate="chat_trial_reply">Reply</span>: {{ $trialStats['responders_used'] ?? 0 }}/{{ $trialStats['responders_limit'] ?? 2 }}
+            • (<span data-translate="chat_trial_locked_note">Bila 2 calon dah balas, calon lain akan dikunci</span>)
         </div>
     @endif
 
     @if ($conversations->isEmpty())
         <div class="text-center py-5">
             <div class="mb-3">
-                <img src="{{ asset('assets/photos/flat_no_message.jpg') }}" alt="No chats yet"
+                <img src="{{ asset('assets/photos/flat_no_message.jpg') }}" alt="No chats yet" data-translate-aria-label="chat_empty_alt"
                      class="img-fluid chat-empty-illustration" style="max-width: 220px; opacity: 0.8;">
             </div>
-            <h5 class="text-muted mb-2">Belum ada perbualan</h5>
-            <p class="text-muted small px-3">
+            <h5 class="text-muted mb-2" data-translate="chat_empty_title">Belum ada perbualan</h5>
+            <p class="text-muted small px-3" data-translate="chat_empty_desc">
                 Apabila anda mula berbual dengan calon, perbualan akan muncul di sini.
             </p>
         </div>
@@ -63,7 +64,7 @@
                                 {{ $displayName }}
 
                                 @if($locked)
-                                    <span class="badge bg-warning text-dark ms-2">Locked</span>
+                                    <span class="badge bg-warning text-dark ms-2" data-translate="chat_locked">Locked</span>
                                 @endif
                             </h6>
                             @if ($last && $last->created_at)
@@ -76,7 +77,7 @@
                         @if ($last)
                             <div class="text-muted small mt-1 text-truncate">
                                 @if ($last->sender_id == $me->id)
-                                    <span class="text-primary me-1">You:</span>
+                                    <span class="text-primary me-1" data-translate="chat_you">You:</span>
                                 @endif
                                 {{ \Illuminate\Support\Str::limit($last->body, 45) }}
                             </div>

@@ -3,8 +3,8 @@
 @section('content')
 <div class="keahlian-page">
   <div class="keahlian-wrap">
-    <h1 class="keahlian-title">Keahlian</h1>
-    <p class="keahlian-subtitle text-muted">Perbandingan pakej LITE, ACTIVE, GRADUATE dan HYPE.</p>
+    <h1 class="keahlian-title" data-translate="member_title">Keahlian</h1>
+    <p class="keahlian-subtitle text-muted" data-translate="member_subtitle">Perbandingan pakej LITE, ACTIVE, GRADUATE dan HYPE.</p>
 
     <div class="keahlian-grid">
       {{-- Lajur kriteria (ikon + label) --}}
@@ -22,28 +22,28 @@
             {{-- Dua buih chat bertindih, kiri ada tiga titik --}}
             <svg class="keahlian-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18c-2 0-4-1.5-4-4V8c0-2.5 2-4 4-4h6c2 0 4 1.5 4 4v2"/><path d="M15 14v2c0 2.5-2 4-4 4H5l-1 3 3-2h2c2 0 4-1.5 4-4v-2"/><circle cx="8" cy="12" r="0.6" fill="currentColor"/><circle cx="10.5" cy="12" r="0.6" fill="currentColor"/><circle cx="13" cy="12" r="0.6" fill="currentColor"/></svg>
           </span> -->
-          <span class="keahlian-criteria-label">CHAT</span>
+          <span class="keahlian-criteria-label" data-translate="member_crit_chat">CHAT</span>
         </div>
         <div class="keahlian-criteria-row">
           <!-- <span class="keahlian-criteria-icon">
             {{-- Jam dengan anak panah suku atas kiri, buih kecil penjuru bawah kanan --}}
             <svg class="keahlian-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/><path d="M18 17.5a2 2 0 0 1-1.5.6 2 2 0 0 1-1.5-.6"/></svg>
           </span> -->
-          <span class="keahlian-criteria-label">HAD PERBUALAN</span>
+          <span class="keahlian-criteria-label" data-translate="member_crit_chat_limit">HAD PERBUALAN</span>
         </div>
         <div class="keahlian-criteria-row">
           <!-- <span class="keahlian-criteria-icon">
             {{-- Buku terbuka: tulang kiri, dua muka surat, garisan teks di kanan --}}
             <svg class="keahlian-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h6a2 2 0 0 1 2 2v10H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"/><path d="M20 6h-6a2 2 0 0 0-2 2v10h8a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1z"/><path d="M10 6V4"/><path d="M14 10h4"/><path d="M14 13h4"/><path d="M14 16h3"/></svg>
           </span> -->
-          <span class="keahlian-criteria-label">E-BOOK</span>
+          <span class="keahlian-criteria-label" data-translate="member_crit_ebook">E-BOOK</span>
         </div>
         <div class="keahlian-criteria-row">
           <!-- <span class="keahlian-criteria-icon">
             {{-- Tiga orang: tengah lebih besar, dua di sisi --}}
             <svg class="keahlian-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3.5"/><path d="M12 21v-2a4 4 0 0 0-4-4H6a3.5 3.5 0 0 0-3.5 3.5V21"/><path d="M22 21v-1.5a3.5 3.5 0 0 0-3.5-3.5H16a4 4 0 0 0-4 4V21"/><path d="M5 10.5a2.5 2.5 0 0 1 2.5-2.5"/><path d="M19 10.5a2.5 2.5 0 0 0-2.5-2.5"/><path d="M12 9.5v1"/></svg>
           </span> -->
-          <span class="keahlian-criteria-label">FORUM</span>
+          <span class="keahlian-criteria-label" data-translate="member_crit_forum">FORUM</span>
         </div>
       </div>
 
@@ -51,11 +51,11 @@
       <div class="keahlian-tier-card keahlian-tier--lite">
         <div class="keahlian-tier-header">LITE</div>
         <div class="keahlian-tier-body">
-          <div class="keahlian-tier-row">Akaun asas untuk ahli yang telah mendaftar tetapi belum melanggan pakej keahlian.</div>
-          <div class="keahlian-tier-row">Boleh memulakan chat dengan sehingga <strong>10 calon</strong>. Hanya <strong>2 calon pertama yang membalas</strong> boleh meneruskan perbualan.</div>
-          <div class="keahlian-tier-row">Maksimum <strong>5 mesej</strong> bagi setiap perbualan.</div>
-          <div class="keahlian-tier-row">Tiada akses</div>
-          <div class="keahlian-tier-row">Tiada akses</div>
+          <div class="keahlian-tier-row" data-translate="member_lite_desc">Akaun asas untuk ahli yang telah mendaftar tetapi belum melanggan pakej keahlian.</div>
+          <div class="keahlian-tier-row" data-translate="member_lite_chat">Boleh memulakan chat dengan sehingga 10 calon. Hanya 2 calon pertama yang membalas boleh meneruskan perbualan.</div>
+          <div class="keahlian-tier-row" data-translate="member_lite_chat_limit">Maksimum 5 mesej bagi setiap perbualan.</div>
+          <div class="keahlian-tier-row" data-translate="member_no_access">Tiada akses</div>
+          <div class="keahlian-tier-row" data-translate="member_no_access">Tiada akses</div>
         </div>
       </div>
 
@@ -63,11 +63,11 @@
       <div class="keahlian-tier-card keahlian-tier--active">
         <div class="keahlian-tier-header">ACTIVE</div>
         <div class="keahlian-tier-body">
-          <div class="keahlian-tier-row">Akaun keahlian aktif yang membolehkan anda menggunakan semua fungsi utama platform.</div>
-          <div class="keahlian-tier-row">Chat <strong>tanpa had</strong> dengan semua calon sepanjang tempoh langganan.</div>
-          <div class="keahlian-tier-row"><strong>Tiada had</strong></div>
-          <div class="keahlian-tier-row">Akses diberikan</div>
-          <div class="keahlian-tier-row">Akses diberikan</div>
+          <div class="keahlian-tier-row" data-translate="member_active_desc">Akaun keahlian aktif yang membolehkan anda menggunakan semua fungsi utama platform.</div>
+          <div class="keahlian-tier-row" data-translate="member_active_chat">Chat tanpa had dengan semua calon sepanjang tempoh langganan.</div>
+          <div class="keahlian-tier-row" data-translate="member_unlimited">Tiada had</div>
+          <div class="keahlian-tier-row" data-translate="member_access_granted">Akses diberikan</div>
+          <div class="keahlian-tier-row" data-translate="member_access_granted">Akses diberikan</div>
         </div>
       </div>
 
@@ -75,11 +75,11 @@
       <div class="keahlian-tier-card keahlian-tier--graduate">
         <div class="keahlian-tier-header">GRADUATE</div>
         <div class="keahlian-tier-body">
-          <div class="keahlian-tier-row">Akaun ahli yang pernah melanggan tetapi tempoh keahlian telah tamat.</div>
-          <div class="keahlian-tier-row">Boleh memulakan chat dengan sehingga <strong>10 calon</strong>. Hanya <strong>2 calon pertama yang membalas</strong> boleh meneruskan perbualan.</div>
-          <div class="keahlian-tier-row">Maksimum <strong>5 mesej</strong> bagi setiap perbualan.</div>
-          <div class="keahlian-tier-row">Tiada akses</div>
-          <div class="keahlian-tier-row">Tiada akses</div>
+          <div class="keahlian-tier-row" data-translate="member_graduate_desc">Akaun ahli yang pernah melanggan tetapi tempoh keahlian telah tamat.</div>
+          <div class="keahlian-tier-row" data-translate="member_graduate_chat">Boleh memulakan chat dengan sehingga 10 calon. Hanya 2 calon pertama yang membalas boleh meneruskan perbualan.</div>
+          <div class="keahlian-tier-row" data-translate="member_graduate_chat_limit">Maksimum 5 mesej bagi setiap perbualan.</div>
+          <div class="keahlian-tier-row" data-translate="member_no_access">Tiada akses</div>
+          <div class="keahlian-tier-row" data-translate="member_no_access">Tiada akses</div>
         </div>
       </div>
 
@@ -87,20 +87,20 @@
       <div class="keahlian-tier-card keahlian-tier--hype">
         <div class="keahlian-tier-header">HYPE</div>
         <div class="keahlian-tier-body">
-          <div class="keahlian-tier-row">Akaun premium untuk ahli yang melanggan atau memperbaharui pakej keahlian.</div>
-          <div class="keahlian-tier-row">Chat <strong>tanpa had</strong> dengan semua calon.</div>
-          <div class="keahlian-tier-row"><strong>Tiada had</strong></div>
-          <div class="keahlian-tier-row">Akses diberikan</div>
-          <div class="keahlian-tier-row">Akses diberikan</div>
+          <div class="keahlian-tier-row" data-translate="member_hype_desc">Akaun premium untuk ahli yang melanggan atau memperbaharui pakej keahlian.</div>
+          <div class="keahlian-tier-row" data-translate="member_hype_chat">Chat tanpa had dengan semua calon.</div>
+          <div class="keahlian-tier-row" data-translate="member_unlimited">Tiada had</div>
+          <div class="keahlian-tier-row" data-translate="member_access_granted">Akses diberikan</div>
+          <div class="keahlian-tier-row" data-translate="member_access_granted">Akses diberikan</div>
         </div>
       </div>
     </div>
 
-    <p class="keahlian-footer text-muted small mt-4 mb-0">Pilihan anda akan disimpan secara automatik apabila anda melanggan.</p>
+    <p class="keahlian-footer text-muted small mt-4 mb-0" data-translate="member_footer_note">Pilihan anda akan disimpan secara automatik apabila anda melanggan.</p>
 
     @auth
       <div class="mt-3">
-        <a href="{{ route('subscription.index') }}" class="btn btn-success">Lihat Pakej Langganan</a>
+        <a href="{{ route('subscription.index') }}" class="btn btn-success" data-translate="member_view_packages">Lihat Pakej Langganan</a>
       </div>
     @endauth
   </div>

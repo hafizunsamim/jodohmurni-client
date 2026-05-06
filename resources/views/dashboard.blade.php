@@ -24,14 +24,14 @@
                 backdrop-filter: blur(6px);
                 max-width: 280px;
              ">
-            <div style="font-weight:600;">📍 Location</div>
-            <div id="locationStatusText">Checking…</div>
+            <div style="font-weight:600;">📍 <span data-translate="dash_location">Location</span></div>
+            <div id="locationStatusText" data-translate="dash_location_checking">Checking…</div>
         </div>
 
         @if ($candidates->isEmpty())
             <div class="end-message">
-                Tiada calon berdekatan.<br>
-                Sila sesuaikan preferensi anda.
+                <span data-translate="dash_no_candidates_1">Tiada calon berdekatan.</span><br>
+                <span data-translate="dash_no_candidates_2">Sila sesuaikan preferensi anda.</span>
             </div>
         @else
             @foreach ($candidates as $index => $c)
@@ -63,15 +63,15 @@
                     <div class="card-info-overlay">
                         <div class="info-box">
                             @if($c->status_keahlian === 'LITE')
-                                <span class="badge bg-secondary mb-1" style="font-size: 0.7rem;">Ahli Belum Berbayar</span>
+                                <span class="badge bg-secondary mb-1" style="font-size: 0.7rem;" data-translate="dash_unpaid_member">Ahli Belum Berbayar</span>
                             @endif
                             <h3>
                                 <a href="{{ route('candidates.show', $c->id) }}">
                                     @php
-                                        $displayName = $c->public_id ? ($c->public_id) : 'Calon';
+                                        $displayName = $c->public_id ? ($c->public_id) : \App\Support\JmI18n::t('search_candidate', fallback: 'Calon');
                                         if (!empty($hasActiveSub)) {
                                             $displayName = trim(($c->nickname ?? '') . ' ' . ($c->name ?? ''));
-                                            if ($displayName === '') $displayName = $c->name ?? 'Calon';
+                                            if ($displayName === '') $displayName = $c->name ?? \App\Support\JmI18n::t('search_candidate', fallback: 'Calon');
                                         }
                                     @endphp
                                     {{ $displayName }}
@@ -80,13 +80,13 @@
 
                             <div class="info-tags">
                                 @if ($candidateAge)
-                                    <span>♀ {{ $candidateAge }} yr</span>
+                                    <span>♀ {{ $candidateAge }} <span data-translate="cand_years_short">yr</span></span>
                                 @endif
 
                                 <span>🏠 {{ ucfirst($c->country ?? '-') }}</span>
 
                                 @if ($distanceKm)
-                                    <span>📍 {{ round($distanceKm, 1) }} km</span>
+                                    <span>📍 {{ round($distanceKm, 1) }} <span data-translate="cand_km">km</span></span>
                                 @endif
                             </div>
                         </div>
@@ -109,9 +109,9 @@
 
     <div id="swipeLimitModal" class="swipe-modal hidden">
         <div class="swipe-modal-content">
-            <h3>5 kali percubaan Percuma Anda sudah tamat.</h3>
-            <p>Sila subscribe secara one-off untuk chatting tanpa batas dan semua butiran calon tersedia</p>
-            <button id="closeSwipeModal">OK</button>
+            <h3 data-translate="dash_swipe_limit_title">5 kali percubaan Percuma Anda sudah tamat.</h3>
+            <p data-translate="dash_swipe_limit_desc">Sila subscribe secara one-off untuk chatting tanpa batas dan semua butiran calon tersedia</p>
+            <button id="closeSwipeModal" data-translate="dash_ok">OK</button>
         </div>
     </div>
 
@@ -128,6 +128,19 @@ let __lastLocationSentAt = 0;
 const LOCATION_THROTTLE_MS = 30 * 1000; // hantar max sekali setiap 30s
 let __watchId = null;
 
+function jmT(key, fallback) {
+    try {
+        const translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+        const country = (document.body?.dataset?.country || "MY").trim() || "MY";
+        const locale = (document.body?.dataset?.locale || "").trim() || "ms";
+        const byCountry = translations[country] || translations["MY"] || {};
+        const pack = byCountry[locale] || byCountry["en"] || {};
+        return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+    } catch {
+        return fallback || key;
+    }
+}
+
 function setLocationStatus(msg) {
     const el = document.getElementById('locationStatusText');
     if (el) el.textContent = msg;
@@ -141,12 +154,12 @@ function fmt(n, digits = 5) {
 async function sendLocationToServer(lat, lng, accuracy = null, source = 'dashboard') {
     const now = Date.now();
     if (now - __lastLocationSentAt < LOCATION_THROTTLE_MS) {
-        setLocationStatus('Updated recently…');
+        setLocationStatus(jmT('dash_loc_updated_recently', 'Updated recently…'));
         return;
     }
     __lastLocationSentAt = now;
 
-    setLocationStatus(`Sending… (${fmt(lat)}, ${fmt(lng)})`);
+    setLocationStatus(jmT('dash_loc_sending', 'Sending…') + ` (${fmt(lat)}, ${fmt(lng)})`);
 
     try {
         const res = await fetch(UPDATE_LOCATION_URL, {
@@ -166,7 +179,7 @@ async function sendLocationToServer(lat, lng, accuracy = null, source = 'dashboa
 
         // kalau 419/401/500 etc.
         if (!res.ok) {
-            setLocationStatus(`Failed (${res.status})`);
+            setLocationStatus(jmT('dash_loc_failed', 'Failed') + ` (${res.status})`);
             return;
         }
 
@@ -174,27 +187,27 @@ async function sendLocationToServer(lat, lng, accuracy = null, source = 'dashboa
 
         if (json && json.ok) {
             const t = new Date().toLocaleTimeString();
-            setLocationStatus(`Updated ✅ ${fmt(json.latitude)}, ${fmt(json.longitude)} @ ${t}`);
+            setLocationStatus(jmT('dash_loc_updated', 'Updated') + ` ✅ ${fmt(json.latitude)}, ${fmt(json.longitude)} @ ${t}`);
         } else {
-            setLocationStatus('Failed (invalid response)');
+            setLocationStatus(jmT('dash_loc_failed_invalid', 'Failed (invalid response)'));
         }
     } catch (err) {
         console.error('❌ update location failed', err);
-        setLocationStatus('Failed (network error)');
+        setLocationStatus(jmT('dash_loc_failed_network', 'Failed (network error)'));
     }
 }
 
 function requestDashboardLocationOnce() {
     if (!navigator.geolocation) {
-        setLocationStatus('Geolocation not supported');
+        setLocationStatus(jmT('dash_loc_not_supported', 'Geolocation not supported'));
         return;
     }
 
-    setLocationStatus('Requesting permission…');
+    setLocationStatus(jmT('dash_loc_requesting', 'Requesting permission…'));
 
     navigator.geolocation.getCurrentPosition(
         (pos) => {
-            setLocationStatus('Got location ✅ sending…');
+            setLocationStatus(jmT('dash_loc_got_sending', 'Got location ✅ sending…'));
             sendLocationToServer(
                 pos.coords.latitude,
                 pos.coords.longitude,
@@ -204,10 +217,10 @@ function requestDashboardLocationOnce() {
         },
         (err) => {
             console.warn('⚠️ location denied/unavailable', err);
-            if (err.code === 1) setLocationStatus('Permission denied ❌');
-            else if (err.code === 2) setLocationStatus('Position unavailable ❌');
-            else if (err.code === 3) setLocationStatus('Timeout ❌');
-            else setLocationStatus('Location error ❌');
+            if (err.code === 1) setLocationStatus(jmT('dash_loc_permission_denied', 'Permission denied ❌'));
+            else if (err.code === 2) setLocationStatus(jmT('dash_loc_unavailable', 'Position unavailable ❌'));
+            else if (err.code === 3) setLocationStatus(jmT('dash_loc_timeout', 'Timeout ❌'));
+            else setLocationStatus(jmT('dash_loc_error', 'Location error ❌'));
         },
         { enableHighAccuracy: false, timeout: 20000, maximumAge: 0 }
     );

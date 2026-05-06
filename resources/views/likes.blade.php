@@ -4,20 +4,20 @@
 @section('content')
 <div class="container main-likes-wrapper">
     <div class="header-section">
-        <h3 class="page-title">Aktiviti Swipe</h3>
+        <h3 class="page-title" data-translate="likes_title">Aktiviti Swipe</h3>
 
         <div class="filter-pills">
             <a href="{{ route('swipes.index', ['type' => 'all']) }}"
                class="pill-btn {{ $filter==='all' ? 'active' : '' }}">
-                Semua
+                <span data-translate="likes_filter_all">Semua</span>
             </a>
             <a href="{{ route('swipes.index', ['type' => 'like']) }}"
                class="pill-btn {{ $filter==='like' ? 'active' : '' }}">
-                Like
+                <span data-translate="likes_filter_like">Like</span>
             </a>
             <a href="{{ route('swipes.index', ['type' => 'dislike']) }}"
                class="pill-btn {{ $filter==='dislike' ? 'active' : '' }}">
-                Dislike
+                <span data-translate="likes_filter_dislike">Dislike</span>
             </a>
         </div>
     </div>
@@ -27,9 +27,9 @@
         <div class="empty-icon-wrapper">
             <span class="heart-icon">ðŸ’”</span>
         </div>
-        <h5>Tiada aktiviti lagi</h5>
-        <p>Mula swipe untuk lihat sejarah Like & Dislike anda.</p>
-        <a href="{{ route('dashboard') }}" class="btn btn-primary mt-3">Mula Swipe</a>
+        <h5 data-translate="likes_empty_title">Tiada aktiviti lagi</h5>
+        <p data-translate="likes_empty_desc">Mula swipe untuk lihat sejarah Like & Dislike anda.</p>
+        <a href="{{ route('dashboard') }}" class="btn btn-primary mt-3" data-translate="likes_start_swipe">Mula Swipe</a>
     </div>
 
     @else
@@ -57,11 +57,11 @@
                         <div class="photo-overlay"></div>
                         @if ($s->action === 'like')
                             <span class="badge-swipe badge-like">
-                                <i class="fas fa-heart"></i> LIKE
+                                <i class="fas fa-heart"></i> <span data-translate="likes_badge_like">LIKE</span>
                             </span>
                         @else
                             <span class="badge-swipe badge-dislike">
-                                <i class="fas fa-times"></i> DISLIKE
+                                <i class="fas fa-times"></i> <span data-translate="likes_badge_dislike">DISLIKE</span>
                             </span>
                         @endif
                     </div>
@@ -79,10 +79,10 @@
                         @if($u)
                             <div class="swipe-actions">
                                 <a href="{{ route('candidates.show', $u->id) }}" class="btn-action view">
-                                    Lihat Profil
+                                    <span data-translate="likes_view_profile">Lihat Profil</span>
                                 </a>
                                 <a href="{{ route('chat.openWithUser', $u->id) }}" class="btn-action chat">
-                                    <i class="fas fa-comment"></i> Chat
+                                    <i class="fas fa-comment"></i> <span data-translate="likes_chat">Chat</span>
                                 </a>
                             </div>
                         @endif

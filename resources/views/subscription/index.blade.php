@@ -4,24 +4,27 @@
 @section('content')
 <div class="container py-3" style="padding-bottom: 90px;">
 
-  <h3 class="fw-bold mb-2" style="color:rgb(10, 126, 62);">Subscription</h3>
+  <h3 class="fw-bold mb-2" style="color:rgb(10, 126, 62);" data-translate="sub_title">Subscription</h3>
 
   @if($paymentBypass ?? false)
     <div class="alert alert-warning py-2 small mb-3">
-      <strong>Payment bypass aktif.</strong> Klik bayar akan terus aktifkan subscription tanpa PayPal/Toyyibpay.
-      Set <code>SUBSCRIPTION_PAYMENT_BYPASS=false</code> dalam <code>.env</code> untuk production.
+      <strong data-translate="sub_payment_bypass_on">Payment bypass aktif.</strong>
+      <span data-translate="sub_payment_bypass_desc">Klik bayar akan terus aktifkan subscription tanpa PayPal/Toyyibpay.</span>
+      <span data-translate="sub_payment_bypass_note">Set SUBSCRIPTION_PAYMENT_BYPASS=false dalam .env untuk production.</span>
     </div>
   @endif
 
   @if($useToyyibpay ?? false)
     @if($toyyibpayConfigured ?? false)
       <div class="alert alert-info py-2 small mb-3">
-        <strong>Pembayaran melalui Toyyibpay (FPX / Kad Kredit).</strong> Anda akan dihantar ke laman Toyyibpay untuk membuat bayaran sebelum subscription diaktifkan.
+        <strong data-translate="sub_pay_toyyibpay_title">Pembayaran melalui Toyyibpay (FPX / Kad Kredit).</strong>
+        <span data-translate="sub_pay_toyyibpay_desc">Anda akan dihantar ke laman Toyyibpay untuk membuat bayaran sebelum subscription diaktifkan.</span>
       </div>
     @endif
   @elseif($paypalConfigured ?? false)
     <div class="alert alert-info py-2 small mb-3">
-      <strong>Pembayaran melalui PayPal.</strong> Anda akan dihantar ke laman PayPal untuk membuat bayaran sebelum subscription diaktifkan.
+      <strong data-translate="sub_pay_paypal_title">Pembayaran melalui PayPal.</strong>
+      <span data-translate="sub_pay_paypal_desc">Anda akan dihantar ke laman PayPal untuk membuat bayaran sebelum subscription diaktifkan.</span>
     </div>
   @endif
 
@@ -51,19 +54,19 @@
   @if(isset($activeSub) && $activeSub)
     <div class="alert {{ ($stillActive ?? false) ? 'alert-info' : 'alert-secondary' }}">
       <div class="fw-bold mb-1">
-        Subscription terkini: {{ $activeSub->package->name ?? 'Package' }}
+        <span data-translate="sub_current_subscription">Subscription terkini</span>: {{ $activeSub->package->name ?? 'Package' }}
       </div>
       <div class="small">
-        Status: <strong>{{ strtoupper($activeSub->status) }}</strong><br>
-        Bermula: <strong>{{ $activeSub->started_at ? $activeSub->started_at->format('d/m/Y H:i') : '-' }}</strong><br>
-        Tamat: <strong>{{ $activeSub->ends_at ? $activeSub->ends_at->format('d/m/Y H:i') : '-' }}</strong>
+        <span data-translate="sub_status">Status</span>: <strong>{{ strtoupper($activeSub->status) }}</strong><br>
+        <span data-translate="sub_started_at">Bermula</span>: <strong>{{ $activeSub->started_at ? $activeSub->started_at->format('d/m/Y H:i') : '-' }}</strong><br>
+        <span data-translate="sub_ends_at">Tamat</span>: <strong>{{ $activeSub->ends_at ? $activeSub->ends_at->format('d/m/Y H:i') : '-' }}</strong>
       </div>
 
       <div class="mt-2 d-flex gap-2 flex-wrap">
-        <a class="btn btn-sm btn-primary" href="{{ route('subscription.ebook.links') }}">Lihat Link Ebook</a>
+        <a class="btn btn-sm btn-primary" href="{{ route('subscription.ebook.links') }}" data-translate="sub_view_ebook_links">Lihat Link Ebook</a>
 
         @if(($activeSub->package->ebook_path ?? null))
-          <a class="btn btn-sm btn-success" href="{{ route('ebook.download') }}">Muat Turun Ebook</a>
+          <a class="btn btn-sm btn-success" href="{{ route('ebook.download') }}" data-translate="sub_download_ebook">Muat Turun Ebook</a>
         @endif
       </div>
     </div>
@@ -72,13 +75,14 @@
   {{-- Nota untuk wanita poligami/terbuka kalau belum set tahap --}}
   @if(($user->gender ?? null) === 'female' && in_array(($user->path ?? null), ['wanita_poligami','wanita_terbuka'], true) && empty($user->poligami_level))
     <div class="alert alert-warning">
-      Anda belum pilih <strong>Model Poligami</strong>. Sila set dahulu supaya package yang betul dipaparkan.
+      <span data-translate="sub_poligami_note_1">Anda belum pilih</span> <strong data-translate="sub_poligami_model">Model Poligami</strong>.
+      <span data-translate="sub_poligami_note_2">Sila set dahulu supaya package yang betul dipaparkan.</span>
     </div>
   @endif
 
   {{-- Senarai package --}}
   @if($packages->isEmpty())
-    <div class="alert alert-secondary">Tiada package dipaparkan untuk akaun anda.</div>
+    <div class="alert alert-secondary" data-translate="sub_no_packages">Tiada package dipaparkan untuk akaun anda.</div>
   @else
     <div class="row g-3">
       @foreach($packages as $pkg)
@@ -90,7 +94,16 @@
                 <div>
                   <h5 class="mb-1">{{ $pkg->name }}</h5>
                   <div class="text-muted small">
-                    Tempoh: <strong>{{ ($pkg->code ?? '') === 'HYPE' ? 'Selamanya' : ($pkg->duration_days ? $pkg->duration_days.' hari' : '-') }}</strong>
+                    <span data-translate="sub_duration">Tempoh</span>:
+                    <strong>
+                      @if(($pkg->code ?? '') === 'HYPE')
+                        <span data-translate="sub_forever">Selamanya</span>
+                      @elseif($pkg->duration_days)
+                        {{ $pkg->duration_days }} <span data-translate="sub_days">hari</span>
+                      @else
+                        -
+                      @endif
+                    </strong>
                   </div>
                 </div>
 
@@ -105,43 +118,43 @@
               <hr>
 
               @if(($stillActive ?? false))
-                <button type="button" class="btn btn-secondary w-100" disabled>Subscription Masih Aktif</button>
+                <button type="button" class="btn btn-secondary w-100" disabled data-translate="sub_still_active_btn">Subscription Masih Aktif</button>
                 <div class="text-muted small mt-2">
-                  Anda perlu tunggu subscription tamat sebelum aktifkan package baharu.
+                  <span data-translate="sub_still_active_note">Anda perlu tunggu subscription tamat sebelum aktifkan package baharu.</span>
                 </div>
               @elseif($useToyyibpay ?? false)
                 @if($toyyibpayConfigured ?? false)
                   <div class="mb-2">
                     <button type="button" class="btn btn-primary w-100 toyyibpay-btn" data-package-id="{{ $pkg->id }}" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
-                      {{ $gatewayLabel ?? 'Bayar dengan Toyyibpay (FPX/Kad)' }}
+                      <span data-translate="sub_pay_with_toyyibpay">{{ $gatewayLabel ?? 'Bayar dengan Toyyibpay (FPX/Kad)' }}</span>
                     </button>
                   </div>
-                  <div class="text-muted small mb-2">Pembayaran selamat melalui Toyyibpay (FPX / Kad Kredit).</div>
+                  <div class="text-muted small mb-2" data-translate="sub_toyyibpay_safe">Pembayaran selamat melalui Toyyibpay (FPX / Kad Kredit).</div>
                 @else
                   <div class="alert alert-warning small mb-2">
-                    Toyyibpay belum dikonfigurasi. Isi TOYYIBPAY_USER_SECRET_KEY dan TOYYIBPAY_CATEGORY_CODE dalam .env.
+                    <span data-translate="sub_toyyibpay_not_configured">Toyyibpay belum dikonfigurasi. Isi TOYYIBPAY_USER_SECRET_KEY dan TOYYIBPAY_CATEGORY_CODE dalam .env.</span>
                   </div>
                   <form method="POST" action="{{ route('subscription.subscribe') }}" class="jm-subscribe-form" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
                     @csrf
                     <input type="hidden" name="package_id" value="{{ $pkg->id }}">
-                    <button class="btn btn-success w-100" type="submit">Aktifkan Subscription (tanpa bayaran)</button>
+                    <button class="btn btn-success w-100" type="submit" data-translate="sub_activate_no_payment">Aktifkan Subscription (tanpa bayaran)</button>
                   </form>
                 @endif
               @elseif($paypalConfigured ?? false)
                 <div class="mb-2">
                   <button type="button" class="btn btn-primary w-100 paypal-btn" data-package-id="{{ $pkg->id }}" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
-                    {{ $gatewayLabel ?? 'Bayar dengan PayPal' }}
+                    <span data-translate="sub_pay_with_paypal">{{ $gatewayLabel ?? 'Bayar dengan PayPal' }}</span>
                   </button>
                 </div>
-                <div class="text-muted small mb-2">Pembayaran selamat melalui PayPal.</div>
+                <div class="text-muted small mb-2" data-translate="sub_paypal_safe">Pembayaran selamat melalui PayPal.</div>
               @else
                 <div class="alert alert-warning small mb-2">
-                  PayPal belum dikonfigurasi. Isi PAYPAL_CLIENT_ID dan PAYPAL_SECRET dalam .env.
+                  <span data-translate="sub_paypal_not_configured">PayPal belum dikonfigurasi. Isi PAYPAL_CLIENT_ID dan PAYPAL_SECRET dalam .env.</span>
                 </div>
                 <form method="POST" action="{{ route('subscription.subscribe') }}" class="jm-subscribe-form" data-package-name="{{ e($pkg->name) }}" data-package-code="{{ e($pkg->code ?? '') }}">
                     @csrf
                     <input type="hidden" name="package_id" value="{{ $pkg->id }}">
-                    <button class="btn btn-success w-100" type="submit">Aktifkan Subscription (tanpa bayaran)</button>
+                    <button class="btn btn-success w-100" type="submit" data-translate="sub_activate_no_payment">Aktifkan Subscription (tanpa bayaran)</button>
                   </form>
               @endif
 
@@ -160,6 +173,19 @@
 @push('scripts')
 <script>
 (function() {
+  function jmT(key, fallback) {
+    try {
+      var translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+      var country = ((document.body && document.body.dataset && document.body.dataset.country) ? document.body.dataset.country : "MY").trim() || "MY";
+      var locale = ((document.body && document.body.dataset && document.body.dataset.locale) ? document.body.dataset.locale : "").trim() || "ms";
+      var byCountry = translations[country] || translations["MY"] || {};
+      var pack = byCountry[locale] || byCountry["en"] || {};
+      return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+    } catch (e) {
+      return fallback || key;
+    }
+  }
+
   function jmFireGa4EventsFromJson(data) {
     if (!data || !Array.isArray(data.analytics_events) || typeof gtag !== 'function') return;
     data.analytics_events.forEach(function (ev) {
@@ -170,7 +196,7 @@
   var createOrderUrl = @json(route('subscription.paypal.create'));
   var csrf = document.querySelector('meta[name="csrf-token"]');
   csrf = csrf ? csrf.getAttribute('content') : '';
-  var defaultLabel = 'Bayar dengan PayPal';
+  var defaultLabel = jmT('sub_pay_with_paypal_plain', 'Pay with PayPal');
 
   btns.forEach(function(btn) {
     if (btn.disabled) return;
@@ -187,7 +213,7 @@
         });
       }
       this.disabled = true;
-      this.textContent = 'Memproses...';
+      this.textContent = jmT('sub_processing', 'Processing...');
 
       var formData = new FormData();
       formData.append('package_id', packageId);
@@ -213,12 +239,12 @@
           window.location.href = data.approveUrl;
           return;
         }
-        alert(data.message || 'Gagal cipta pesanan. Sila cuba lagi.');
+        alert(data.message || jmT('sub_order_create_failed', 'Failed to create order. Please try again.'));
         btn.disabled = false;
         btn.textContent = lbl || defaultLabel;
       })
       .catch(function() {
-        alert('Ralat rangkaian. Sila cuba lagi.');
+        alert(jmT('sub_network_error_try_again', 'Network error. Please try again.'));
         btn.disabled = false;
         btn.textContent = lbl || defaultLabel;
       });
@@ -233,6 +259,19 @@
 @push('scripts')
 <script>
 (function() {
+  function jmT(key, fallback) {
+    try {
+      var translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+      var country = ((document.body && document.body.dataset && document.body.dataset.country) ? document.body.dataset.country : "MY").trim() || "MY";
+      var locale = ((document.body && document.body.dataset && document.body.dataset.locale) ? document.body.dataset.locale : "").trim() || "ms";
+      var byCountry = translations[country] || translations["MY"] || {};
+      var pack = byCountry[locale] || byCountry["en"] || {};
+      return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+    } catch (e) {
+      return fallback || key;
+    }
+  }
+
   function jmFireGa4EventsFromJson(data) {
     if (!data || !Array.isArray(data.analytics_events) || typeof gtag !== 'function') return;
     data.analytics_events.forEach(function (ev) {
@@ -243,7 +282,7 @@
   var createBillUrl = @json(route('subscription.toyyibpay.create'));
   var csrf = document.querySelector('meta[name="csrf-token"]');
   csrf = csrf ? csrf.getAttribute('content') : '';
-  var defaultLabel = 'Bayar dengan Toyyibpay (FPX/Kad)';
+  var defaultLabel = jmT('sub_pay_with_toyyibpay_plain', 'Pay with Toyyibpay (FPX/Card)');
 
   btns.forEach(function(btn) {
     var lbl = btn.textContent;
@@ -259,7 +298,7 @@
         });
       }
       this.disabled = true;
-      this.textContent = 'Memproses...';
+      this.textContent = jmT('sub_processing', 'Processing...');
 
       var formData = new FormData();
       formData.append('package_id', packageId);
@@ -285,12 +324,12 @@
           window.location.href = data.paymentUrl;
           return;
         }
-        alert(data.message || 'Gagal cipta bil. Sila cuba lagi.');
+        alert(data.message || jmT('sub_bill_create_failed', 'Failed to create bill. Please try again.'));
         btn.disabled = false;
         btn.textContent = lbl || defaultLabel;
       })
       .catch(function() {
-        alert('Ralat rangkaian. Sila cuba lagi.');
+        alert(jmT('sub_network_error_try_again', 'Network error. Please try again.'));
         btn.disabled = false;
         btn.textContent = lbl || defaultLabel;
       });

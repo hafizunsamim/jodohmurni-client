@@ -5,20 +5,22 @@
     <div class="jm-lite-education-inner mx-auto w-100">
         {{-- Tahniah / Status AHLI LITE --}}
         <div class="text-center mb-4 p-3 p-md-4 rounded-3" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border: 1px solid #81c784;">
-            <h1 class="h3 mb-2" style="color: #2e7d32;">Tahniah!</h1>
-            <p class="mb-0 fw-semibold" style="color: #1b5e20;">Anda kini <strong>AHLI LITE</strong> — JodohMurni</p>
+            <h1 class="h3 mb-2" style="color: #2e7d32;" data-translate="lite_edu_congrats">Tahniah!</h1>
+            <p class="mb-0 fw-semibold" style="color: #1b5e20;">
+                <span data-translate="lite_edu_you_are_now">Anda kini</span> <strong data-translate="lite_edu_member_lite">AHLI LITE</strong> — JodohMurni
+            </p>
         </div>
 
         {{-- Jangan guna class global `.card` (style.css tetapkan height 220px untuk upload foto) --}}
         <div class="jm-lite-limit-panel shadow-sm mb-3 mb-md-4 rounded-3">
             <div class="p-3 p-md-4">
-                <h2 class="h5 mb-2 mb-md-3" style="color: #37474f;">Limitasi Ahli LITE</h2>
-                <p class="text-muted small mb-2 mb-md-3">Sebagai ahli percuma, anda boleh menggunakan platform dengan had berikut:</p>
+                <h2 class="h5 mb-2 mb-md-3" style="color: #37474f;" data-translate="lite_edu_limits_title">Limitasi Ahli LITE</h2>
+                <p class="text-muted small mb-2 mb-md-3" data-translate="lite_edu_limits_desc">Sebagai ahli percuma, anda boleh menggunakan platform dengan had berikut:</p>
                 <ul class="jm-lite-limit-list mb-0 ps-3 small">
-                    <li><strong>Profil:</strong> Profil anda dipaparkan dalam senarai calon dengan label &quot;Ahli Belum Berbayar&quot;.</li>
-                    <li><strong>Chat:</strong> Maksimum <strong>10 sapaan</strong> sahaja. Hanya <strong>2 calon</strong> yang membalas sapaan dibenarkan untuk terus berbual; 8 sapaan selebihnya akan dinyahaktifkan secara automatik.</li>
-                    <li><strong>Mesej:</strong> Had <strong>5 mesej</strong> sahaja bagi setiap calon yang dibenarkan.</li>
-                    <li><strong>Gambar:</strong> Gambar anda hanya jelas kepada <strong>10 calon pertama</strong> yang anda sapa. Bagi calon LITE lain, gambar mereka akan dikaburkan.</li>
+                    <li data-translate="lite_edu_li_profile"><strong>Profil:</strong> Profil anda dipaparkan dalam senarai calon dengan label "Ahli Belum Berbayar".</li>
+                    <li data-translate="lite_edu_li_chat"><strong>Chat:</strong> Maksimum 10 sapaan sahaja. Hanya 2 calon yang membalas sapaan dibenarkan untuk terus berbual; 8 sapaan selebihnya akan dinyahaktifkan secara automatik.</li>
+                    <li data-translate="lite_edu_li_message"><strong>Mesej:</strong> Had 5 mesej sahaja bagi setiap calon yang dibenarkan.</li>
+                    <li data-translate="lite_edu_li_photo"><strong>Gambar:</strong> Gambar anda hanya jelas kepada 10 calon pertama yang anda sapa. Bagi calon LITE lain, gambar mereka akan dikaburkan.</li>
                 </ul>
             </div>
         </div>
@@ -26,10 +28,10 @@
         {{-- Dua butang tindakan --}}
         <div class="d-grid gap-2 gap-md-3 jm-lite-education-actions">
             <a href="{{ route('membership.acknowledge-lite') }}" class="btn btn-lg" style="background: #78909c; color: #fff;">
-                Saya faham & kekal <br/> &quot;<strong>AHLI LITE</strong>&quot; sahaja
+                <span data-translate="lite_edu_stay_line1">Saya faham & kekal</span> <br/> "<strong data-translate="lite_edu_member_lite">AHLI LITE</strong>" <span data-translate="lite_edu_stay_line2">sahaja</span>
             </a>
             <a href="{{ route('membership.acknowledge-upgrade') }}" class="btn btn-lg text-white" style="background: #2e7d32;">
-                Saya faham & naik taraf <br/> ke &quot;<strong>AHLI ACTIVE</strong>&quot;
+                <span data-translate="lite_edu_upgrade_line1">Saya faham & naik taraf</span> <br/> <span data-translate="lite_edu_upgrade_line2">ke</span> "<strong data-translate="lite_edu_member_active">AHLI ACTIVE</strong>"
             </a>
         </div>
     </div>

@@ -36,7 +36,7 @@
         const EchoConstructor = EchoModule && EchoModule.default ? EchoModule.default : EchoModule;
 
         if (!EchoConstructor) {
-            console.error('Tak jumpa Echo constructor. Check echo.iife.js path.');
+            console.error((window.jmT ? window.jmT('footer_echo_missing', 'Echo constructor not found. Check echo.iife.js path.') : 'Echo constructor not found. Check echo.iife.js path.'));
         } else {
             window.Echo = new EchoConstructor({
                 broadcaster: 'pusher',
@@ -59,8 +59,21 @@
     @auth
     <script>
     document.addEventListener('DOMContentLoaded', function () {
+        function jmT(key, fallback) {
+            try {
+                const translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+                const country = (document.body?.dataset?.country || "MY").trim() || "MY";
+                const locale = (document.body?.dataset?.locale || "").trim() || "ms";
+                const byCountry = translations[country] || translations["MY"] || {};
+                const pack = byCountry[locale] || byCountry["en"] || {};
+                return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+            } catch {
+                return fallback || key;
+            }
+        }
+
         if (!window.Echo) {
-            console.warn('Echo not available for global notifications');
+            console.warn(jmT('footer_echo_not_available', 'Echo not available for global notifications'));
             return;
         }
 
@@ -78,18 +91,18 @@
                 console.log('GLOBAL MESSAGE EVENT:', e);
 
                 const msg = e.message || {};
-                const senderName = msg.sender_name || 'Pengguna';
+                const senderName = msg.sender_name || jmT('footer_user', 'User');
 
                 if ('Notification' in window && Notification.permission === 'granted') {
                     try {
-                        new Notification('Mesej baru dari ' + senderName, {
+                        new Notification(jmT('footer_new_message_from', 'New message from ') + senderName, {
                             body: msg.body || '',
                         });
                     } catch (err) {
-                        console.warn('Gagal create global notification:', err);
+                        console.warn(jmT('footer_notification_failed', 'Failed to create global notification:'), err);
                     }
                 } else {
-                    console.log('Notification not shown. Permission =', Notification.permission);
+                    console.log(jmT('footer_notification_not_shown', 'Notification not shown. Permission ='), Notification.permission);
                 }
             });
     });

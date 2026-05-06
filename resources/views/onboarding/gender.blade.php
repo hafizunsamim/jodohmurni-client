@@ -5,20 +5,20 @@
 @section('content')
 <div class="onboarding-wrapper">
   <div class="gender-onboarding-card animate-in">
-    <h3 class="gender-title mb-1 text-center">Siapakah anda?</h3>
-    <p class="gender-subtitle text-muted mb-4">Pilih jantina anda untuk membantu kami memadankan calon yang sesuai.</p>
+    <h3 class="gender-title mb-1 text-center" data-translate="onb_gender_title">Siapakah anda?</h3>
+    <p class="gender-subtitle text-muted mb-4" data-translate="onb_gender_subtitle">Pilih jantina anda untuk membantu kami memadankan calon yang sesuai.</p>
 
     <form id="genderForm" method="POST" action="{{ url('/onboarding/gender') }}">
       @csrf
       <div class="row g-2 g-sm-3 justify-content-center gender-row align-items-stretch">
           <div class="col-6 gender-col">
-              <button type="button" class="gender-poster-btn" onclick="selectAndSubmit('male')" aria-label="Pilih Lelaki">
+              <button type="button" class="gender-poster-btn" onclick="selectAndSubmit('male')" data-translate-aria-label="onb_gender_pick_male_aria" aria-label="Pilih Lelaki">
                   <img src="{{ asset('assets/images/icon-lelaki.png') }}" alt="Lelaki" class="img-fluid">
               </button>
           </div>
 
           <div class="col-6 gender-col">
-              <button type="button" class="gender-poster-btn" onclick="selectAndSubmit('female')" aria-label="Pilih Wanita">
+              <button type="button" class="gender-poster-btn" onclick="selectAndSubmit('female')" data-translate-aria-label="onb_gender_pick_female_aria" aria-label="Pilih Wanita">
                   <img src="{{ asset('assets/images/icon-wanita.png') }}" alt="Wanita" class="img-fluid">
               </button>
           </div>

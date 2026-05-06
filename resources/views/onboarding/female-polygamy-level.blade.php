@@ -7,48 +7,48 @@
 
 <div class="onboarding-wrapper">
     <div class="onboarding-card animate-in jm-polygamy-card">
-        <h3 class="mb-2" style="font-weight:700; color:#1a1a1a;">Model Poligami Pilihan</h3>
-        <p class="text-muted mb-3" style="font-size:0.95rem;">Pilih bentuk poligami yang paling sesuai dengan anda.</p>
+        <h3 class="mb-2" style="font-weight:700; color:#1a1a1a;" data-translate="onb_fpoly_level_title">Model Poligami Pilihan</h3>
+        <p class="text-muted mb-3" style="font-size:0.95rem;" data-translate="onb_fpoly_level_subtitle">Pilih bentuk poligami yang paling sesuai dengan anda.</p>
 
         <form id="polyForm" method="POST" action="{{ url('/onboarding/female/polygamy-level') }}">
             @csrf
             <input type="hidden" name="poligami_level" id="polyLevel" value="" required>
 
             <div class="jm-poly-options">
-                <div class="jm-poly-card jm-poly-card--green" data-value="1" role="button" tabindex="0" aria-label="Maklum dan Telus">
+                <div class="jm-poly-card jm-poly-card--green" data-value="1" role="button" tabindex="0" data-translate-aria-label="onb_fpoly_m1_aria" aria-label="Maklum dan Telus">
                     <div class="jm-poly-card__inner">
                         <div class="jm-poly-card__icon jm-poly-card__icon--green">
                             <img src="{{ asset('assets/images/Wanita-Model-1.png') }}" alt="Model 1: Maklum & Telus" class="jm-poly-card__img">
                         </div>
                         <div class="jm-poly-card__text">
-                            <div class="jm-poly-card__title">Model 1: Maklum &amp; Telus</div>
-                            <div class="jm-poly-card__desc">Calon suami telah memaklumkan kepada isteri sedia ada.</div>
+                            <div class="jm-poly-card__title" data-translate="onb_fpoly_m1_title">Model 1: Maklum &amp; Telus</div>
+                            <div class="jm-poly-card__desc" data-translate="onb_fpoly_m1_desc">Calon suami telah memaklumkan kepada isteri sedia ada.</div>
                         </div>
                         <div class="jm-poly-card__check"><i class="bi bi-check-circle-fill"></i></div>
                     </div>
                 </div>
 
-                <div class="jm-poly-card jm-poly-card--amber" data-value="2" role="button" tabindex="0" aria-label="Terbuka">
+                <div class="jm-poly-card jm-poly-card--amber" data-value="2" role="button" tabindex="0" data-translate-aria-label="onb_fpoly_m2_aria" aria-label="Terbuka">
                     <div class="jm-poly-card__inner">
                         <div class="jm-poly-card__icon jm-poly-card__icon--amber">
                             <img src="{{ asset('assets/images/Wanita-Model-2.png') }}" alt="Model 2: Terbuka" class="jm-poly-card__img">
                         </div>
                         <div class="jm-poly-card__text">
-                            <div class="jm-poly-card__title">Model 2: Terbuka</div>
-                            <div class="jm-poly-card__desc">Terbuka sama ada telah dimaklumkan isteri atau belum.</div>
+                            <div class="jm-poly-card__title" data-translate="onb_fpoly_m2_title">Model 2: Terbuka</div>
+                            <div class="jm-poly-card__desc" data-translate="onb_fpoly_m2_desc">Terbuka sama ada telah dimaklumkan isteri atau belum.</div>
                         </div>
                         <div class="jm-poly-card__check"><i class="bi bi-check-circle-fill"></i></div>
                     </div>
                 </div>
 
-                <div class="jm-poly-card jm-poly-card--red" data-value="3" role="button" tabindex="0" aria-label="Sulit">
+                <div class="jm-poly-card jm-poly-card--red" data-value="3" role="button" tabindex="0" data-translate-aria-label="onb_fpoly_m3_aria" aria-label="Sulit">
                     <div class="jm-poly-card__inner">
                         <div class="jm-poly-card__icon jm-poly-card__icon--red">
                             <img src="{{ asset('assets/images/Wanita-Model-3.png') }}" alt="Model 3: Sulit" class="jm-poly-card__img">
                         </div>
                         <div class="jm-poly-card__text">
-                            <div class="jm-poly-card__title">Model 3: Sulit</div>
-                            <div class="jm-poly-card__desc">Tidak berhasrat memaklumkan kepada isteri buat masa ini.</div>
+                            <div class="jm-poly-card__title" data-translate="onb_fpoly_m3_title">Model 3: Sulit</div>
+                            <div class="jm-poly-card__desc" data-translate="onb_fpoly_m3_desc">Tidak berhasrat memaklumkan kepada isteri buat masa ini.</div>
                         </div>
                         <div class="jm-poly-card__check"><i class="bi bi-check-circle-fill"></i></div>
                     </div>

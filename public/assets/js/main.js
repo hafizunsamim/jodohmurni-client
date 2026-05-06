@@ -64,6 +64,22 @@ function applyTranslations(country, lang) {
     if (key === "popup_content") el.innerHTML = val;
     else el.textContent = val;
   });
+
+  // Optional: translate placeholders (inputs/textareas)
+  document.querySelectorAll("[data-translate-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-translate-placeholder");
+    const val = t(country, lang, key);
+    if (!val) return;
+    if ("placeholder" in el) el.placeholder = val;
+  });
+
+  // Optional: translate aria-labels (buttons/inputs)
+  document.querySelectorAll("[data-translate-aria-label]").forEach((el) => {
+    const key = el.getAttribute("data-translate-aria-label");
+    const val = t(country, lang, key);
+    if (!val) return;
+    el.setAttribute("aria-label", val);
+  });
 }
 
 /* =========================
@@ -137,13 +153,69 @@ function initLangDropdown(getCountryFn) {
   const langMenu = document.getElementById("langMenu");
   if (!langToggle || !langMenu) return;
 
+  const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content") || "";
+
+  function positionLangMenuFixed() {
+    const rect = langToggle.getBoundingClientRect();
+
+    // Force menu into viewport stacking context to avoid being covered by page content
+    langMenu.style.position = "fixed";
+    langMenu.style.zIndex = "2147483647";
+
+    // Ensure it's not offscreen (mobile-safe)
+    const menuWidth = langMenu.offsetWidth || 180;
+    const left = Math.max(8, Math.min(window.innerWidth - menuWidth - 8, rect.right - menuWidth));
+
+    langMenu.style.left = `${left}px`;
+    langMenu.style.top = `${Math.round(rect.bottom + 8)}px`;
+    langMenu.style.right = "auto";
+  }
+
+  function resetLangMenuPosition() {
+    langMenu.style.position = "";
+    langMenu.style.left = "";
+    langMenu.style.top = "";
+    langMenu.style.right = "";
+    langMenu.style.zIndex = "";
+  }
+
+  function isMenuOpen() {
+    return langMenu.classList.contains("show");
+  }
+
+  async function persistLanguageToServer(lang) {
+    try {
+      const res = await fetch("/set-language", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-TOKEN": csrf,
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ lang }),
+      });
+      if (!res.ok) return false;
+      const data = await res.json().catch(() => ({}));
+      return !!data.ok;
+    } catch {
+      return false;
+    }
+  }
+
   langToggle.addEventListener("click", (e) => {
     e.preventDefault();
+    const opening = !isMenuOpen();
     langMenu.classList.toggle("show");
+    if (opening) {
+      // Measure after it becomes visible
+      requestAnimationFrame(positionLangMenuFixed);
+    } else {
+      resetLangMenuPosition();
+    }
   });
 
   document.querySelectorAll("#langMenu li[data-lang]").forEach((item) => {
-    item.addEventListener("click", () => {
+    item.addEventListener("click", async () => {
       if (item.style.display === "none") return;
 
       const country = getCountryFn ? getCountryFn() : (document.body?.dataset?.country || "");
@@ -151,13 +223,29 @@ function initLangDropdown(getCountryFn) {
 
       setLanguage(country, lang, { manual: true });
       langMenu.classList.remove("show");
+      resetLangMenuPosition();
+
+      // Persist to server session so Blade-rendered wording follows selection.
+      const ok = await persistLanguageToServer(lang);
+      if (ok) {
+        window.location.reload();
+      }
     });
   });
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".lang-dropdown")) {
       langMenu.classList.remove("show");
+      resetLangMenuPosition();
     }
+  });
+
+  // Reposition on scroll/resize while open
+  window.addEventListener("scroll", () => {
+    if (isMenuOpen()) positionLangMenuFixed();
+  }, { passive: true });
+  window.addEventListener("resize", () => {
+    if (isMenuOpen()) positionLangMenuFixed();
   });
 }
 
@@ -236,12 +324,12 @@ function initLanding() {
 
         if (!res.ok) {
           if (res.status === 419) {
-            throw new Error("Sesi tamat (419). Sila refresh halaman (F5).");
+            throw new Error(jmT("country_session_expired_419", "Session expired (419). Please refresh the page (F5)."));
           }
           if (res.status >= 500) {
-            throw new Error("Ralat pelayan. Sila cuba lagi.");
+            throw new Error(jmT("country_server_error_try_again", "Server error. Please try again."));
           }
-          throw new Error("Request failed");
+          throw new Error(jmT("country_request_failed", "Request failed"));
         }
         const data = await res.json();
         if (!data.ok) throw new Error("Not ok");
@@ -272,7 +360,7 @@ function initLanding() {
         if (err) {
           const curCountry = serverCountry || "MY";
           const curLang = safeGet(JM_LANG_KEY) || defaultLangFromCountry(curCountry);
-          err.textContent = e.message || t(curCountry, curLang, "country_error") || "Gagal simpan pilihan negara. Sila cuba lagi.";
+          err.textContent = e.message || t(curCountry, curLang, "country_error") || jmT("country_error_generic", "Failed to save country. Please try again.");
           err.style.display = "block";
         }
       }
@@ -339,9 +427,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const country = getCountry() || safeGet(JM_COUNTRY_KEY) || "MY";
     applyLanguageOptionsByCountry(country);
 
+    // Prefer server locale (session) to prevent mismatch.
+    const serverLocale = (document.body?.dataset?.locale || "").trim();
     const storedLang = safeGet(JM_LANG_KEY);
     const allowed = allowedLangsByCountry(country);
-    const lang = allowed.includes(storedLang) ? storedLang : defaultLangFromCountry(country);
+    const lang =
+      (serverLocale && allowed.includes(serverLocale)) ? serverLocale
+      : (allowed.includes(storedLang) ? storedLang : defaultLangFromCountry(country));
 
     setLanguage(country, lang, { manual: false });
   }

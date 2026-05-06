@@ -90,43 +90,50 @@
 
 <div class="mt-4 d-flex gap-2">
     <button type="button" class="gender-btn" id="btnOpenSemakModal">
-        Saya faham &amp; mahu teruskan (Upload Gambar)
+        <span data-translate="onb_poly_f_continue_photos">Saya faham &amp; mahu teruskan (Upload Gambar)</span>
     </button>
 
     <a href="{{ route('onboarding.female.polygamy_level') }}" class="btn btn-outline-secondary">
-        Kembali ubah Model
+        <span data-translate="onb_fpoly_back_change_model">Kembali ubah Model</span>
     </a>
 </div>
 
 {{-- =============== MODAL: SEMAK & IMBANG SALAH LAKU =============== --}}
 <div id="semakModalOverlay" class="jm-modal-overlay">
     <div class="jm-modal">
-        <h5 class="mb-3">Semak &amp; Imbang Salah Laku</h5>
+        <h5 class="mb-3" data-translate="onb_semak_title">Semak &amp; Imbang Salah Laku</h5>
 
         <ul>
             <li>
-                Calon diberi ruang melaporkan sebarang salah laku dalam tempoh
-                <strong>5 hari</strong> dari perbualan pertama direkodkan.
+                <span data-translate="onb_semak_point_1_prefix">Calon diberi ruang melaporkan sebarang salah laku dalam tempoh</span>
+                <strong data-translate="onb_semak_point_1_strong">5 hari</strong>
+                <span data-translate="onb_semak_point_1_tail">dari perbualan pertama direkodkan.</span>
             </li>
             <li>
-                Laporan dinilai secara manual oleh pihak JodohMurni.
+                <span data-translate="onb_semak_point_2">Laporan dinilai secara manual oleh pihak JodohMurni.</span>
             </li>
             <li>
-                Tindakan yang boleh diambil:
+                <span data-translate="onb_semak_actions">Tindakan yang boleh diambil:</span>
                 <ul>
-                    <li>Amaran <strong>Kad Merah</strong></li>
-                    <li><strong>Penggantungan akaun</strong> 15–30 hari</li>
-                    <li><strong>Penamatan akaun</strong></li>
+                    <li>
+                        <span data-translate="onb_semak_action_redcard_prefix">Amaran</span>
+                        <strong data-translate="onb_semak_action_redcard_strong">Kad Merah</strong>
+                    </li>
+                    <li>
+                        <strong data-translate="onb_semak_action_suspend_strong">Penggantungan akaun</strong>
+                        <span data-translate="onb_semak_action_suspend_tail">15–30 hari</span>
+                    </li>
+                    <li><strong data-translate="onb_semak_action_terminate">Penamatan akaun</strong></li>
                 </ul>
             </li>
         </ul>
 
         <div class="mt-4 d-flex justify-content-end gap-2">
             <button type="button" class="btn btn-outline-secondary" id="btnCloseSemakModal">
-                Tutup
+                <span data-translate="onb_close">Tutup</span>
             </button>
             <a href="{{ route('onboarding.photos') }}" class="gender-btn">
-                Saya faham &amp; teruskan upload gambar
+                <span data-translate="onb_semak_understand_continue">Saya faham &amp; teruskan upload gambar</span>
             </a>
         </div>
     </div>
@@ -135,22 +142,22 @@
 {{-- =============== AUTO-POPUP: DYNAMIK MENGIKUT $level =============== --}}
 <div id="welcomePopup" class="jm-modal-overlay">
     <div class="jm-modal">
-        <h5 class="mb-3">Ringkasan Laluan Poligami (Wanita)</h5>
+        <h5 class="mb-3" data-translate="onb_fpoly_summary_title">Ringkasan Laluan Poligami (Wanita)</h5>
 
         @if($level === 1)
             <p>
-                Anda memilih <strong>Model 1</strong> – anda hanya selesa dengan calon suami
-                yang sudah memaklumkan isterinya tentang hasrat poligami.
+                <span data-translate="onb_fpoly_summary_l1_prefix">Anda memilih</span> <strong data-translate="onb_fpoly_model_1">Model 1</strong>
+                <span data-translate="onb_fpoly_summary_l1_tail">– anda hanya selesa dengan calon suami yang sudah memaklumkan isterinya tentang hasrat poligami.</span>
             </p>
         @elseif($level === 2)
             <p>
-                Anda memilih <strong>Model 2</strong> – anda tidak kisah sama ada calon suami
-                sudah memaklumkan isterinya atau belum, asalkan proses ta'aruf berjalan dengan baik.
+                <span data-translate="onb_fpoly_summary_l2_prefix">Anda memilih</span> <strong data-translate="onb_fpoly_model_2">Model 2</strong>
+                <span data-translate="onb_fpoly_summary_l2_tail">– anda tidak kisah sama ada calon suami sudah memaklumkan isterinya atau belum, asalkan proses ta'aruf berjalan dengan baik.</span>
             </p>
         @else
             <p>
-                Anda memilih <strong>Model 3</strong> – anda terbuka kepada calon suami yang
-                tidak memaklumkan isterinya berkenaan poligami.
+                <span data-translate="onb_fpoly_summary_l3_prefix">Anda memilih</span> <strong data-translate="onb_fpoly_model_3">Model 3</strong>
+                <span data-translate="onb_fpoly_summary_l3_tail">– anda terbuka kepada calon suami yang tidak memaklumkan isterinya berkenaan poligami.</span>
             </p>
         @endif
 
@@ -162,7 +169,7 @@
         </ul> --}}
 
         <div class="mt-4 d-flex justify-content-end">
-            <button type="button" class="gender-btn" id="closeWelcomePopup">OK, Saya Faham</button>
+            <button type="button" class="gender-btn" id="closeWelcomePopup" data-translate="onb_ok_understand">OK, Saya Faham</button>
         </div>
     </div>
 </div>

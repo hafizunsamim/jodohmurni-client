@@ -6,8 +6,8 @@
 
     <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
       <div>
-        <h3 class="fw-bold mb-1">Affiliate Dashboard</h3>
-        <div class="text-muted">Pantau prestasi affiliate dan komisen anda secara ringkas.</div>
+        <h3 class="fw-bold mb-1" data-translate="aff_dash_title">Affiliate Dashboard</h3>
+        <div class="text-muted" data-translate="aff_dash_subtitle">Pantau prestasi affiliate dan komisen anda secara ringkas.</div>
       </div>
 
       <div class="d-flex flex-wrap gap-2">
@@ -15,14 +15,14 @@
         <button type="button" class="btn btn-success d-inline-flex align-items-center gap-2"
                 data-copy-affiliate-link="{{ $affiliateLink }}">
           <span style="font-weight:800;">🔗</span>
-          <span>Salin Link Affiliate</span>
+          <span data-translate="aff_copy_link">Salin Link Affiliate</span>
         </button>
         @endif
 
         <button type="button" class="btn btn-outline-success d-inline-flex align-items-center gap-2"
                 data-bs-toggle="modal" data-bs-target="#externalAffiliatePasswordModal">
           <span style="font-weight:800;">🔒</span>
-          <span>Tukar Password</span>
+          <span data-translate="aff_change_password">Tukar Password</span>
         </button>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="jm-affiliate-panel animate-in mb-3">
       <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
         <div style="min-width: 220px;">
-          <div class="text-muted small">Jumlah Komisen Terkumpul</div>
+          <div class="text-muted small" data-translate="aff_total_commission">Jumlah Komisen Terkumpul</div>
           <div class="fw-bold" style="font-size: 34px; line-height: 1.1; color:#1f2937;">
             RM {{ number_format(((int)$totalSen) / 100, 2) }}
           </div>
@@ -38,15 +38,15 @@
 
         <div class="d-flex flex-wrap gap-2">
           <div class="p-3 rounded-4 bg-white border" style="min-width: 170px;">
-            <div class="small text-muted">Pending Payment</div>
+            <div class="small text-muted" data-translate="aff_pending">Pending Payment</div>
             <div class="fw-bold">RM {{ number_format(((int)$pendingSen) / 100, 2) }}</div>
           </div>
           <div class="p-3 rounded-4 bg-white border" style="min-width: 170px;">
-            <div class="small text-muted">Paid Out</div>
+            <div class="small text-muted" data-translate="aff_paid_out">Paid Out</div>
             <div class="fw-bold">RM {{ number_format(((int)$paidSen) / 100, 2) }}</div>
           </div>
           <div class="p-3 rounded-4 bg-white border" style="min-width: 170px;">
-            <div class="small text-muted">Rejected</div>
+            <div class="small text-muted" data-translate="aff_rejected">Rejected</div>
             <div class="fw-bold">RM {{ number_format(((int)$rejectedSen) / 100, 2) }}</div>
           </div>
         </div>
@@ -56,34 +56,21 @@
     <div class="row g-3">
       <div class="col-12 col-md-6 col-lg-6">
         <div class="jm-affiliate-panel animate-in">
-          <div class="text-muted small">Bilangan Referral Berjaya</div>
+          <div class="text-muted small" data-translate="aff_success_referrals">Bilangan Referral Berjaya</div>
           <div class="fw-bold" style="font-size: 28px;">{{ (int) $successfulSubscribers }}</div>
-          <div class="text-muted small">Jumlah user yang subscribe menggunakan link affiliate anda.</div>
+          <div class="text-muted small" data-translate="aff_success_referrals_hint">Jumlah user yang subscribe menggunakan link affiliate anda.</div>
         </div>
       </div>
 
       <div class="col-12 col-md-6 col-lg-6">
         <div class="jm-affiliate-panel animate-in">
-          <div class="text-muted small">Jumlah Klik Link Affiliate</div>
+          <div class="text-muted small" data-translate="aff_total_clicks">Jumlah Klik Link Affiliate</div>
           <div class="fw-bold" style="font-size: 28px;">{{ (int) $affiliateClicks }}</div>
-          <div class="text-muted small">Dikira berdasarkan klik pada link affiliate.</div>
+          <div class="text-muted small" data-translate="aff_total_clicks_hint">Dikira berdasarkan klik pada link affiliate.</div>
         </div>
       </div>
 
-      <!-- <div class="col-12 col-lg-4">
-        <div class="jm-affiliate-panel animate-in">
-          <div class="text-muted small">Link Affiliate</div>
-          @if(!empty($affiliateLink))
-            <div class="fw-semibold" style="word-break: break-all;">{{ $affiliateLink }}</div>
-            <div class="mt-2">
-              <button type="button" class="btn btn-outline-success btn-sm"
-                      data-copy-affiliate-link="{{ $affiliateLink }}">Salin</button>
-            </div>
-          @else
-            <div class="text-muted">Link affiliate belum tersedia.</div>
-          @endif
-        </div>
-      </div> -->
+      {{-- (removed old commented affiliate-link card) --}}
     </div>
 
   </div>
@@ -95,8 +82,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <div>
-          <div class="fw-bold">Tukar Password</div>
-          <div class="text-muted small">Pastikan password baru anda selamat.</div>
+          <div class="fw-bold" data-translate="aff_change_password">Tukar Password</div>
+          <div class="text-muted small" data-translate="aff_change_password_hint">Pastikan password baru anda selamat.</div>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -105,7 +92,7 @@
           @csrf
 
           <div class="mb-3">
-            <label class="form-label">Password baru</label>
+            <label class="form-label" data-translate="aff_new_password">Password baru</label>
             <div class="input-group">
               <input class="form-control" type="password" name="password" id="ext_new_password" minlength="8" maxlength="72" required>
               <button class="btn btn-outline-secondary" type="button" data-toggle-password="#ext_new_password" aria-label="Toggle password">
@@ -118,7 +105,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Sahkan password baru</label>
+            <label class="form-label" data-translate="aff_new_password_confirm">Sahkan password baru</label>
             <div class="input-group">
               <input class="form-control" type="password" name="password_confirmation" id="ext_new_password_confirm" minlength="8" maxlength="72" required>
               <button class="btn btn-outline-secondary" type="button" data-toggle-password="#ext_new_password_confirm" aria-label="Toggle password confirmation">
@@ -128,8 +115,8 @@
           </div>
 
           <div class="d-flex justify-content-between gap-2">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
-            <button class="btn btn-success" type="submit">Simpan</button>
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-translate="onb_close">Tutup</button>
+            <button class="btn btn-success" type="submit" data-translate="aff_save">Simpan</button>
           </div>
         </form>
       </div>
@@ -164,7 +151,7 @@
     copyText(link).then(function () {
       btn.classList.add('disabled');
       var old = btn.innerText;
-      btn.innerText = 'Disalin';
+      btn.innerText = @json(\App\Support\JmI18n::t('aff_copied', fallback: 'Disalin'));
       setTimeout(function () {
         btn.classList.remove('disabled');
         btn.innerText = old;

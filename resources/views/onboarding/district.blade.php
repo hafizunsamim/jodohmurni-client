@@ -13,17 +13,17 @@
             <div class="progress-bar bg-success" style="width:75%"></div>
         </div>
 
-        <h4 class="fw-bold mb-1">Pilih Daerah Anda</h4>
+        <h4 class="fw-bold mb-1" data-translate="onb_district_title">Pilih Daerah Anda</h4>
 
         <p class="text-muted small mb-1">
-            Negara:
+            <span data-translate="onb_country">Negara:</span>
             <strong class="text-success">
                 {{ ucfirst($onb['country'] ?? '') }}
             </strong>
         </p>
 
         <p class="text-muted small">
-            Negeri:
+            <span data-translate="onb_state">Negeri:</span>
             <strong class="text-success">
                 {{ $onb['state'] ?? '' }}
             </strong>
@@ -34,7 +34,7 @@
 
             <div class="mb-3">
                 <label for="district_id" class="form-label fw-semibold">
-                    Daerah / Area
+                    <span data-translate="onb_district_label">Daerah / Area</span>
                 </label>
 
                 <div class="jm-select2-wrap">
@@ -49,7 +49,7 @@
                         @error('district_id') is-invalid shake @enderror"
                         required
                     >
-                        <option value="">-- Pilih satu --</option>
+                        <option value="" data-translate="onb_select_one">-- Pilih satu --</option>
                         @foreach($districts as $district)
                             <option value="{{ $district->id }}"
                                 {{ old('district_id', $onb['district_id'] ?? null) == $district->id ? 'selected' : '' }}>
@@ -72,14 +72,14 @@
             <div class="d-flex justify-content-between gap-2 mt-4">
                 <a href="{{ route('onboarding.state') }}"
                    class="btn btn-outline-secondary btn-sm">
-                    ← Tukar Negeri
+                    <span data-translate="onb_change_state">← Tukar Negeri</span>
                 </a>
 
                 <button type="submit"
                         id="nextDistrictBtn"
                         class="btn btn-success btn-sm px-4"
                         disabled>
-                    Seterusnya →
+                    <span data-translate="onb_next">Seterusnya →</span>
                 </button>
             </div>
         </form>

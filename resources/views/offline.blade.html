@@ -1,2 +1,32 @@
-<h1>Tiada Internet 😢</h1>
-<p>Sila cuba lagi nanti</p>
+<h1 id="offlineTitle">Tiada Internet 😢</h1>
+<p id="offlineDesc">Sila cuba lagi nanti</p>
+
+<script>
+(function () {
+  // Offline page is served without the main layout/scripts.
+  // Use the same localStorage keys as `public/assets/js/main.js`.
+  var country = (localStorage.getItem('jm_country') || 'MY').toUpperCase();
+  var lang = (localStorage.getItem('jm_lang') || (country === 'ID' ? 'id' : 'ms')).toLowerCase();
+
+  var dict = {
+    en: {
+      title: 'No Internet 😢',
+      desc: 'Please try again later.'
+    },
+    ms: {
+      title: 'Tiada Internet 😢',
+      desc: 'Sila cuba lagi nanti'
+    },
+    id: {
+      title: 'Tidak ada Internet 😢',
+      desc: 'Silakan coba lagi nanti'
+    }
+  };
+
+  var pack = dict[lang] || dict.en;
+  var t = document.getElementById('offlineTitle');
+  var d = document.getElementById('offlineDesc');
+  if (t) t.textContent = pack.title;
+  if (d) d.textContent = pack.desc;
+})();
+</script>

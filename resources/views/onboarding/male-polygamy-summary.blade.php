@@ -26,66 +26,66 @@
 
     // Struktur asas Tahap
     $tahap = [
-        1 => ['label' => 'Tahap 1', 'status_badge' => '', 'desc' => '', 'upgrade' => false],
-        2 => ['label' => 'Tahap 2', 'status_badge' => '', 'desc' => '', 'upgrade' => false],
-        3 => ['label' => 'Tahap 3', 'status_badge' => '', 'desc' => '', 'upgrade' => false],
+        1 => ['label' => \App\Support\JmI18n::t('onb_level_1', fallback: 'Tahap 1'), 'status_badge' => '', 'desc' => '', 'upgrade' => false],
+        2 => ['label' => \App\Support\JmI18n::t('onb_level_2', fallback: 'Tahap 2'), 'status_badge' => '', 'desc' => '', 'upgrade' => false],
+        3 => ['label' => \App\Support\JmI18n::t('onb_level_3', fallback: 'Tahap 3'), 'status_badge' => '', 'desc' => '', 'upgrade' => false],
     ];
 
     if ($situation === 1) {
         // PILIHAN 1
-        $tahap[1]['status_badge'] = 'Default 1';
-        $tahap[1]['desc']         = 'Akan dipaparkan dahulu.';
+        $tahap[1]['status_badge'] = \App\Support\JmI18n::t('onb_default_1', fallback: 'Default 1');
+        $tahap[1]['desc']         = \App\Support\JmI18n::t('onb_will_show_first', fallback: 'Akan dipaparkan dahulu.');
 
-        $tahap[2]['status_badge'] = 'Default 2';
-        $tahap[2]['desc']         = 'Akan dipaparkan berikutnya.';
+        $tahap[2]['status_badge'] = \App\Support\JmI18n::t('onb_default_2', fallback: 'Default 2');
+        $tahap[2]['desc']         = \App\Support\JmI18n::t('onb_will_show_next', fallback: 'Akan dipaparkan berikutnya.');
 
-        $tahap[3]['status_badge'] = 'Disabled';
-        $tahap[3]['desc']         = 'Tidak akan dipaparkan.';
+        $tahap[3]['status_badge'] = \App\Support\JmI18n::t('onb_disabled', fallback: 'Disabled');
+        $tahap[3]['desc']         = \App\Support\JmI18n::t('onb_will_not_show', fallback: 'Tidak akan dipaparkan.');
 
     } elseif ($situation === 2) {
         // PILIHAN 2
-        $tahap[1]['status_badge'] = 'Disabled';
-        $tahap[1]['desc']         = 'Tidak akan dipaparkan.';
+        $tahap[1]['status_badge'] = \App\Support\JmI18n::t('onb_disabled', fallback: 'Disabled');
+        $tahap[1]['desc']         = \App\Support\JmI18n::t('onb_will_not_show', fallback: 'Tidak akan dipaparkan.');
 
-        $tahap[2]['status_badge'] = 'Default 1';
-        $tahap[2]['desc']         = 'Akan dipaparkan dahulu.';
+        $tahap[2]['status_badge'] = \App\Support\JmI18n::t('onb_default_1', fallback: 'Default 1');
+        $tahap[2]['desc']         = \App\Support\JmI18n::t('onb_will_show_first', fallback: 'Akan dipaparkan dahulu.');
 
-        $tahap[3]['status_badge'] = 'Default 2';
-        $tahap[3]['desc']         = 'Sila upgrade.';
+        $tahap[3]['status_badge'] = \App\Support\JmI18n::t('onb_default_2', fallback: 'Default 2');
+        $tahap[3]['desc']         = \App\Support\JmI18n::t('onb_please_upgrade', fallback: 'Sila upgrade.');
         $tahap[3]['upgrade']      = true;
 
     } else {
         // PILIHAN 3
-        $tahap[1]['status_badge'] = 'Disabled';
-        $tahap[1]['desc']         = 'Tidak akan dipaparkan.';
+        $tahap[1]['status_badge'] = \App\Support\JmI18n::t('onb_disabled', fallback: 'Disabled');
+        $tahap[1]['desc']         = \App\Support\JmI18n::t('onb_will_not_show', fallback: 'Tidak akan dipaparkan.');
 
-        $tahap[2]['status_badge'] = 'Disabled';
-        $tahap[2]['desc']         = 'Tidak akan dipaparkan.';
+        $tahap[2]['status_badge'] = \App\Support\JmI18n::t('onb_disabled', fallback: 'Disabled');
+        $tahap[2]['desc']         = \App\Support\JmI18n::t('onb_will_not_show', fallback: 'Tidak akan dipaparkan.');
 
-        $tahap[3]['status_badge'] = 'Default 1';
-        $tahap[3]['desc']         = 'Akan dipaparkan dahulu.';
+        $tahap[3]['status_badge'] = \App\Support\JmI18n::t('onb_default_1', fallback: 'Default 1');
+        $tahap[3]['desc']         = \App\Support\JmI18n::t('onb_will_show_first', fallback: 'Akan dipaparkan dahulu.');
     }
 
     // ================== TEKS POPUP MENGIKUT SITUATION ==================
 
     $welcome = [
-        'title'    => 'Ringkasan Laluan Poligami',
+        'title'    => \App\Support\JmI18n::t('onb_poly_summary_title', fallback: 'Ringkasan Laluan Poligami'),
         'headline' => '',
         'body'     => '',
     ];
 
     if ($situation === 1) {
         // PILIHAN 1 – Isteri sudah maklum
-        $welcome['headline'] = 'Tahniah kerana memilih jalan sebagai “Lelaki Qawwam”.';
-        $welcome['body'] = 'Anda mengakui bahawa isteri sudah sedia maklum hasrat anda ingin berpoligami. Ini selari dengan roh maqasid poligami yang menekankan keadilan dan ketelusan.';
+        $welcome['headline'] = \App\Support\JmI18n::t('onb_poly_m_welcome_headline_1', fallback: 'Tahniah kerana memilih jalan sebagai “Lelaki Qawwam”.');
+        $welcome['body'] = \App\Support\JmI18n::t('onb_poly_m_welcome_body_1', fallback: 'Anda mengakui bahawa isteri sudah sedia maklum hasrat anda ingin berpoligami. Ini selari dengan roh maqasid poligami yang menekankan keadilan dan ketelusan.');
     } elseif ($situation === 2) {
         // PILIHAN 2 – Isteri akan dimaklum bila calon setuju
-        $welcome['headline'] = 'Anda memilih untuk berpoligami dengan komitmen akan memaklumkan isteri apabila calon bersetuju.';
-        $welcome['body'] = 'JodohMurni akan mengutamakan padanan dengan calon yang tidak kisah sama ada isteri sudah dimaklum atau belum. Namun, sistem tetap menegaskan kepentingan ketelusan dan keadilan dalam rumah tangga.';
+        $welcome['headline'] = \App\Support\JmI18n::t('onb_poly_m_welcome_headline_2', fallback: 'Anda memilih untuk berpoligami dengan komitmen akan memaklumkan isteri apabila calon bersetuju.');
+        $welcome['body'] = \App\Support\JmI18n::t('onb_poly_m_welcome_body_2', fallback: 'JodohMurni akan mengutamakan padanan dengan calon yang tidak kisah sama ada isteri sudah dimaklum atau belum. Namun, sistem tetap menegaskan kepentingan ketelusan dan keadilan dalam rumah tangga.');
     } else {
         // PILIHAN 3 – Isteri tidak akan dimaklum
-        $welcome['headline'] = 'Anda memilih untuk berpoligami tanpa merancang memaklumkan isteri.';
-        $welcome['body'] = 'JodohMurni menekankan amanah, maruah dan keselamatan calon wanita. Pemilihan ini mempunyai implikasi besar terhadap kepercayaan dan masa depan semua pihak. Sila pastikan anda benar-benar faham dan bersedia menanggung akibat pilihan ini.';
+        $welcome['headline'] = \App\Support\JmI18n::t('onb_poly_m_welcome_headline_3', fallback: 'Anda memilih untuk berpoligami tanpa merancang memaklumkan isteri.');
+        $welcome['body'] = \App\Support\JmI18n::t('onb_poly_m_welcome_body_3', fallback: 'JodohMurni menekankan amanah, maruah dan keselamatan calon wanita. Pemilihan ini mempunyai implikasi besar terhadap kepercayaan dan masa depan semua pihak. Sila pastikan anda benar-benar faham dan bersedia menanggung akibat pilihan ini.');
     }
 @endphp
 
@@ -141,43 +141,50 @@
 
 <div class="mt-4 d-flex gap-2">
     <button type="button" class="gender-btn" id="btnOpenSemakModal">
-        Saya faham &amp; mahu teruskan (Upload Gambar)
+        <span data-translate="onb_poly_m_continue_photos">Saya faham &amp; mahu teruskan (Upload Gambar)</span>
     </button>
 
     <a href="{{ route('onboarding.male.polygamy_situation') }}" class="btn btn-outline-secondary">
-        Kembali ubah situasi isteri
+        <span data-translate="onb_poly_back_change_wife_situation">Kembali ubah situasi isteri</span>
     </a>
 </div>
 
 {{-- =============== MODAL: SEMAK & IMBANG SALAH LAKU =============== --}}
 <div id="semakModalOverlay" class="jm-modal-overlay">
     <div class="jm-modal">
-        <h5 class="mb-3">Semak &amp; Imbang Salah Laku</h5>
+        <h5 class="mb-3" data-translate="onb_semak_title">Semak &amp; Imbang Salah Laku</h5>
 
         <ul>
             <li>
-                Calon diberi ruang melaporkan sebarang salah laku dalam tempoh
-                <strong>5 hari</strong> dari perbualan pertama direkodkan.
+                <span data-translate="onb_semak_point_1_prefix">Calon diberi ruang melaporkan sebarang salah laku dalam tempoh</span>
+                <strong data-translate="onb_semak_point_1_strong">5 hari</strong>
+                <span data-translate="onb_semak_point_1_tail">dari perbualan pertama direkodkan.</span>
             </li>
             <li>
-                Laporan dinilai secara manual oleh pihak JodohMurni.
+                <span data-translate="onb_semak_point_2">Laporan dinilai secara manual oleh pihak JodohMurni.</span>
             </li>
             <li>
-                Tindakan yang boleh diambil:
+                <span data-translate="onb_semak_actions">Tindakan yang boleh diambil:</span>
                 <ul>
-                    <li>Amaran <strong>Kad Merah</strong></li>
-                    <li><strong>Penggantungan akaun</strong> 15–30 hari</li>
-                    <li><strong>Penamatan akaun</strong></li>
+                    <li>
+                        <span data-translate="onb_semak_action_redcard_prefix">Amaran</span>
+                        <strong data-translate="onb_semak_action_redcard_strong">Kad Merah</strong>
+                    </li>
+                    <li>
+                        <strong data-translate="onb_semak_action_suspend_strong">Penggantungan akaun</strong>
+                        <span data-translate="onb_semak_action_suspend_tail">15–30 hari</span>
+                    </li>
+                    <li><strong data-translate="onb_semak_action_terminate">Penamatan akaun</strong></li>
                 </ul>
             </li>
         </ul>
 
         <div class="mt-4 d-flex justify-content-end gap-2">
             <button type="button" class="btn btn-outline-secondary" id="btnCloseSemakModal">
-                Tutup
+                <span data-translate="onb_close">Tutup</span>
             </button>
             <a href="{{ route('onboarding.photos') }}" class="gender-btn">
-                Saya faham &amp; teruskan upload gambar
+                <span data-translate="onb_semak_understand_continue">Saya faham &amp; teruskan upload gambar</span>
             </a>
         </div>
     </div>
@@ -203,7 +210,7 @@
         </ul> --}}
 
         <div class="mt-4 d-flex justify-content-end">
-            <button type="button" class="gender-btn" id="closeWelcomePopup">OK, Saya Faham</button>
+            <button type="button" class="gender-btn" id="closeWelcomePopup" data-translate="onb_ok_understand">OK, Saya Faham</button>
         </div>
     </div>
 </div>

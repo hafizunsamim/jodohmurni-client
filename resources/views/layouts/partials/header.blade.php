@@ -1,12 +1,15 @@
 
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="{{ $JM_LOCALE ?? 'ms' }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JodohMurni</title>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <script>
+    window.JM_TRANSLATIONS = @json($JM_TRANSLATIONS ?? []);
+  </script>
 
   <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
   <meta name="theme-color" content="#ffffff">
@@ -35,6 +38,8 @@
 </head>
 
 <body
+  data-country="{{ $JM_COUNTRY ?? session('landing.country', 'MY') }}"
+  data-locale="{{ $JM_LOCALE ?? session('landing.locale', 'ms') }}"
   @if(request()->routeIs('onboarding.*')) data-page="onboarding"
   @elseif(request()->routeIs('register')) data-page="register"
   @elseif(request()->routeIs('landing')) data-page="landing"
@@ -85,19 +90,19 @@
     </button>
     <ul class="lang-menu" id="langMenu">
       <li data-lang="en" data-flag="{{ asset('flag/united-kingdom.png') }}">
-          <img src="{{ asset('flag/united-kingdom.png') }}" alt="English">
-          <span>English</span>
+          <img src="{{ asset('flag/united-kingdom.png') }}" alt="English" aria-label="English" data-translate-aria-label="lang_en">
+          <span data-translate="lang_en">English</span>
       </li>
       
       @if($currentCountry === 'ID')
           <li data-lang="id" data-flag="{{ asset('flag/indonesia.png') }}">
-              <img src="{{ asset('flag/indonesia.png') }}" alt="ID">
-              <span>Bahasa Indonesia</span>
+              <img src="{{ asset('flag/indonesia.png') }}" alt="Bahasa Indonesia" aria-label="Bahasa Indonesia" data-translate-aria-label="lang_id">
+              <span data-translate="lang_id">Bahasa Indonesia</span>
           </li>
       @else
           <li data-lang="ms" data-flag="{{ $countryFlagMap[$currentCountry] ?? asset('flag/malaysia.png') }}">
-              <img src="{{ $countryFlagMap[$currentCountry] ?? asset('flag/malaysia.png') }}" alt="BM">
-              <span>Bahasa Malaysia</span>
+              <img src="{{ $countryFlagMap[$currentCountry] ?? asset('flag/malaysia.png') }}" alt="Bahasa Melayu" aria-label="Bahasa Melayu" data-translate-aria-label="lang_ms">
+              <span data-translate="lang_ms">Bahasa Malaysia</span>
           </li>
       @endif
   </ul>
@@ -107,17 +112,23 @@
     @auth
       <form action="{{ route('logout') }}" method="POST" class="d-inline">
         @csrf
-        <button type="submit" class="btn-nav-login">Log Keluar</button>
+        <button type="submit" class="btn-nav-login" data-translate="nav_logout">
+          {{ \App\Support\JmI18n::t('nav_logout', fallback: 'Log Keluar') }}
+        </button>
       </form>
     @else
       <a href="{{ route('login') }}" class="btn-nav-login">
-        <span class="btn-nav-login-main">Log Masuk</span>
-        <span class="btn-nav-login-hint">(Jika sudah ada akaun)</span>
+        <span class="btn-nav-login-main" data-translate="nav_login">
+          {{ \App\Support\JmI18n::t('nav_login', fallback: 'Log Masuk') }}
+        </span>
+        <span class="btn-nav-login-hint" data-translate="nav_login_hint">
+          {{ \App\Support\JmI18n::t('nav_login_hint', fallback: '(Jika sudah ada akaun)') }}
+        </span>
       </a>
     @endauth
 
     <!-- Burger Button -->
-    <button class="burger-toggle" id="burgerToggle" aria-label="Toggle menu">
+    <button class="burger-toggle" id="burgerToggle" aria-label="Toggle menu" data-translate-aria-label="nav_toggle_menu">
       ☰
     </button>
 
@@ -125,28 +136,28 @@
     <div class="burger-drawer" id="burgerDrawer">
       <div class="drawer-header">
         <span class="logo-text">JodohMurni</span>
-        <button class="close-drawer" id="closeDrawer">×</button>
+        <button class="close-drawer" id="closeDrawer" aria-label="Close menu" data-translate-aria-label="nav_close_menu">×</button>
       </div>
     
       <div class="drawer-links">
-        <a href="#" class="menu-item">Tentang Kami</a>
-        <a href="{{ route('affiliate.public') }}" class="menu-item">Affiliate</a>
+        <a href="#" class="menu-item" data-translate="nav_about">{{ \App\Support\JmI18n::t('nav_about', fallback: 'Tentang Kami') }}</a>
+        <a href="{{ route('affiliate.public') }}" class="menu-item" data-translate="nav_affiliate">{{ \App\Support\JmI18n::t('nav_affiliate', fallback: 'Affiliate') }}</a>
         @auth
-          <a href="{{ route('subscription.index') }}" class="menu-item">Subscription</a>
+          <a href="{{ route('subscription.index') }}" class="menu-item" data-translate="nav_subscription">{{ \App\Support\JmI18n::t('nav_subscription', fallback: 'Subscription') }}</a>
         @endauth
         <div class="dropdown-wrapper">
           <div class="dropdown-item" id="kursusToggle">
-            <span>Perkhidmatan Yang Ditawarkan</span>
+            <span data-translate="nav_services">{{ \App\Support\JmI18n::t('nav_services', fallback: 'Perkhidmatan Yang Ditawarkan') }}</span>
             <span class="dropdown-arrow">▼</span>
           </div>
           <div class="dropdown-content" id="kursusContent">
-            <a href="#">Kursus & Seminar</a>
-            <a href="#">Ebook</a>
-            <a href="#">Konsultasi</a>
-            <a href="#">Set Temu Janji</a>
+            <a href="#" data-translate="nav_services_courses">{{ \App\Support\JmI18n::t('nav_services_courses', fallback: 'Kursus & Seminar') }}</a>
+            <a href="#" data-translate="nav_services_ebook">{{ \App\Support\JmI18n::t('nav_services_ebook', fallback: 'Ebook') }}</a>
+            <a href="#" data-translate="nav_services_consult">{{ \App\Support\JmI18n::t('nav_services_consult', fallback: 'Konsultasi') }}</a>
+            <a href="#" data-translate="nav_services_appointment">{{ \App\Support\JmI18n::t('nav_services_appointment', fallback: 'Set Temu Janji') }}</a>
           </div>
         </div>
-        <a href="{{ route('keahlian.info') }}" class="menu-item">Keahlian</a>
+        <a href="{{ route('keahlian.info') }}" class="menu-item" data-translate="nav_membership">{{ \App\Support\JmI18n::t('nav_membership', fallback: 'Keahlian') }}</a>
       </div>
     </div>
   </div>

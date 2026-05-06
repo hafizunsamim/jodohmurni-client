@@ -5,60 +5,68 @@
 @section('content')
 <div class="onboarding-wrapper">
     <div class="onboarding-card animate-in">
-<h3 class="mb-3">Laluan Monogami (Wanita)</h3>
+<h3 class="mb-3" data-translate="onb_fmono_title">Laluan Monogami (Wanita)</h3>
 
 <p>
-    <strong>Anda berada di laluan perkahwinan monogami</strong>.
+    <strong data-translate="onb_fmono_strong">Anda berada di laluan perkahwinan monogami</strong>.
 </p>
 
 <ul>
-    <li>Padanan anda terhad kepada lelaki yang mahukan monogami atau bersikap terbuka.</li>
-    <li>Perubahan ke laluan poligami memerlukan kelulusan JodohMurni</li>
+    <li data-translate="onb_fmono_point_1">Padanan anda terhad kepada lelaki yang mahukan monogami atau bersikap terbuka.</li>
+    <li data-translate="onb_fmono_point_2">Perubahan ke laluan poligami memerlukan kelulusan JodohMurni</li>
 </ul>
 
 <p class="mb-3">
-    Dengan meneruskan, anda mengesahkan pencarian jodoh untuk <strong> perkahwinan monogami</strong>.
+    <span data-translate="onb_fmono_confirm_prefix">Dengan meneruskan, anda mengesahkan pencarian jodoh untuk</span>
+    <strong data-translate="onb_fmono_confirm_strong">perkahwinan monogami</strong>.
 </p>
 
 <div class="d-flex gap-2">
     <button type="button" class="gender-btn" id="btnOpenSemakModal">
-        Saya setuju &amp; teruskan (Upload Gambar)
+        <span data-translate="onb_mono_agree_open_modal">Saya setuju &amp; teruskan (Upload Gambar)</span>
     </button>
 
     <a href="{{ route('onboarding.female.preference') }}" class="btn btn-outline-secondary">
-        Tukar semula pilihan
+        <span data-translate="onb_back_change_status">Tukar semula pilihan</span>
     </a>
 </div>
 
 {{-- =============== MODAL: SEMAK & IMBANG SALAH LAKU =============== --}}
 <div id="semakModalOverlay" class="jm-modal-overlay">
     <div class="jm-modal">
-        <h5 class="mb-3">Semak &amp; Imbang Salah Laku</h5>
+        <h5 class="mb-3" data-translate="onb_semak_title">Semak &amp; Imbang Salah Laku</h5>
 
         <ul>
             <li>
-               Calon diberi ruang melaporkan sebarang salah laku dalam tempoh
-                <strong>5 hari</strong> dari perbualan pertama direkodkan.
+               <span data-translate="onb_semak_point_1_prefix">Calon diberi ruang melaporkan sebarang salah laku dalam tempoh</span>
+                <strong data-translate="onb_semak_point_1_strong">5 hari</strong>
+                <span data-translate="onb_semak_point_1_tail">dari perbualan pertama direkodkan.</span>
             </li>
             <li>
-                Laporan dinilai secara manual oleh pihak JodohMurni.
+                <span data-translate="onb_semak_point_2">Laporan dinilai secara manual oleh pihak JodohMurni.</span>
             </li>
             <li>
-                Tindakan yang boleh diambil:
+                <span data-translate="onb_semak_actions">Tindakan yang boleh diambil:</span>
                 <ul>
-                    <li>Amaran <strong>Kad Merah</strong></li>
-                    <li><strong>Penggantungan akaun</strong> 15–30 hari</li>
-                    <li><strong>Penamatan akaun</strong></li>
+                    <li>
+                        <span data-translate="onb_semak_action_redcard_prefix">Amaran</span>
+                        <strong data-translate="onb_semak_action_redcard_strong">Kad Merah</strong>
+                    </li>
+                    <li>
+                        <strong data-translate="onb_semak_action_suspend_strong">Penggantungan akaun</strong>
+                        <span data-translate="onb_semak_action_suspend_tail">15–30 hari</span>
+                    </li>
+                    <li><strong data-translate="onb_semak_action_terminate">Penamatan akaun</strong></li>
                 </ul>
             </li>
         </ul>
 
         <div class="mt-4 d-flex justify-content-end gap-2">
             <button type="button" class="btn btn-outline-secondary" id="btnCloseSemakModal">
-                Tutup
+                <span data-translate="onb_close">Tutup</span>
             </button>
             <a href="{{ route('onboarding.photos') }}" class="gender-btn">
-                Saya faham &amp; teruskan upload gambar
+                <span data-translate="onb_semak_understand_continue">Saya faham &amp; teruskan upload gambar</span>
             </a>
         </div>
     </div>

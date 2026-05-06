@@ -7,48 +7,54 @@
 
     <div class="login-wrapper">
         <div class="login-card">
-            <h1 class="text-center mb-3" style="font-weight: 600; color: #2d3748;">Daftar Akaun</h1>
-            <p class="text-center mb-4" style="color: #5a7b70; font-size: 0.95rem;">Sila lengkapkan maklumat pendaftaran.</p>
+            <h1 class="text-center mb-3" style="font-weight: 600; color: #2d3748;" data-translate="auth_register_title">Daftar Akaun</h1>
+            <p class="text-center mb-4" style="color: #5a7b70; font-size: 0.95rem;" data-translate="auth_register_subtitle">Sila lengkapkan maklumat pendaftaran.</p>
 
             {{-- Ringkasan Onboarding --}}
             @if (!empty($onboarding))
                 <div class="alert alert-info p-3 mb-4 rounded-3"
                     style="background: rgba(232, 245, 240, 0.7); border: 1px solid #b2d3c2;">
-                    <h6 class="mb-2" style="color: #00966d;">Ringkasan Pilihan JodohMurni</h6>
+                    <h6 class="mb-2" style="color: #00966d;" data-translate="auth_onboarding_summary">Ringkasan Pilihan JodohMurni</h6>
                     <ul class="mb-0" style="font-size: 0.875rem; padding-left: 18px; color: #2d3748;">
                         @if (isset($onboarding['country']))
-                            <li>Negara: {{ ucfirst($onboarding['country']) }}</li>
+                            <li><span data-translate="auth_summary_country">Negara</span>: {{ ucfirst($onboarding['country']) }}</li>
                         @endif
                         @if (isset($onboarding['state']))
-                            <li>Negeri: {{ $onboarding['state'] }}</li>
+                            <li><span data-translate="auth_summary_state">Negeri</span>: {{ $onboarding['state'] }}</li>
                         @endif
                         @if (isset($onboarding['district']))
-                            <li>Daerah: {{ $onboarding['district'] }}</li>
+                            <li><span data-translate="auth_summary_district">Daerah</span>: {{ $onboarding['district'] }}</li>
                         @endif
                         @if (isset($onboarding['gender']))
-                            <li>Jantina: {{ $onboarding['gender'] === 'male' ? 'Lelaki' : 'Wanita' }}</li>
+                            <li>
+                                <span data-translate="auth_summary_gender">Jantina</span>:
+                                {{ $onboarding['gender'] === 'male'
+                                    ? \App\Support\JmI18n::t('profile_gender_male', fallback: 'Lelaki')
+                                    : \App\Support\JmI18n::t('profile_gender_female', fallback: 'Wanita')
+                                }}
+                            </li>
                         @endif
                         @if (isset($onboarding['path']))
-                            <li>Laluan:
+                            <li><span data-translate="auth_summary_path">Laluan</span>:
                                 @switch($onboarding['path'])
                                     @case('monogami')
-                                        Lelaki – Monogami
+                                        {{ \App\Support\JmI18n::t('auth_path_male_monogamy', fallback: 'Lelaki – Monogami') }}
                                     @break
 
                                     @case('poligami')
-                                        Lelaki – Poligami (Situasi {{ $onboarding['poligami_situation'] ?? '-' }})
+                                        {{ \App\Support\JmI18n::t('auth_path_male_polygamy', ['situation' => ($onboarding['poligami_situation'] ?? '-')], 'Lelaki – Poligami (Situasi :situation)') }}
                                     @break
 
                                     @case('wanita_monogami')
-                                        Wanita – Monogami
+                                        {{ \App\Support\JmI18n::t('auth_path_female_monogamy', fallback: 'Wanita – Monogami') }}
                                     @break
 
                                     @case('wanita_poligami')
-                                        Wanita – Poligami (Model {{ $onboarding['poligami_level'] ?? '-' }})
+                                        {{ \App\Support\JmI18n::t('auth_path_female_polygamy', ['model' => ($onboarding['poligami_level'] ?? '-')], 'Wanita – Poligami (Model :model)') }}
                                     @break
 
                                     @case('wanita_terbuka')
-                                        Wanita – Terbuka
+                                        {{ \App\Support\JmI18n::t('auth_path_female_open', fallback: 'Wanita – Terbuka') }}
                                     @break
                                 @endswitch
                             </li>
@@ -76,19 +82,19 @@
                 <div class="form-floating mb-3">
                     <input type="text" id="name" name="name" class="form-control" placeholder=" "
                         value="{{ old('name') }}" required autocomplete="name">
-                    <label for="name" class="sign-text-nam">NAMA PENUH</label>
+                    <label for="name" class="sign-text-nam" data-translate="field_full_name">NAMA PENUH</label>
                 </div>
 
                 <!-- Nama Gelaran -->
                 <div class="form-floating mb-3">
                     <input type="text" id="nickname" name="nickname" class="form-control" placeholder=" "
                         value="{{ old('nickname') }}" autocomplete="nickname">
-                    <label for="nickname">NAMA GELARAN</label>
+                    <label for="nickname" data-translate="field_nickname">NAMA GELARAN</label>
                 </div>
 
                 <!-- No. Telefon -->
                 <div class="mb-3">
-                    <label class="form-label" style="color: #5a7b70; font-size: 0.875rem; margin-bottom: 0.375rem;">NO.
+                    <label class="form-label" style="color: #5a7b70; font-size: 0.875rem; margin-bottom: 0.375rem;" data-translate="field_phone">NO.
                         TELEFON</label>
                     <div class="input-group">
                         <select name="phone_country" class="form-select"
@@ -100,7 +106,7 @@
                             <option value="BN" {{ old('phone_country') == 'BN' ? 'selected' : '' }}>🇧🇳 +673</option>
                         </select>
                         <input type="text" name="phone" id="phone" class="form-control" required
-                            placeholder="Contoh: 199009014">
+                            placeholder="Contoh: 199009014" data-translate-placeholder="field_phone_placeholder">
 
                     </div>
                 </div>
@@ -109,13 +115,13 @@
                 <div class="form-floating mb-3">
                     <input type="email" id="email" name="email" class="form-control" placeholder=" "
                         value="{{ old('email') }}" required autocomplete="email">
-                    <label for="email">E-MAIL</label>
+                    <label for="email" data-translate="field_email">E-MAIL</label>
                 </div>
 
                 <!-- Kata Laluan -->
                 <div class="form-floating mb-3 position-relative">
                     <input type="password" id="password" name="password" class="form-control" placeholder=" ">
-                    <label for="password">KATA LALUAN</label>
+                    <label for="password" data-translate="field_password_upper">KATA LALUAN</label>
                     <button type="button" class="btn toggle-eye position-absolute end-0 top-50 translate-middle-y pe-3"
                         onclick="togglePasswordVisibility('password')" style="background: none; border: none;">
                         <i id="password-icon" class="bi bi-eye" style="font-size: 1.2rem;"></i>
@@ -126,7 +132,7 @@
                 <div class="form-floating mb-4 position-relative">
                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
                         placeholder=" ">
-                    <label for="password_confirmation">SAHKAN KATA LALUAN</label>
+                    <label for="password_confirmation" data-translate="field_password_confirm">SAHKAN KATA LALUAN</label>
                     <button type="button" class="btn toggle-eye position-absolute end-0 top-50 translate-middle-y pe-3"
                         onclick="togglePasswordVisibility('password_confirmation')" style="background: none; border: none;">
                         <i id="password_confirmation-icon" class="bi bi-eye" style="font-size: 1.2rem;"></i>
@@ -137,16 +143,16 @@
                 <div class="form-check mb-4">
                     <input class="form-check-input" type="checkbox" id="terms" name="terms" required checked>
                     <label class="form-check-label" for="terms">
-                        Saya bersetuju dengan
-                        <a href="{{ route('terms') }}" target="_blank">Terma Penggunaan</a>
+                        <span data-translate="auth_terms_prefix">Saya bersetuju dengan</span>
+                        <a href="{{ route('terms') }}" target="_blank" data-translate="auth_terms">Terma Penggunaan</a>
                         &amp;
-                        <a href="{{ route('privacy') }}" target="_blank">Dasar Privasi</a>
+                        <a href="{{ route('privacy') }}" target="_blank" data-translate="auth_privacy">Dasar Privasi</a>
                     </label>
                 </div>
 
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn w-100 py-2 login-btn">
+                <button type="submit" class="btn w-100 py-2 login-btn" data-translate="auth_register_button">
                     Daftar & Masuk
                 </button>
 

@@ -6,12 +6,12 @@
 <div class="onboarding-wrapper">
     <div class="onboarding-card animate-in">
 <p class="mb-3">
-    Adakah anda sedar bahawa melalui pilihan status tadi,
-    anda sedang memilih untuk <strong>bertemu jodoh poligami</strong>?
+    <span data-translate="onb_poly_confirm_q_prefix">Adakah anda sedar bahawa melalui pilihan status tadi, anda sedang memilih untuk</span>
+    <strong data-translate="onb_poly_confirm_q_strong">bertemu jodoh poligami</strong>?
 </p>
 
 <p class="mb-2">
-    Sila buat pilihan di bawah:
+    <span data-translate="onb_choose_below">Sila buat pilihan di bawah:</span>
 </p>
 
 <form method="POST" action="{{ url('/onboarding/male/polygamy-confirm') }}" id="polygamyConfirmForm">
@@ -21,13 +21,13 @@
     <input type="hidden" name="confirm" id="confirmInput" value="">
     <div class="row mb-3">
     <button type="button" class="btn btn-danger me-2" id="btnPolygamyYes">
-        Ya, saya sedar &amp; mahu teruskan
+        <span data-translate="onb_poly_confirm_yes_open">Ya, saya sedar &amp; mahu teruskan</span>
     </button>
 </div>
     <div class="row">
     {{-- yang ini terus submit sebagai "no" tanpa modal --}}
     <button type="submit" name="confirm" value="no" class="btn btn-outline-secondary">
-        Tidak &amp; kembali ke pilihan status
+        <span data-translate="onb_poly_confirm_no_back">Tidak &amp; kembali ke pilihan status</span>
     </button>
     </div>
 </form>
@@ -35,10 +35,12 @@
 {{-- ================= MODAL PERINGATAN RINGKAS ================= --}}
 <div id="polygamyModal" class="jm-modal-overlay">
     <div class="jm-modal">
-        <h5 class="mb-3">Peringatan Ringkas</h5>
+        <h5 class="mb-3" data-translate="onb_poly_reminder_title">Peringatan Ringkas</h5>
 
         <p>
-            Laluan poligami memerlukan <strong>ketelusan tinggi</strong> terhadap isteri sedia ada dan calon.
+            <span data-translate="onb_poly_reminder_prefix">Laluan poligami memerlukan</span>
+            <strong data-translate="onb_poly_reminder_strong">ketelusan tinggi</strong>
+            <span data-translate="onb_poly_reminder_tail">terhadap isteri sedia ada dan calon.</span>
         </p>
         {{-- <p>
             Selepas anda kekalkan laluan ini, keseluruhan modul &amp; calon
@@ -47,10 +49,10 @@
 
         <div class="mt-3 d-flex justify-content-end gap-2">
             <button type="button" class="btn btn-outline-secondary" id="btnPolygamyCancel">
-                Kembali
+                <span data-translate="onb_back">Kembali</span>
             </button>
             <button type="button" class="btn btn-danger" id="btnPolygamyProceed">
-                Saya faham &amp; mahu teruskan
+                <span data-translate="onb_understand_continue">Saya faham &amp; mahu teruskan</span>
             </button>
         </div>
     </div>

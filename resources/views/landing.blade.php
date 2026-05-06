@@ -142,7 +142,7 @@
             <circle cx="17" cy="12" r="1" fill="currentColor"/>
           </svg>
         </span>
-        <span class="jm-taruf-btn-text">Mula Ta'aruf Sekarang</span>
+        <span class="jm-taruf-btn-text" data-translate="taruf">Mula Ta'aruf Sekarang</span>
       </a>
     </div>
   </div>
@@ -215,7 +215,7 @@
           </div>
 
           <div class="modal-footer border-0 justify-content-center pb-4">
-            <small class="text-muted">Pilihan anda akan disimpan secara automatik.</small>
+            <small class="text-muted" data-translate="pick_country_footer">Pilihan anda akan disimpan secara automatik.</small>
           </div>
 
         </div>
@@ -417,13 +417,13 @@ if (showNotice) {
           body: JSON.stringify({ country: selectedCountry }),
         });
 
-        if (!res.ok) throw new Error("HTTP " + res.status);
+        if (!res.ok) throw new Error(jmT("country_http_error_prefix", "HTTP ") + res.status);
         const data = await res.json().catch(() => ({}));
 
         if (data && data.ok) {
           window.location.reload();
         } else {
-          throw new Error("Response not ok");
+          throw new Error(jmT("country_response_not_ok", "Response not ok"));
         }
       } catch (e) {
         if (errorEl) errorEl.style.display = "block";

@@ -35,6 +35,7 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 // set negara dari modal landing (AJAX)
 Route::post('/landing/set-country', [LandingController::class, 'setCountry'])->name('landing.setCountry');
 Route::post('/set-country', [LandingController::class, 'setCountry'])->name('set.country');
+Route::post('/set-language', [LandingController::class, 'setLanguage'])->name('set.language');
 
 // Toyyibpay webhook (callback) – tanpa auth, CSRF excluded
 Route::post('/subscription/toyyibpay/callback', ToyyibpayWebhookController::class)->name('subscription.toyyibpay.callback');

@@ -3,9 +3,9 @@
 
 @section('content')
 <div class="container mt-4">
-    <h2>Ciri-ciri Calon Idaman</h2>
+    <h2 data-translate="onb_match_title">Ciri-ciri Calon Idaman</h2>
     <p class="text-muted">
-        <small>Hanya umur dan lokasi calon yang akan dipaparkan pada peringkat awal.</small>
+        <small data-translate="onb_match_note">Hanya umur dan lokasi calon yang akan dipaparkan pada peringkat awal.</small>
     </p>
     <form method="POST" action="{{ route('onboarding.matching_preferences') }}">
         @csrf
@@ -14,9 +14,9 @@
         <div class="row mb-3">
             <div class="col-12">
                 <label class="form-label mb-2">
-                    Julat Umur Calon:
+                    <span data-translate="onb_match_age_range">Julat Umur Calon:</span>
                     <strong>
-                        <span id="ageMinLabel"></span> – <span id="ageMaxLabel"></span> tahun
+                        <span id="ageMinLabel"></span> – <span id="ageMaxLabel"></span> <span data-translate="onb_years">tahun</span>
                     </strong>
                 </label>
         
@@ -42,7 +42,7 @@
      <!-- Radius Lokasi Calon -->
 <div class="mb-3">
     <label class="form-label mb-2">
-        Radius Lokasi Calon:
+        <span data-translate="onb_match_radius">Radius Lokasi Calon:</span>
         <strong>
             <span id="radiusLabel"></span> KM
         </strong>
@@ -67,11 +67,11 @@
 
 
 <p class="text-muted">
-        <small><b>Tetapkan 200km jika anda terbuka soal jarak - lebih banyak calon akan dipaparkan.</b></small>
+        <small><b data-translate="onb_match_radius_tip">Tetapkan 200km jika anda terbuka soal jarak - lebih banyak calon akan dipaparkan.</b></small>
     </p>
 
 
-        <button type="submit" class="whol-main-btn mt-4 w-100 btn-success">Seterusnya ke Pendaftaran</button>
+        <button type="submit" class="whol-main-btn mt-4 w-100 btn-success" data-translate="onb_match_next_register">Seterusnya ke Pendaftaran</button>
     </form>
 </div>
 @endsection

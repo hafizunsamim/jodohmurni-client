@@ -12,7 +12,7 @@
             <div class="progress-bar bg-success" style="width:65%"></div>
         </div>
 
-        <h4 class="fw-bold mb-2 text-center">Pilih Jenis Perkahwinan Yang Anda Cari</h4>
+        <h4 class="fw-bold mb-2 text-center" data-translate="onb_male_status_title">Pilih Jenis Perkahwinan Yang Anda Cari</h4>
 
         <form action="{{ url('/onboarding/male/status') }}" method="POST" class="mt-2" id="maleStatusForm">
             @csrf
@@ -29,9 +29,9 @@
                                 <span class="jm-path-card__icon">
                                     <img src="{{ asset('assets/images/icon-monogami.png') }}" alt="">
                                 </span>
-                                <span class="jm-path-card__title">Monogami</span>
+                                <span class="jm-path-card__title" data-translate="onb_path_monogamy">Monogami</span>
                             </span>
-                            <span class="jm-path-card__bottom">Mencari satu pasangan untuk perkahwinan</span>
+                            <span class="jm-path-card__bottom" data-translate="onb_path_monogamy_desc">Mencari satu pasangan untuk perkahwinan</span>
                         </label>
                     </div>
                     <div class="col-6 jm-path-col">
@@ -43,9 +43,9 @@
                                 <span class="jm-path-card__icon jm-path-card__icon--poligami">
                                     <img src="{{ asset('assets/images/icon-poligami.png') }}" alt="">
                                 </span>
-                                <span class="jm-path-card__title">Poligami</span>
+                                <span class="jm-path-card__title" data-translate="onb_path_polygamy">Poligami</span>
                             </span>
-                            <span class="jm-path-card__bottom">Mencari pasangan dalam perkahwinan poligami</span>
+                            <span class="jm-path-card__bottom" data-translate="onb_path_polygamy_desc">Mencari pasangan dalam perkahwinan poligami</span>
                         </label>
                     </div>
                 </div>
@@ -56,32 +56,32 @@
 
             @php
                 $optionsMonogami = [
-                    'single'        => 'Bujang',
-                    'divorced'      => 'Duda (cerai hidup)',
-                    'widowed'       => 'Duda (kematian isteri)',
-                    'ex_polygamous' => 'Duda (pernah poligami)',
+                    'single'        => \App\Support\JmI18n::t('onb_male_status_option_single', fallback: 'Bujang'),
+                    'divorced'      => \App\Support\JmI18n::t('onb_male_status_option_divorced', fallback: 'Duda (cerai hidup)'),
+                    'widowed'       => \App\Support\JmI18n::t('onb_male_status_option_widowed', fallback: 'Duda (kematian isteri)'),
+                    'ex_polygamous' => \App\Support\JmI18n::t('onb_male_status_option_ex_polygamous', fallback: 'Duda (pernah poligami)'),
                 ];
                 $optionsPoligami = [
-                    'married_1' => 'Sedang berkahwin dengan seorang isteri',
-                    'married_2' => 'Sedang berkahwin dengan 2 orang isteri',
-                    'married_3' => 'Sedang berkahwin dengan 3 orang isteri',
+                    'married_1' => \App\Support\JmI18n::t('onb_male_status_option_married_1', fallback: 'Sedang berkahwin dengan seorang isteri'),
+                    'married_2' => \App\Support\JmI18n::t('onb_male_status_option_married_2', fallback: 'Sedang berkahwin dengan 2 orang isteri'),
+                    'married_3' => \App\Support\JmI18n::t('onb_male_status_option_married_3', fallback: 'Sedang berkahwin dengan 3 orang isteri'),
                 ];
                 $cardMonogami = [
-                    'single'        => ['title' => 'BUJANG', 'subtitle' => 'Belum pernah berkahwin', 'icon' => 'bi-heart'],
-                    'divorced'      => ['title' => 'DUDA (CERAI)', 'subtitle' => 'Pernah berkahwin & telah berpisah', 'icon' => 'bi-arrow-repeat'],
-                    'widowed'       => ['title' => 'DUDA (KEMATIAN ISTERI)', 'subtitle' => 'Kehilangan pasangan', 'icon' => 'bi-heart-pulse'],
-                    'ex_polygamous' => ['title' => 'DUDA (PERNAH POLIGAMI)', 'subtitle' => 'Berpengalaman dalam poligami', 'icon' => 'bi-people'],
+                    'single'        => ['title' => \App\Support\JmI18n::t('onb_male_status_card_single_title', fallback: 'BUJANG'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_single_sub', fallback: 'Belum pernah berkahwin'), 'icon' => 'bi-heart'],
+                    'divorced'      => ['title' => \App\Support\JmI18n::t('onb_male_status_card_divorced_title', fallback: 'DUDA (CERAI)'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_divorced_sub', fallback: 'Pernah berkahwin & telah berpisah'), 'icon' => 'bi-arrow-repeat'],
+                    'widowed'       => ['title' => \App\Support\JmI18n::t('onb_male_status_card_widowed_title', fallback: 'DUDA (KEMATIAN ISTERI)'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_widowed_sub', fallback: 'Kehilangan pasangan'), 'icon' => 'bi-heart-pulse'],
+                    'ex_polygamous' => ['title' => \App\Support\JmI18n::t('onb_male_status_card_ex_poly_title', fallback: 'DUDA (PERNAH POLIGAMI)'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_ex_poly_sub', fallback: 'Berpengalaman dalam poligami'), 'icon' => 'bi-people'],
                 ];
                 $cardPoligami = [
-                    'married_1' => ['title' => 'SATU ISTERI', 'subtitle' => 'Sedang berkahwin dengan seorang isteri', 'icon' => 'bi-person-fill'],
-                    'married_2' => ['title' => 'DUA ISTERI', 'subtitle' => 'Sedang berkahwin dengan 2 orang isteri', 'icon' => 'bi-people'],
-                    'married_3' => ['title' => 'TIGA ISTERI', 'subtitle' => 'Sedang berkahwin dengan 3 orang isteri', 'icon' => 'bi-people-fill'],
+                    'married_1' => ['title' => \App\Support\JmI18n::t('onb_male_status_card_m1_title', fallback: 'SATU ISTERI'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_m1_sub', fallback: 'Sedang berkahwin dengan seorang isteri'), 'icon' => 'bi-person-fill'],
+                    'married_2' => ['title' => \App\Support\JmI18n::t('onb_male_status_card_m2_title', fallback: 'DUA ISTERI'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_m2_sub', fallback: 'Sedang berkahwin dengan 2 orang isteri'), 'icon' => 'bi-people'],
+                    'married_3' => ['title' => \App\Support\JmI18n::t('onb_male_status_card_m3_title', fallback: 'TIGA ISTERI'), 'subtitle' => \App\Support\JmI18n::t('onb_male_status_card_m3_sub', fallback: 'Sedang berkahwin dengan 3 orang isteri'), 'icon' => 'bi-people-fill'],
                 ];
                 $oldMarital = old('marital_status', '');
             @endphp
 
             <div id="statusPerkahwinanSection" class="mb-3" style="display: none;">
-                <p class="form-label fw-semibold mb-2">Status Perkahwinan</p>
+                <p class="form-label fw-semibold mb-2" data-translate="onb_male_status_marital_label">Status Perkahwinan</p>
 
                 <input type="hidden" name="marital_status" id="marital_status" value="{{ $oldMarital }}"
                     data-old-value="{{ $oldMarital }}">
@@ -97,7 +97,7 @@
                             </span>
                             <span class="jm-status-btn__trail">
                                 <span class="jm-status-btn__chev" aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                                <span class="jm-status-btn__picked"><i class="bi bi-check-lg"></i> Diplilih</span>
+                                <span class="jm-status-btn__picked"><i class="bi bi-check-lg"></i> <span data-translate="onb_selected">Diplilih</span></span>
                             </span>
                         </button>
                     @endforeach
@@ -114,7 +114,7 @@
                             </span>
                             <span class="jm-status-btn__trail">
                                 <span class="jm-status-btn__chev" aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
-                                <span class="jm-status-btn__picked"><i class="bi bi-check-lg"></i> Diplilih</span>
+                                <span class="jm-status-btn__picked"><i class="bi bi-check-lg"></i> <span data-translate="onb_selected">Diplilih</span></span>
                             </span>
                         </button>
                     @endforeach

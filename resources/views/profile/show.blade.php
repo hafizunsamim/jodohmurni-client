@@ -39,12 +39,12 @@
         @endif
         <p><img src="{{ asset('assets/images/svg/home-flo.svg') }}" alt="country"> {{ ucfirst($user->country ?? '-') }}</p>
         @if($user->latitude && $user->longitude)
-            <p><img src="{{ asset('assets/images/svg/location-home.svg') }}" alt="location"> Lokasi anda</p>
+            <p><img src="{{ asset('assets/images/svg/location-home.svg') }}" alt="location"> <span data-translate="profile_your_location">Lokasi anda</span></p>
         @endif
     </div>
 
     <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm mb-3">
-  Edit Profile
+  <span data-translate="profile_edit">Edit Profile</span>
 </a>
 
     <!-- Interests -->
@@ -56,7 +56,7 @@
 
     @if(!empty($interests))
     <div class="about-box">
-        <p class="issAbout-me">Minat</p>
+        <p class="issAbout-me" data-translate="profile_interests">Minat</p>
         <div class="inte-mian">
             @foreach($interests as $i => $interest)
                 @if($i < 5)
@@ -70,7 +70,7 @@
     <!-- Photos -->
     @if(!empty($photos))
     <div class="about-box">
-        <p class="issAbout-me">Gambar</p>
+        <p class="issAbout-me" data-translate="profile_photos">Gambar</p>
         <div class="masonry-grid">
             @foreach($photos as $photo)
                 <img src="{{ asset($photo) }}" alt="Gambar profil">
@@ -83,14 +83,14 @@
          SUBSCRIPTION
          ========================= -->
     <div class="about-box">
-        <p class="issAbout-me">Langganan</p>
+        <p class="issAbout-me" data-translate="profile_subscription">Langganan</p>
 
         @if($activeSub)
             <div class="p-3 border rounded-3 bg-white">
-                <div class="fw-bold">Status: Aktif</div>
+                <div class="fw-bold"><span data-translate="profile_sub_status">Status:</span> <span data-translate="profile_sub_active">Aktif</span></div>
                 <div class="text-muted small">
-                    Package: {{ isset($activePkg) && $activePkg ? ($activePkg->name ?? '—') : '—' }}<br>
-                    Dibayar: RM {{ number_format($activeSub->amount_sen ?? 0) }}
+                    <span data-translate="profile_sub_package">Package:</span> {{ isset($activePkg) && $activePkg ? ($activePkg->name ?? '—') : '—' }}<br>
+                    <span data-translate="profile_sub_paid">Dibayar:</span> RM {{ number_format($activeSub->amount_sen ?? 0) }}
                 </div>
 
                 <!-- <hr>
@@ -111,30 +111,30 @@
 
                 <div class="mt-3">
                     <a class="btn btn-warning btn-sm" href="{{ route('ebook.download') }}">
-                        Download E-book
+                        <span data-translate="profile_download_ebook">Download E-book</span>
                     </a>
                     <div class="text-muted small mt-1">
-                        *Link e-book juga dihantar melalui email selepas langganan aktif.
+                        <span data-translate="profile_ebook_note">*Link e-book juga dihantar melalui email selepas langganan aktif.</span>
                     </div>
                 </div>
             </div>
         @else
 <div class="p-3 border rounded-3 bg-white">
-    <div class="fw-bold">Belum Langgan</div>
+    <div class="fw-bold" data-translate="profile_sub_inactive">Belum Langgan</div>
 
     <div class="text-muted small mb-3">
-        Untuk buka <b>nama penuh</b>, <b>nickname</b>, dan <b>chat tanpa batas</b>,
-        sila aktifkan subscription anda.
+        <span data-translate="profile_sub_unlock_prefix">Untuk buka</span> <b data-translate="profile_sub_unlock_fullname">nama penuh</b>, <b data-translate="profile_sub_unlock_nickname">nickname</b>, <span data-translate="profile_sub_unlock_and">dan</span> <b data-translate="profile_sub_unlock_chat">chat tanpa batas</b>,
+        <span data-translate="profile_sub_unlock_tail">sila aktifkan subscription anda.</span>
         <br><br>
-        Klik butang di bawah untuk lihat senarai package dan harga.
+        <span data-translate="profile_sub_cta_hint">Klik butang di bawah untuk lihat senarai package dan harga.</span>
     </div>
 
     <a href="{{ route('subscription.index') }}" class="btn btn-success w-100">
-        Lihat & Aktifkan Subscription
+        <span data-translate="profile_sub_cta">Lihat & Aktifkan Subscription</span>
     </a>
 
     <div class="text-muted small mt-2">
-        *Selepas subscription aktif, semua butiran calon akan dipaparkan secara penuh.
+        <span data-translate="profile_sub_note">*Selepas subscription aktif, semua butiran calon akan dipaparkan secara penuh.</span>
     </div>
     
 </div>
@@ -147,27 +147,27 @@
          ========================= -->
     @if(($affiliateProfile['enabled'] ?? false) && isset($affiliate))
     <div class="about-box">
-        <p class="issAbout-me">Affiliate</p>
+        <p class="issAbout-me" data-translate="aff_public_title">Affiliate</p>
 
         <div class="p-3 border rounded-3 bg-white">
             <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
                 <div>
-                    <div class="fw-bold">Link Affiliate</div>
+                    <div class="fw-bold" data-translate="profile_aff_link_title">Link Affiliate</div>
                     <div class="text-muted small">
-                        Kongsi link ini. Komisen hanya direkod bila user daftar akaun melalui link ini dan kemudian subscribe.
+                        <span data-translate="profile_aff_link_desc">Kongsi link ini. Komisen hanya direkod bila user daftar akaun melalui link ini dan kemudian subscribe.</span>
                     </div>
                 </div>
                 <div class="text-end">
                     @if(($affiliateProfile['tier'] ?? '') === 'pro')
-                        <span class="badge bg-success">Affiliate Pro</span>
+                        <span class="badge bg-success" data-translate="profile_aff_tier_pro">Affiliate Pro</span>
                     @elseif(($affiliateProfile['tier'] ?? '') === 'standard')
-                        <span class="badge bg-secondary">Affiliate Standard</span>
+                        <span class="badge bg-secondary" data-translate="profile_aff_tier_standard">Affiliate Standard</span>
                     @endif
                 </div>
             </div>
 
             <div class="mt-3">
-                <div class="text-muted small mb-1">Kadar komisen semasa</div>
+                <div class="text-muted small mb-1" data-translate="profile_aff_rate_label">Kadar komisen semasa</div>
                 <div class="fw-bold">{{ $affiliateProfile['commission_label'] ?? 'RM 0.00' }}</div>
             </div>
 
@@ -175,7 +175,7 @@
                 <input class="form-control" value="{{ $affiliateUrl }}" readonly style="max-width:520px;">
                 <button type="button" class="btn btn-outline-secondary btn-sm"
                         onclick="copyLink('{{ $affiliateUrl }}')">
-                    Copy
+                    <span data-translate="profile_copy">Copy</span>
                 </button>
             </div>
 
@@ -192,19 +192,19 @@
                 <div class="mt-3">
                     @if($isPending)
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#affiliateProModal">
-                            Lihat Status Permohonan
+                            <span data-translate="profile_aff_view_status">Lihat Status Permohonan</span>
                         </button>
                     @elseif($isRejected)
                         <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#affiliateProModal">
-                            Mohon Semula Affiliate Pro
+                            <span data-translate="profile_aff_reapply_pro">Mohon Semula Affiliate Pro</span>
                         </button>
                     @elseif($canApply)
                         <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#affiliateProModal">
-                            Naik Taraf ke Affiliate Pro
+                            <span data-translate="profile_aff_upgrade_pro">Naik Taraf ke Affiliate Pro</span>
                         </button>
                     @else
                         <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#affiliateProModal">
-                            Lihat Status Permohonan
+                            <span data-translate="profile_aff_view_status">Lihat Status Permohonan</span>
                         </button>
                     @endif
                 </div>
@@ -217,7 +217,7 @@
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Affiliate Pro</h5>
+            <h5 class="modal-title" data-translate="profile_aff_pro_title">Affiliate Pro</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -230,7 +230,7 @@
               <div class="mb-3">
                 <div class="d-flex align-items-center gap-2 fw-bold mb-2">
                   <span style="font-size:18px;line-height:1;">🕒</span>
-                  <span>Sejarah Permohonan</span>
+                  <span data-translate="profile_aff_history">Sejarah Permohonan</span>
                 </div>
 
                 <div class="p-3 rounded-4" style="border:2px dashed #b48ad6; background:#fbf7ff;">
@@ -241,8 +241,8 @@
                     @php
                       $badgeClass = $st === 'approved' ? 'bg-success'
                         : ($st === 'rejected' ? 'bg-danger' : 'bg-warning');
-                      $badgeLabel = $st === 'approved' ? 'Approved'
-                        : ($st === 'rejected' ? 'Rejected' : 'Pending');
+                      $badgeLabel = $st === 'approved' ? \App\Support\JmI18n::t('profile_aff_status_approved', fallback: 'Approved')
+                        : ($st === 'rejected' ? \App\Support\JmI18n::t('profile_aff_status_rejected', fallback: 'Rejected') : \App\Support\JmI18n::t('profile_aff_status_pending', fallback: 'Pending'));
                       $iconBg = $st === 'approved' ? '#2e7d32' : ($st === 'rejected' ? '#d32f2f' : '#1976d2');
                       $icon = $st === 'approved' ? '✓' : ($st === 'rejected' ? '✕' : '🕒');
                     @endphp
@@ -262,18 +262,18 @@
                             <span class="badge {{ $badgeClass }}">{{ $badgeLabel }}</span>
                           </div>
 
-                          <div class="text-muted small">Reason: {{ $r->reason }}</div>
+                          <div class="text-muted small"><span data-translate="profile_aff_reason_label">Reason:</span> {{ $r->reason }}</div>
 
                           @if($st === 'rejected')
                             <div class="mt-2 small">
-                              <div class="text-muted">Maklumbalas admin:</div>
+                              <div class="text-muted" data-translate="profile_aff_admin_feedback">Maklumbalas admin:</div>
                               <div>{{ $r->admin_feedback ?? '—' }}</div>
                             </div>
                           @endif
 
                           @if($r->reviewed_at)
                             <div class="text-muted small mt-2">
-                              Reviewed: {{ $r->reviewed_at ? $r->reviewed_at->format('d/m/Y H:i') : '-' }}
+                              <span data-translate="profile_aff_reviewed">Reviewed:</span> {{ $r->reviewed_at ? $r->reviewed_at->format('d/m/Y H:i') : '-' }}
                             </div>
                           @endif
                         </div>
@@ -291,35 +291,37 @@
 
             @if($latestSt === 'pending')
               <div class="alert alert-info">
-                <div class="fw-bold">Dalam Proses Semakan Oleh Pihak Admin</div>
-                <div class="small text-muted">Sila tunggu keputusan admin untuk naik taraf Affiliate Pro.</div>
+                <div class="fw-bold" data-translate="profile_aff_pending_title">Dalam Proses Semakan Oleh Pihak Admin</div>
+                <div class="small text-muted" data-translate="profile_aff_pending_desc">Sila tunggu keputusan admin untuk naik taraf Affiliate Pro.</div>
               </div>
             @elseif($latestSt === 'approved')
               <div class="alert alert-success">
-                <div class="fw-bold">Permohonan diluluskan.</div>
-                <div class="small text-muted">Anda kini Affiliate Pro.</div>
+                <div class="fw-bold" data-translate="profile_aff_approved_title">Permohonan diluluskan.</div>
+                <div class="small text-muted" data-translate="profile_aff_approved_desc">Anda kini Affiliate Pro.</div>
               </div>
             @else
               {{-- Show form (first time / or after rejected) --}}
               <form method="POST" action="{{ route('affiliate.pro.request') }}">
                 @csrf
                 <div class="mb-3">
-                  <label class="form-label fw-semibold">Platform promosi (wajib)</label>
+                  <label class="form-label fw-semibold" data-translate="profile_aff_platform_required">Platform promosi (wajib)</label>
                   <input class="form-control" name="promotion_platform" value="{{ old('promotion_platform') }}" maxlength="120" required
-                         placeholder="Contoh: TikTok, Facebook, Instagram, WhatsApp, Telegram, YouTube, Blog">
+                         placeholder="Contoh: TikTok, Facebook, Instagram, WhatsApp, Telegram, YouTube, Blog"
+                         data-translate-placeholder="profile_aff_platform_ph">
                   @error('promotion_platform')
                     <div class="text-danger small mt-1">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="mb-2">
-                  <label class="form-label fw-semibold">Sebab permohonan (wajib)</label>
+                  <label class="form-label fw-semibold" data-translate="profile_aff_reason_required">Sebab permohonan (wajib)</label>
                   <textarea class="form-control" name="reason" rows="4" required minlength="10" maxlength="2000"
-                            placeholder="Contoh: Saya mempunyai audience yang sesuai dan ingin bantu lebih ramai..." >{{ old('reason') }}</textarea>
+                            placeholder="Contoh: Saya mempunyai audience yang sesuai dan ingin bantu lebih ramai..."
+                            data-translate-placeholder="profile_aff_reason_ph">{{ old('reason') }}</textarea>
                   @error('reason')
                     <div class="text-danger small mt-1">{{ $message }}</div>
                   @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Submit Permohonan</button>
+                <button type="submit" class="btn btn-primary" data-translate="profile_aff_submit">Submit Permohonan</button>
               </form>
             @endif
 
@@ -340,14 +342,16 @@
             const toggle = this;
             if (!text) return;
             text.classList.toggle('expanded');
-            toggle.textContent = text.classList.contains('expanded') ? 'Tutup ←' : 'Lihat lebih →';
+            toggle.textContent = text.classList.contains('expanded')
+              ? (@json(\App\Support\JmI18n::t('onb_close', fallback: 'Tutup')) + ' ←')
+              : (@json(\App\Support\JmI18n::t('profile_view_more', fallback: 'Lihat lebih')) + ' →');
         });
     }
 
     // ni js untuk copy link affiliate
     function copyLink(text) {
         navigator.clipboard.writeText(text);
-        showToast('Link berjaya disalin!');
+        showToast(@json(\App\Support\JmI18n::t('profile_aff_link_copied', fallback: 'Link berjaya disalin!')));
     }
     
     function showToast(msg) {

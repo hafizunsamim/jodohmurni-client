@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use App\Models\UserAffiliateCode;
+use App\Support\JmI18n;
 class LandingController extends Controller
 {
     // ✅ mapping video ikut country code (ubah ikut code negara dalam DB kau)
@@ -136,5 +137,33 @@ class LandingController extends Controller
         $request->session()->flash('show_first_time_notice', true);
 
         return response()->json(['ok' => true]);
+    }
+
+    // ✅ dipanggil bila user tukar bahasa di header (dropdown)
+    public function setLanguage(Request $request)
+    {
+        $request->validate([
+            'lang' => ['required', 'string', 'in:en,ms,id'],
+        ]);
+
+        $country = (string) $request->session()->get('landing.country', 'MY');
+        if (!in_array($country, ['MY', 'ID', 'SG', 'BN'], true)) {
+            $country = 'MY';
+        }
+
+        $lang = (string) $request->input('lang');
+        $allowed = JmI18n::allowedLocalesByCountry($country);
+        if (!in_array($lang, $allowed, true)) {
+            $lang = JmI18n::defaultLocaleByCountry($country);
+        }
+
+        $request->session()->put('landing.locale', $lang);
+        App::setLocale($lang);
+
+        return response()->json([
+            'ok' => true,
+            'country' => $country,
+            'locale' => $lang,
+        ]);
     }
 }

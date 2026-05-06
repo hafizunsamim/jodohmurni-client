@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-3">
-  <h3 class="fw-bold mb-3" style="color:rgb(10, 126, 62);">Link Ebook Subscription</h3>
+  <h3 class="fw-bold mb-3" style="color:rgb(10, 126, 62);" data-translate="sub_ebook_links_title">Link Ebook Subscription</h3>
 
   @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
@@ -27,7 +27,7 @@
   </div>
 
   <div class="mt-3">
-    <a href="{{ route('subscription.index') }}" class="btn btn-outline-secondary">Kembali ke Subscription</a>
+    <a href="{{ route('subscription.index') }}" class="btn btn-outline-secondary" data-translate="sub_back_to_subscription">Kembali ke Subscription</a>
   </div>
 </div>
 @endsection

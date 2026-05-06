@@ -37,11 +37,13 @@
 
             @if(!$hasActiveSub)
                 <small class="opacity-75 d-block">
-                    Free Trial • Tegur: {{ $participantsUsed }}/{{ $participantsLimit }} • Reply: {{ $respondersUsed }}/{{ $respondersLimit }}
-                    • Baki mesej: {{ $remaining }}/{{ $freeLimit ?? 5 }}
+                    <span data-translate="chat_free_trial">Free Trial</span>
+                    • <span data-translate="chat_trial_tegur">Tegur</span>: {{ $participantsUsed }}/{{ $participantsLimit }}
+                    • <span data-translate="chat_trial_reply">Reply</span>: {{ $respondersUsed }}/{{ $respondersLimit }}
+                    • <span data-translate="chat_remaining_msg">Baki mesej</span>: {{ $remaining }}/{{ $freeLimit ?? 5 }}
                 </small>
             @else
-                <small class="opacity-75">Online</small>
+                <small class="opacity-75" data-translate="chat_online">Online</small>
             @endif
         </div>
     </div>
@@ -58,7 +60,7 @@
                         <small>
                             {{ $message->created_at->format('H:i') }}
                             @if($fromMe)
-                                • {{ $message->read_at ? 'Dibaca' : 'Dihantar' }}
+                                • {{ $message->read_at ? \App\Support\JmI18n::t('chat_read') : \App\Support\JmI18n::t('chat_sent') }}
                             @endif
                         </small>
                     </div>
@@ -74,7 +76,7 @@
                       name="body"
                       rows="1"
                       class="form-control"
-                      placeholder="Tulis mesej..."></textarea>
+                      placeholder="Tulis mesej..." data-translate-placeholder="chat_write_message"></textarea>
 
             <button class="btn-send-chat" id="chat-send-btn" type="submit">
                 ➤
@@ -86,32 +88,33 @@
 {{-- ✅ POPUP: SEMAK & IMBANG SALAH LAKU (muncul setiap kali mula chat) --}}
 <div id="semakModalOverlay" class="jm-modal-overlay" style="display:none;">
     <div class="jm-modal" role="dialog" aria-modal="true" aria-labelledby="semakModalTitle">
-        <h5 class="mb-3" id="semakModalTitle">Semak &amp; Imbang Salah Laku</h5>
+        <h5 class="mb-3" id="semakModalTitle" data-translate="chat_semak_title">Semak &amp; Imbang Salah Laku</h5>
 
         <ul class="jm-modal-list">
             <li>
-                Calon diberi ruang melaporkan sebarang salah laku dalam tempoh
-                <strong>5 hari</strong> dari perbualan pertama direkodkan.
+                <span data-translate="chat_semak_p1">Calon diberi ruang melaporkan sebarang salah laku dalam tempoh</span>
+                <strong>5 <span data-translate="chat_days">hari</span></strong>
+                <span data-translate="chat_semak_p1b">dari perbualan pertama direkodkan.</span>
             </li>
             <li>
-                Laporan dinilai secara manual oleh pihak JodohMurni.
+                <span data-translate="chat_semak_p2">Laporan dinilai secara manual oleh pihak JodohMurni.</span>
             </li>
             <li>
-                Tindakan yang boleh diambil:
+                <span data-translate="chat_semak_actions">Tindakan yang boleh diambil:</span>
                 <ul class="jm-modal-sublist">
-                    <li>Amaran <strong>Kad Merah</strong></li>
-                    <li><strong>Penggantungan akaun</strong> 15–30 hari</li>
-                    <li><strong>Penamatan akaun</strong></li>
+                    <li><span data-translate="chat_semak_action_redcard">Amaran</span> <strong><span data-translate="chat_semak_action_redcard2">Kad Merah</span></strong></li>
+                    <li><strong><span data-translate="chat_semak_action_suspend">Penggantungan akaun</span></strong> 15–30 <span data-translate="chat_days">hari</span></li>
+                    <li><strong><span data-translate="chat_semak_action_terminate">Penamatan akaun</span></strong></li>
                 </ul>
             </li>
         </ul>
 
         <div class="mt-4 d-flex justify-content-end gap-2">
             <button type="button" class="btn btn-outline-secondary" id="btnCloseSemakModal">
-                Tutup
+                <span data-translate="chat_close">Tutup</span>
             </button>
             <button type="button" class="btn btn-success" id="btnContinueSemakModal">
-                Teruskan
+                <span data-translate="chat_continue">Teruskan</span>
             </button>
         </div>
     </div>
@@ -121,17 +124,17 @@
 <div id="chatLimitOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:9998;"></div>
 <div id="chatLimitModal" style="display:none; position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); width:min(420px, 92vw); background:#fff; border-radius:14px; padding:18px; z-index:9999; box-shadow:0 10px 30px rgba(0,0,0,.25);">
     <div id="limitTitle" style="font-weight:700; font-size:18px; margin-bottom:8px;">
-        Sila upgrade
+        <span data-translate="chat_limit_upgrade">Sila upgrade</span>
     </div>
     <div id="limitDesc" style="font-size:14px; color:#555; margin-bottom:14px;">
-        Sila subscribe untuk teruskan.
+        <span data-translate="chat_limit_subscribe_continue">Sila subscribe untuk teruskan.</span>
     </div>
     <div style="display:flex; gap:10px; justify-content:flex-end;">
         <button type="button" id="btnCloseChatLimit" class="btn btn-light">
-            Tutup
+            <span data-translate="chat_close">Tutup</span>
         </button>
         <a href="{{ route('subscription.index') }}" class="btn btn-warning fw-bold">
-            Upgrade
+            <span data-translate="chat_upgrade">Upgrade</span>
         </a>
     </div>
 </div>
@@ -173,6 +176,19 @@
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    function jmT(key, fallback) {
+        try {
+            const translations = (window.JM_TRANSLATIONS && typeof window.JM_TRANSLATIONS === "object") ? window.JM_TRANSLATIONS : {};
+            const country = (document.body?.dataset?.country || "MY").trim() || "MY";
+            const locale = (document.body?.dataset?.locale || "").trim() || "ms";
+            const byCountry = translations[country] || translations["MY"] || {};
+            const pack = byCountry[locale] || byCountry["en"] || {};
+            return pack[key] || (byCountry["en"] ? byCountry["en"][key] : null) || fallback || key;
+        } catch {
+            return fallback || key;
+        }
+    }
+
     const conversationKey = @json($conversation->uuid);
     const currentUserId   = @json($me->id);
     const otherUserId     = @json($other->id);
@@ -240,22 +256,22 @@ document.addEventListener('DOMContentLoaded', function () {
     function setModalByReason(reason) {
         // reason: message_limit | responders_locked | participants_limit | null
         if (reason === 'message_limit') {
-            titleEl.textContent = 'Had mesej percuma telah tamat';
-            descEl.textContent  = 'Anda telah capai 5 mesej untuk calon ini. Mesej seterusnya perlukan Upgrade.';
+            titleEl.textContent = jmT('chat_limit_title_message', 'Free message limit ended');
+            descEl.textContent  = jmT('chat_limit_desc_message', 'You have reached the free message limit for this candidate. Next messages require an upgrade.');
             return;
         }
         if (reason === 'responders_locked') {
-            titleEl.textContent = 'Free Trial telah dikunci';
-            descEl.textContent  = 'Bila 2 calon dah balas, calon lain akan dikunci. Untuk chat calon lain, sila Upgrade.';
+            titleEl.textContent = jmT('chat_limit_title_locked', 'Free Trial locked');
+            descEl.textContent  = jmT('chat_limit_desc_locked', 'When 2 candidates have replied, other candidates will be locked. To chat with others, please upgrade.');
             return;
         }
         if (reason === 'participants_limit') {
-            titleEl.textContent = 'Had tegur peserta telah tamat';
-            descEl.textContent  = 'Anda sudah menegur 10 peserta. Untuk tegur calon baru, sila Upgrade.';
+            titleEl.textContent = jmT('chat_limit_title_participants', 'Participant limit reached');
+            descEl.textContent  = jmT('chat_limit_desc_participants', 'You have greeted 10 participants. To greet new candidates, please upgrade.');
             return;
         }
-        titleEl.textContent = 'Sila Upgrade';
-        descEl.textContent  = 'Sila subscribe untuk teruskan.';
+        titleEl.textContent = jmT('chat_limit_title_upgrade', 'Please upgrade');
+        descEl.textContent  = jmT('chat_limit_desc_upgrade', 'Please subscribe to continue.');
     }
 
     function openLimitModal(reason) {
@@ -327,14 +343,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function lockInput(reason) {
         canSend = false;
         textarea?.setAttribute('disabled', 'disabled');
-        textarea?.setAttribute('placeholder', 'Chat dikunci. Sila upgrade.');
+        textarea?.setAttribute('placeholder', jmT('chat_placeholder_locked', 'Chat locked. Please upgrade.'));
         openLimitModal(reason);
     }
 
     // ✅ kalau dari server dah block (load page)
     if (!hasActiveSub && (!canSend)) {
         textarea?.setAttribute('disabled', 'disabled');
-        textarea?.setAttribute('placeholder', 'Chat dikunci. Sila upgrade.');
+        textarea?.setAttribute('placeholder', jmT('chat_placeholder_locked', 'Chat locked. Please upgrade.'));
         sendBtn?.setAttribute('disabled', 'disabled');
         if (initialBlockedReason) {
             // optional auto popup
@@ -373,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     lockInput(reason);
                     return;
                 }
-                console.error('Gagal hantar mesej:', error);
+                console.error(jmT('chat_send_failed', 'Failed to send message:'), error);
             });
         });
     }
@@ -414,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
                     try {
-                        new Notification('Mesej baru dari ' + (msg.sender_name || otherName), {
+                        new Notification(jmT('chat_new_message_from', 'New message from ') + (msg.sender_name || otherName), {
                             body: msg.body || '',
                         });
                     } catch (err) {}
