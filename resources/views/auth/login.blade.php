@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 
 @extends('layouts.app')
@@ -30,9 +31,9 @@
                     <label for="password" data-translate="field_password">Kata Laluan</label>
 
                     <!-- Eye icon -->
-                    <span class="toggle-eye" onclick="togglePassword()">
+                    <button class="toggle-eye" type="button" onclick="togglePassword()" aria-label="Tunjuk atau sembunyi kata laluan" aria-pressed="false">
                         <i id="password-icon" class="bi bi-eye"></i>
-                    </span>
+                    </button>
                 </div>
 
                 <!-- Remember Me -->
@@ -70,13 +71,16 @@
         function togglePassword() {
             const input = document.getElementById('password');
             const icon = document.getElementById('password-icon');
+            const btn = document.querySelector('.toggle-eye');
 
             if (input.type === 'password') {
                 input.type = 'text';
                 icon.classList.replace('bi-eye', 'bi-eye-slash');
+                if (btn) btn.setAttribute('aria-pressed', 'true');
             } else {
                 input.type = 'password';
                 icon.classList.replace('bi-eye-slash', 'bi-eye');
+                if (btn) btn.setAttribute('aria-pressed', 'false');
             }
         }
 
